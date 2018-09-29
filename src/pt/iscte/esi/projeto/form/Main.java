@@ -1,4 +1,4 @@
-package pt.iscte.esi.projeto.form;
+package src.pt.iscte.esi.projeto.form;
 
 import java.awt.EventQueue;
 

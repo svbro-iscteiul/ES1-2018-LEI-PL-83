@@ -1,4 +1,4 @@
-package pt.iscte.esi.projeto.form;
+package src.pt.iscte.esi.projeto.form;
 
 import java.awt.EventQueue;
 import java.awt.Image;
@@ -50,7 +50,7 @@ public class LoginWindow {
 		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\jose.f.santos\\Pictures\\logo_ISCTE-IUL.png"));
 		frame.getContentPane().add(lblNewLabel, BorderLayout.WEST);
 		
-		//Here starts Log In Panel
+		//Here starts LogIn Panel
 		
 		JPanel logInPanel = new JPanel();
 		logInPanel.setLayout(null);
