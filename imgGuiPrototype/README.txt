@@ -1,0 +1,1 @@
+colocar nesta pasta todas imagens e apontamentos relevantes, que possam ajudar na implementação do GUI
