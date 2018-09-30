@@ -145,14 +145,25 @@ public class SigninWindow {
 					lblNewLabel_5.setText("<html><font color='red'>Error: All input fields are mandatory.</font></html>");
 				}
 				else if(!textField_2.getText().equals(textField_3.getText())) {
-					lblNewLabel_5.setText("\"<html><font color='red'>Error: Passwords don't match.</font></html>\"");
+					lblNewLabel_5.setText("<html><font color='red'>Error: Passwords don't match.</font></html>");
 				}
 				else {
-					lblNewLabel_5.setText("");
+					XMLFileEditor i = new XMLFileEditor();
+					String s=i.SignIn(textField.getText(),textField_1.getText(),textField_2.getText());
+					if(s.equals("Error"))
+						lblNewLabel_5.setText("<html><font color='red'>Error</font></html>");
+					else if(s.equals("Username taken")) 
+						lblNewLabel_5.setText("<html><font color='red'>Error: username already taken.</font></html>");
+					else if(s.equals("Email taken"))
+						lblNewLabel_5.setText("<html><font color='red'>Error: email already taken.</font></html>");
+					else {
+						lblNewLabel_5.setText("<html><font color='green'>You got registered.</font></html>");
+					}
 				}
 				
 			}
 		});
+		
 		
 	}
 }
