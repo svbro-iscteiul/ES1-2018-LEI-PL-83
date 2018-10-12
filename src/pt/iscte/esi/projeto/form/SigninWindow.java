@@ -13,6 +13,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.Font;
+import java.awt.Toolkit;
 
 public class SigninWindow {
 
@@ -39,6 +40,8 @@ public class SigninWindow {
 		frame.setBounds(350, 350, 804, 536);
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		
+		frame.setTitle("Bom dia Academia - Signin Window");
+		
 		frame.getContentPane().setLayout(new BorderLayout());
 		
 		JLabel lblNewLabel = new JLabel("");
@@ -49,7 +52,7 @@ public class SigninWindow {
 		imgIcon = new ImageIcon(img);
 		//frame.getContentPane().setLayout(new GridLayout(4, 5, 0, 0));
 		
-		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\jose.f.santos\\Pictures\\logo_ISCTE-IUL.png"));
+		lblNewLabel.setIcon(new ImageIcon(SigninWindow.class.getResource("/src/pt/iscte/esi/projeto/form/images/logo_ISCTE-IUL.png")));
 		frame.getContentPane().add(lblNewLabel, BorderLayout.WEST);
 		
 		JPanel logInPanel = new JPanel();

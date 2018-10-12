@@ -45,6 +45,8 @@ public class LoginWindow {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(new BorderLayout());
 		
+		frame.setTitle("Bom dia Academia - Login Window");
+		
 		JLabel lblNewLabel = new JLabel("");
 		
 		ImageIcon imgIcon = new ImageIcon("C:\\Users\\jose.f.santos\\Pictures\\logo_ISCTE-IUL.png");
@@ -53,7 +55,7 @@ public class LoginWindow {
 		imgIcon = new ImageIcon(img);
 		//frame.getContentPane().setLayout(new GridLayout(4, 5, 0, 0));
 		
-		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\jose.f.santos\\Pictures\\logo_ISCTE-IUL.png"));
+		lblNewLabel.setIcon(new ImageIcon(LoginWindow.class.getResource("/src/pt/iscte/esi/projeto/form/images/logo_ISCTE-IUL.png")));
 		frame.getContentPane().add(lblNewLabel, BorderLayout.WEST);
 		
 		//Here starts LogIn Panel
