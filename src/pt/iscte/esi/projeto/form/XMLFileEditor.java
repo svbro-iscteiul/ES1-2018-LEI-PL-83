@@ -13,7 +13,12 @@ import java.io.File;
 
 
 public class XMLFileEditor {
-
+	/*
+	 * This class registers the user in the app
+	 * if the username doesn't exist it will save in the config.xml file the password, email and username and returns "New Username added"
+	 * If the username already exists it will return "Username taken"
+	 * if the email already exists it will return "Email taken"
+	 * */
 	public String SignIn(String Username, String Email, String Password) 
 	{
 		String s=ReadFile(Username,Email,Password);
