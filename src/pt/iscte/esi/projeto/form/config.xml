@@ -4,4 +4,4 @@
 <Password>password</Password>
 <Email>email</Email>
 </User>
-<User><Username>TestUser</Username><Password>test</Password><Email>TestEmail</Email></User></Users>
+<User><Username>TestUser</Username><Password>test</Password><Email>TestEmail</Email></User><User><Username>josefsantos</Username><Password>1234</Password><Email>josefsantos@iscte-iul.pt</Email></User><User><Username>deaedd</Username><Password>123</Password><Email>deade</Email></User></Users>
