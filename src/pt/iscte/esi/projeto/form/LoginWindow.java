@@ -85,7 +85,30 @@ public class LoginWindow {
 		txtPassw.setColumns(10);
 		
 		JButton btnLogIn = new JButton("Log In");
+		btnLogIn.addMouseListener(new MouseAdapter() {
+			
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				EventQueue.invokeLater(new Runnable() {
+					public void run() {
+						try {
+							XMLFileEditor xmlfile = new XMLFileEditor();
+							
+							
+							
+							frame.dispose();
+							new MainWindow();
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+					}
+				});
+			}
+		});
+		
+		
 		btnLogIn.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		btnLogIn.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		logInPanel.add(btnLogIn);
 		
 		lblUtilizador.setBounds(200,200,100,30);
@@ -103,32 +126,8 @@ public class LoginWindow {
 		lblNewLabel_1.setBounds(350, 378, 100, 30);
 		logInPanel.add(lblNewLabel_1);
 		
-		lblNewLabel_1.addMouseListener(new MouseListener() {
-			
-			@Override
-			public void mouseReleased(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mousePressed(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mouseExited(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
+		lblNewLabel_1.addMouseListener(new MouseAdapter() {
+		
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				SwingUtilities.invokeLater(new Runnable() {
