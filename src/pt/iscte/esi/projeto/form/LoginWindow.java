@@ -84,6 +84,10 @@ public class LoginWindow {
 		logInPanel.add(txtPassw);
 		txtPassw.setColumns(10);
 		
+		JLabel lblNewLabel_2 = new JLabel("");
+		lblNewLabel_2.setBounds(200, 529, 431, 16);
+		logInPanel.add(lblNewLabel_2);
+		
 		JButton btnLogIn = new JButton("Log In");
 		btnLogIn.addMouseListener(new MouseAdapter() {
 			
@@ -94,10 +98,25 @@ public class LoginWindow {
 						try {
 							XMLFileEditor xmlfile = new XMLFileEditor();
 							
+							/*
+							 * Converte a pass que vem em formato de um array de chars para string
+							 */
+							char[] pass = txtPassw.getPassword();
+							String resultpass = "";
+							for(int i=0; i<pass.length;i++) {
+								resultpass = resultpass + pass[i];
+							}
 							
+							String result = xmlfile.ReadFile(txtUtilizador.getText(), "", resultpass);
 							
-							frame.dispose();
-							new MainWindow();
+							if(result.equals("Password Correct")){
+								lblNewLabel_2.setText("");
+								frame.dispose();
+								new MainWindow();
+							}else {
+								lblNewLabel_2.setText("<html><font color='red'>Erro, Username não econtrado ou password errada!</font></html>");
+							}
+
 						} catch (Exception e) {
 							e.printStackTrace();
 						}
@@ -125,6 +144,8 @@ public class LoginWindow {
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblNewLabel_1.setBounds(350, 378, 100, 30);
 		logInPanel.add(lblNewLabel_1);
+		
+		
 		
 		lblNewLabel_1.addMouseListener(new MouseAdapter() {
 		

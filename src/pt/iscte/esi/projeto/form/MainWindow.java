@@ -1,7 +1,5 @@
 package src.pt.iscte.esi.projeto.form;
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JTextField;
 import javax.swing.JButton;
