@@ -1,19 +1,18 @@
 package src.pt.iscte.esi.projeto.form;
 
 import java.awt.BorderLayout;
+import java.awt.Font;
 import java.awt.Image;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-import javax.swing.JButton;
-import java.awt.Font;
-import java.awt.Toolkit;
 
 public class RegisterWindow {
 
@@ -113,32 +112,7 @@ public class RegisterWindow {
 		lblNewLabel_5.setBounds(99, 330, 396, 25);
 		logInPanel.add(lblNewLabel_5);
 		
-		btnSignIn.addMouseListener(new MouseListener() {
-			
-			@Override
-			public void mouseReleased(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mousePressed(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mouseExited(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
+		btnSignIn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if(textField.getText().equals("") 

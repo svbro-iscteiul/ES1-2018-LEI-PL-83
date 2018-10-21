@@ -1,27 +1,27 @@
 
-	package src.pt.iscte.esi.projeto.form;
+package src.pt.iscte.esi.projeto.form;
 
 
-	import javax.swing.JFrame;
-	import java.awt.Image;
-	import javax.swing.JButton;
-	import java.awt.event.ActionListener;
-	import java.awt.event.ActionEvent;
-	import javax.swing.JLabel;
-	import javax.swing.JTable;
-	import javax.swing.JPopupMenu;
-	import java.awt.Component;
-	import javax.swing.ImageIcon;
-	import javax.swing.JScrollPane;
-	import javax.swing.table.DefaultTableModel;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Font;
+import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPopupMenu;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
+import javax.swing.border.LineBorder;
+import javax.swing.table.DefaultTableModel;
 
 import com.jgoodies.forms.factories.DefaultComponentFactory;
-
-import javax.swing.border.LineBorder;
-	import java.awt.Color;
-	import javax.swing.ListSelectionModel;
-	import java.awt.Font;
-	import javax.swing.JTextField;
 	
 
 	public class MainWindow {
@@ -62,7 +62,7 @@ import javax.swing.border.LineBorder;
 			table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 			table.setModel(new DefaultTableModel(
 				new Object[][] {
-					{null, null, null, null},
+					{"01/01/1000", "twitter", "Twitter", "teste"},
 					{null, null, null, null},
 					{null, null, null, null},
 					{null, null, null, null},
@@ -85,6 +85,10 @@ import javax.swing.border.LineBorder;
 					"Data", "Canal", "Origem", "Mensagem"
 				}
 			) {
+				/**
+				 * 
+				 */
+				private static final long serialVersionUID = 1L;
 				Class[] columnTypes = new Class[] {
 					String.class, String.class, String.class, String.class
 				};
@@ -95,14 +99,14 @@ import javax.swing.border.LineBorder;
 			table.getColumnModel().getColumn(3).setPreferredWidth(402);
 			frame.getContentPane().setLayout(null);
 			
-			
+	/*		
 			//Add the Logout Button to the window
-//			JLabel lblLogOut = DefaultComponentFactory.getInstance().createLabel("Logout");
-//			lblLogOut.setFont(new Font("Tahoma", Font.BOLD, 11));
-//			lblLogOut.setForeground(new Color(240, 255, 255));
-//			lblLogOut.setBounds(709, 72, 92, 14);
-//			frame.getContentPane().add(lblLogOut);
-			
+			JLabel lblLogOut = DefaultComponentFactory.getInstance().createLabel("Logout");
+			lblLogOut.setFont(new Font("Tahoma", Font.BOLD, 11));
+			lblLogOut.setForeground(new Color(240, 255, 255));
+			lblLogOut.setBounds(709, 72, 92, 14);
+			frame.getContentPane().add(lblLogOut);
+	*/		
 			
 			
 			scrollPane.setViewportView(table);
@@ -136,18 +140,20 @@ import javax.swing.border.LineBorder;
 			txtPesquisaMensagensPor.setBounds(390, 502, 234, 20);
 			frame.getContentPane().add(txtPesquisaMensagensPor);
 			txtPesquisaMensagensPor.setColumns(10);
-			
+		/*			
 			//Add the Button "Adicionar Contas" to the window
-//			JButton btnNewButton_1 = new JButton("Adicionar contas");
-//			btnNewButton_1.setBounds(612, 113, 133, 23);
-//			frame.getContentPane().add(btnNewButton_1);
-//			
+			JButton btnNewButton_1 = new JButton("Adicionar contas");
+			btnNewButton_1.setBounds(612, 113, 133, 23);
+			frame.getContentPane().add(btnNewButton_1);
+			
 			image2 = new JLabel("");
 			image2.setBounds(0, 157, 414, 402);
-				
+ 		*/				
 		}
 		private static void addPopup(Component component, final JPopupMenu popup) {
 		}
+		
+		
 	}
 
 

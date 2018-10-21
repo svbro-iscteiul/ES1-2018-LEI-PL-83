@@ -1,23 +1,19 @@
 package src.pt.iscte.esi.projeto.form;
 
+import java.awt.BorderLayout;
+import java.awt.Cursor;
+import java.awt.Font;
 import java.awt.Image;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
-
-import java.awt.BorderLayout;
-import java.awt.Cursor;
-import java.awt.EventQueue;
-
-import javax.swing.ImageIcon;
 import javax.swing.JTextField;
-import javax.swing.JButton;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 
@@ -87,38 +83,13 @@ public class LoginWindow {
 		
 		JLabel lblNewLabel_5 = new JLabel("");
 		lblNewLabel_5.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblNewLabel_5.setBounds(99, 330, 396, 25);
+		lblNewLabel_5.setBounds(48, 330, 290, 25);
 		logInPanel.add(lblNewLabel_5);
 		
 		JButton btnLogIn = new JButton("Log In");
 		btnLogIn.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		logInPanel.add(btnLogIn);
-		btnLogIn.addMouseListener(new MouseListener() {
-			
-			@Override
-			public void mouseReleased(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mousePressed(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mouseExited(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
+		btnLogIn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				SwingUtilities.invokeLater(new Runnable() {
@@ -144,6 +115,7 @@ public class LoginWindow {
 										public void run() {
 											try {
 												new MainWindow();
+												frame.dispose();
 											} catch (Exception e) {
 												e.printStackTrace();
 											}
@@ -174,32 +146,7 @@ public class LoginWindow {
 		lblNewLabel_1.setBounds(350, 378, 100, 30);
 		logInPanel.add(lblNewLabel_1);
 		
-		lblNewLabel_1.addMouseListener(new MouseListener() {
-			
-			@Override
-			public void mouseReleased(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mousePressed(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mouseExited(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
+		lblNewLabel_1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				SwingUtilities.invokeLater(new Runnable() {
