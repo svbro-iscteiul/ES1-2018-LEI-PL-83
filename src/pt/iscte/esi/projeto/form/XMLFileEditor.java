@@ -15,15 +15,15 @@ import java.io.File;
 public class XMLFileEditor {
 	/*
 	 * This class registers the user in the app
-	 * if the username doesn't exist it will save in the config.xml file the password, email and username and returns "New Username added"
-	 * If the username already exists it will return "Username taken"
-	 * if the email already exists it will return "Email taken"
+	 * if the username doesn't exist it will save in the config.xml file the password, email and username and returns "New Username Added"
+	 * If the username already exists it will return "Username Taken"
+	 * if the email already exists it will return "Email Taken"
 	 * */
 	public String SignIn(String Username, String Email, String Password) 
 	{
 		String s=ReadFile(Username,Email,Password);
 		if(!s.equals("Error"))
-			if(s.equals("Username not found"))
+			if(s.equals("Username Not Found"))
 			{
 				try {
 				DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
@@ -51,28 +51,28 @@ public class XMLFileEditor {
 				Transformer transformer = transformerFactory.newTransformer();
 				StreamResult result = new StreamResult("src/pt/iscte/esi/projeto/form/config.xml");
 				transformer.transform(source, result);
-				return "New Username added";
+				return "New Username Added";
 				} catch (Exception e) {
 					e.printStackTrace();
 					return "Error";
 				}
 			}
 			else if(s.equals("Password Correct") || s.equals("Password Incorrect"))
-				return "Username taken";		
+				return "Username Taken";		
 			else
 			{
-				return "Email taken";
+				return "Email Taken";
 			}
 		return "Error";
 	}
 
-	/**
+	/*
 	 * Code based on https://www.mkyong.com/java/how-to-read-xml-file-in-java-dom-parser/
 	 * returns a string depending on the follow options:
 	 * If username exists and password is correct returns "Password Correct"
 	 * If username exists but the password is wrong returns: "Password Incorrect"
-	 * If the username does not exist returns: "Username not found"
-	 * If the email exists returns: Email taken
+	 * If the username does not exist returns: "Username Not Found"
+	 * If the email exists returns: Email Taken
 	 * If an error occurs returns: "Error"
 	 */
 	public String ReadFile(String Username,String Email,String Password) {
@@ -96,7 +96,7 @@ public class XMLFileEditor {
 
 					Element eElement = (Element) nNode;
 					if(eElement.getElementsByTagName("Email").item(0).getTextContent().equals(Email))
-						return "Email taken";
+						return "Email Taken";
 					if(eElement.getElementsByTagName("Username").item(0).getTextContent().equals(Username)){
 						if(eElement.getElementsByTagName("Password").item(0).getTextContent().equals(Password)) 
 							return "Password Correct";
@@ -107,7 +107,7 @@ public class XMLFileEditor {
 
 				}
 			}
-			return "Username not found";
+			return "Username Not Found";
 		} catch (Exception e) {
 			e.printStackTrace();
 			return "Error";

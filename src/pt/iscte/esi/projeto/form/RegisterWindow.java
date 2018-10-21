@@ -2,8 +2,9 @@ package src.pt.iscte.esi.projeto.form;
 
 import java.awt.BorderLayout;
 import java.awt.Image;
-import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -12,8 +13,9 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.Font;
+import java.awt.Toolkit;
 
-public class SigninWindow {
+public class RegisterWindow {
 
 	private JFrame frame;
 	private JTextField textField;
@@ -25,7 +27,7 @@ public class SigninWindow {
 	/**
 	 * Create the application.
 	 */
-	public SigninWindow() {
+	public RegisterWindow() {
 		initialize();
 		frame.setVisible(true);
 	}
@@ -50,7 +52,7 @@ public class SigninWindow {
 		imgIcon = new ImageIcon(img);
 		//frame.getContentPane().setLayout(new GridLayout(4, 5, 0, 0));
 		
-		lblNewLabel.setIcon(new ImageIcon(SigninWindow.class.getResource("/src/pt/iscte/esi/projeto/form/images/logo_ISCTE-IUL.png")));
+		lblNewLabel.setIcon(new ImageIcon(RegisterWindow.class.getResource("/src/pt/iscte/esi/projeto/form/images/logo_ISCTE-IUL.png")));
 		frame.getContentPane().add(lblNewLabel, BorderLayout.WEST);
 		
 		JPanel logInPanel = new JPanel();
@@ -101,7 +103,7 @@ public class SigninWindow {
 		textField_3.setBounds(257, 289, 180, 22);
 		logInPanel.add(textField_3);
 		
-		JButton btnSignIn = new JButton("Sign In");
+		JButton btnSignIn = new JButton("Registar");
 		btnSignIn.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		btnSignIn.setBounds(398, 371, 97, 25);
 		logInPanel.add(btnSignIn);
@@ -111,7 +113,31 @@ public class SigninWindow {
 		lblNewLabel_5.setBounds(99, 330, 396, 25);
 		logInPanel.add(lblNewLabel_5);
 		
-		btnSignIn.addMouseListener(new MouseAdapter() {
+		btnSignIn.addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
 			
 			@Override
 			public void mouseClicked(MouseEvent e) {

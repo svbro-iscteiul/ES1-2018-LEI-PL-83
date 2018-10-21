@@ -84,39 +84,73 @@ public class LoginWindow {
 		logInPanel.add(txtPassw);
 		txtPassw.setColumns(10);
 		
-		JLabel lblNewLabel_2 = new JLabel("");
-		lblNewLabel_2.setBounds(200, 529, 431, 16);
-		logInPanel.add(lblNewLabel_2);
+		
+		JLabel lblNewLabel_5 = new JLabel("");
+		lblNewLabel_5.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblNewLabel_5.setBounds(99, 330, 396, 25);
+		logInPanel.add(lblNewLabel_5);
 		
 		JButton btnLogIn = new JButton("Log In");
-		btnLogIn.addMouseListener(new MouseAdapter() {
+		btnLogIn.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		logInPanel.add(btnLogIn);
+		btnLogIn.addMouseListener(new MouseListener() {
 			
 			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				EventQueue.invokeLater(new Runnable() {
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				SwingUtilities.invokeLater(new Runnable() {
 					public void run() {
 						try {
-							XMLFileEditor xmlfile = new XMLFileEditor();
-							
-							/*
-							 * Converte a pass que vem em formato de um array de chars para string
-							 */
-							char[] pass = txtPassw.getPassword();
-							String resultpass = "";
-							for(int i=0; i<pass.length;i++) {
-								resultpass = resultpass + pass[i];
+							if(txtUtilizador.getText().equals("") || txtPassw.getPassword().length==0)
+								lblNewLabel_5.setText("<html><font color='red'>Error: All input fields are mandatory.</font></html>");
+							else
+							{
+								XMLFileEditor i = new XMLFileEditor();
+								char[] pass = txtPassw.getPassword();
+								String password = new String(pass);
+								String s=i.ReadFile(txtUtilizador.getText(),"",password);
+								if(s.equals("Error"))
+									lblNewLabel_5.setText("<html><font color='red'>Error</font></html>");
+								else if(s.equals("Username Not Found")) 
+									lblNewLabel_5.setText("<html><font color='red'>Error:That username does not exit.</font></html>");
+								else if(s.equals("Password Incorrect"))
+									lblNewLabel_5.setText("<html><font color='red'>Error: Password Incorrect.</font></html>");
+								else 
+								{
+									SwingUtilities.invokeLater(new Runnable() {
+										public void run() {
+											try {
+												new MainWindow();
+											} catch (Exception e) {
+												e.printStackTrace();
+											}
+										}
+									});
+								}
 							}
-							
-							String result = xmlfile.ReadFile(txtUtilizador.getText(), "", resultpass);
-							
-							if(result.equals("Password Correct")){
-								lblNewLabel_2.setText("");
-								frame.dispose();
-								new MainWindow();
-							}else {
-								lblNewLabel_2.setText("<html><font color='red'>Erro, Username não econtrado ou password errada!</font></html>");
-							}
-
 						} catch (Exception e) {
 							e.printStackTrace();
 						}
@@ -124,11 +158,6 @@ public class LoginWindow {
 				});
 			}
 		});
-		
-		
-		btnLogIn.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		btnLogIn.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		logInPanel.add(btnLogIn);
 		
 		lblUtilizador.setBounds(200,200,100,30);
 		lblPassword.setBounds(200,250,100,30);
@@ -138,23 +167,45 @@ public class LoginWindow {
 		
 		btnLogIn.setBounds(350,325,100,40);
 		
-		JLabel lblNewLabel_1 = new JLabel("<html><font color='blue'>Sign In</font></html>");
+		JLabel lblNewLabel_1 = new JLabel("<html><font color='blue'>Registar</font></html>");
 		lblNewLabel_1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblNewLabel_1.setBounds(350, 378, 100, 30);
 		logInPanel.add(lblNewLabel_1);
 		
-		
-		
-		lblNewLabel_1.addMouseListener(new MouseAdapter() {
-		
+		lblNewLabel_1.addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				SwingUtilities.invokeLater(new Runnable() {
 					public void run() {
 						try {
-							new SigninWindow();
+							new RegisterWindow();
 						} catch (Exception e) {
 							e.printStackTrace();
 						}
