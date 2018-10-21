@@ -45,7 +45,7 @@ public class LoginWindow {
 		
 		JLabel lblNewLabel = new JLabel("");
 		
-		ImageIcon imgIcon = new ImageIcon("C:\\Users\\jose.f.santos\\Pictures\\logo_ISCTE-IUL.png");
+		ImageIcon imgIcon = new ImageIcon(LoginWindow.class.getResource("/src/pt/iscte/esi/projeto/form/images/logo_ISCTE-IUL.png"));
 		Image img = imgIcon.getImage();
 		img = img.getScaledInstance(200, 500, java.awt.Image.SCALE_SMOOTH);
 		imgIcon = new ImageIcon(img);

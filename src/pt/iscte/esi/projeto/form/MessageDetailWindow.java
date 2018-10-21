@@ -49,7 +49,7 @@ public class MessageDetailWindow {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		ImageIcon image = new ImageIcon(MessageDetailWindow.class.getResource("/src.pt.iscte.esi.projeto.form/Symbol_ISCTE.png"));
+		ImageIcon image = new ImageIcon(MessageDetailWindow.class.getResource("/src/pt/iscte/esi/projeto/form/images/Symbol_ISCTE.png"));
 		
 		
 		//Adding photo to the frame "MainFrameMessageView"
