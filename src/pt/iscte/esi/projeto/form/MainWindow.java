@@ -4,6 +4,7 @@ package src.pt.iscte.esi.projeto.form;
 
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -22,6 +23,8 @@ import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 
 import com.jgoodies.forms.factories.DefaultComponentFactory;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 	
 
 	public class MainWindow {
@@ -61,8 +64,17 @@ import com.jgoodies.forms.factories.DefaultComponentFactory;
 			table.setBorder(new LineBorder(new Color(0, 0, 139), 1, true));
 			table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 			table.setModel(new DefaultTableModel(
+					/*
+					 * Pensar noutra maneira para implementar isto..
+					 * o acesso por classes exteriores não é permitido. (ex APIs Face, Twitter)
+					 * 
+					 * além disso a bibliotéca com.jgoodies está desactualizada e deixou de ser OpenSource,
+					 * Para atualizar tem de se pagar
+					 * 
+					 * implementar antes uma lista como a lista usada no projecto de PCD
+					 */
 				new Object[][] {
-					{"01/01/1000", "twitter", "Twitter", "teste"},
+					{"01/01/1000", "teste", "teste", "teste"},
 					{null, null, null, null},
 					{null, null, null, null},
 					{null, null, null, null},
@@ -86,7 +98,7 @@ import com.jgoodies.forms.factories.DefaultComponentFactory;
 				}
 			) {
 				/**
-				 * 
+				 * Para que serve ?? 
 				 */
 				private static final long serialVersionUID = 1L;
 				Class[] columnTypes = new Class[] {
@@ -95,25 +107,31 @@ import com.jgoodies.forms.factories.DefaultComponentFactory;
 				public Class getColumnClass(int columnIndex) {
 					return columnTypes[columnIndex];
 				}
+				
 			});
 			table.getColumnModel().getColumn(3).setPreferredWidth(402);
 			frame.getContentPane().setLayout(null);
 			
-	/*		
-			//Add the Logout Button to the window
-			JLabel lblLogOut = DefaultComponentFactory.getInstance().createLabel("Logout");
+	
+			
+			JLabel lblLogOut = new JLabel("<html><font color='white'>Logout</font></html>");
+			lblLogOut.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent arg0) {
+					new LoginWindow();
+					frame.dispose();
+				}
+			});
+			lblLogOut.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			lblLogOut.setFont(new Font("Tahoma", Font.BOLD, 11));
 			lblLogOut.setForeground(new Color(240, 255, 255));
-			lblLogOut.setBounds(709, 72, 92, 14);
+			lblLogOut.setBounds(709, 72, 61, 14);
 			frame.getContentPane().add(lblLogOut);
-	*/		
-			
-			
+
 			scrollPane.setViewportView(table);
 			frame.getContentPane().add(scrollPane);
 			
-			
-			
+
 			//Add the top image to the main window
 			
 			JLabel foto = new JLabel("");
@@ -140,7 +158,10 @@ import com.jgoodies.forms.factories.DefaultComponentFactory;
 			txtPesquisaMensagensPor.setBounds(390, 502, 234, 20);
 			frame.getContentPane().add(txtPesquisaMensagensPor);
 			txtPesquisaMensagensPor.setColumns(10);
-		/*			
+			
+		/*
+		 * Para implementação no Sprint 2
+		 * 			
 			//Add the Button "Adicionar Contas" to the window
 			JButton btnNewButton_1 = new JButton("Adicionar contas");
 			btnNewButton_1.setBounds(612, 113, 133, 23);
@@ -148,7 +169,12 @@ import com.jgoodies.forms.factories.DefaultComponentFactory;
 			
 			image2 = new JLabel("");
 			image2.setBounds(0, 157, 414, 402);
- 		*/				
+ 		*/
+			
+			
+		/*
+		 * Para que serve isto????
+		 */
 		}
 		private static void addPopup(Component component, final JPopupMenu popup) {
 		}
