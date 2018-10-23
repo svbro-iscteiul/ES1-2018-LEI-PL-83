@@ -4,6 +4,6 @@
 Repositório da cadeira de Engenharia de Software I
 
 alunos:
-  Elsa Teixeira
-  José Santos
+  Elsa Teixeira,
+  José Santos,
   Sérgio Ribeiro
