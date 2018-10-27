@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.Image;
+import java.awt.RenderingHints.Key;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -16,6 +17,11 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
+
+import src.pt.iscte.esi.projeto.utils.XMLFileEditor;
+
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class LoginWindow {
 
@@ -87,6 +93,7 @@ public class LoginWindow {
 		logInPanel.add(lblNewLabel_5);
 		
 		JButton btnLogIn = new JButton("Log In");
+		
 		btnLogIn.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		logInPanel.add(btnLogIn);
 		btnLogIn.addMouseListener(new MouseAdapter() {

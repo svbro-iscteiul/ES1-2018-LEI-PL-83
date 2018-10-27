@@ -9,22 +9,26 @@ import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
+import javax.swing.SwingUtilities;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 
-import com.jgoodies.forms.factories.DefaultComponentFactory;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import src.DBA.DBAWindow;
 	
 
 	public class MainWindow {
@@ -110,11 +114,11 @@ import java.awt.event.MouseEvent;
 				
 			});
 			table.getColumnModel().getColumn(3).setPreferredWidth(402);
-			frame.getContentPane().setLayout(null);
 			
 	
 			
 			JLabel lblLogOut = new JLabel("<html><font color='white'>Logout</font></html>");
+			lblLogOut.setBounds(709, 98, 61, 14);
 			lblLogOut.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent arg0) {
@@ -122,10 +126,10 @@ import java.awt.event.MouseEvent;
 					frame.dispose();
 				}
 			});
+			frame.getContentPane().setLayout(null);
 			lblLogOut.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			lblLogOut.setFont(new Font("Tahoma", Font.BOLD, 11));
 			lblLogOut.setForeground(new Color(240, 255, 255));
-			lblLogOut.setBounds(709, 72, 61, 14);
 			frame.getContentPane().add(lblLogOut);
 
 			scrollPane.setViewportView(table);
@@ -135,7 +139,7 @@ import java.awt.event.MouseEvent;
 			//Add the top image to the main window
 			
 			JLabel foto = new JLabel("");
-			foto.setBounds(0, 0, 784, 102);
+			foto.setBounds(0, 26, 784, 99);
 			
 			ImageIcon image = new ImageIcon(MainWindow.class.getResource("/src/pt/iscte/esi/projeto/form/images/ImageMainWindow.png"));
 			Image img = image.getImage().getScaledInstance(foto.getWidth(), foto.getHeight(), Image.SCALE_SMOOTH);
@@ -145,19 +149,46 @@ import java.awt.event.MouseEvent;
 			
 			//Add the Button "Pesquisar" to the window
 			JButton btnNewButton = new JButton("Pesquisar");
+			btnNewButton.setBounds(634, 501, 93, 23);
 			btnNewButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 				}
 			});
-			btnNewButton.setBounds(634, 501, 93, 23);
 			frame.getContentPane().add(btnNewButton);
 			
 			txtPesquisaMensagensPor = new JTextField();
+			txtPesquisaMensagensPor.setBounds(390, 502, 234, 20);
 			txtPesquisaMensagensPor.setForeground(new Color(112, 128, 144));
 			txtPesquisaMensagensPor.setText("Pesquisa mensagens por palavra-chave ");
-			txtPesquisaMensagensPor.setBounds(390, 502, 234, 20);
 			frame.getContentPane().add(txtPesquisaMensagensPor);
 			txtPesquisaMensagensPor.setColumns(10);
+			
+			JMenuBar menuBar = new JMenuBar();
+			menuBar.setBounds(0, 0, 784, 26);
+			frame.getContentPane().add(menuBar);
+			
+			JMenu mnTools = new JMenu("Tools");
+			mnTools.setFont(new Font("Segoe UI", Font.PLAIN, 13));
+			menuBar.add(mnTools);
+			
+			JMenuItem mntmDbaEditor = new JMenuItem("DBA - Editor");
+			mntmDbaEditor.setSelected(true);
+			mntmDbaEditor.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					SwingUtilities.invokeLater(new Runnable() {
+						public void run() {
+							try {
+								new DBAWindow();
+							} catch (Exception e) {
+								e.printStackTrace();
+							}
+						}
+					});
+				}
+			});
+			mntmDbaEditor.setFont(new Font("Segoe UI", Font.PLAIN, 13));
+			mnTools.add(mntmDbaEditor);
 			
 		/*
 		 * Para implementação no Sprint 2
@@ -172,15 +203,23 @@ import java.awt.event.MouseEvent;
  		*/
 			
 		}	
-		/*
-		 * Para que serve isto????
-		 
-		}
 		private static void addPopup(Component component, final JPopupMenu popup) {
+			component.addMouseListener(new MouseAdapter() {
+				public void mousePressed(MouseEvent e) {
+					if (e.isPopupTrigger()) {
+						showMenu(e);
+					}
+				}
+				public void mouseReleased(MouseEvent e) {
+					if (e.isPopupTrigger()) {
+						showMenu(e);
+					}
+				}
+				private void showMenu(MouseEvent e) {
+					popup.show(e.getComponent(), e.getX(), e.getY());
+				}
+			});
 		}
-		
-		*/
-		
 	}
 
 

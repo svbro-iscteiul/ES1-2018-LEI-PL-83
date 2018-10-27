@@ -1,15 +1,22 @@
-package src.pt.iscte.esi.projeto.form;
+package src.pt.iscte.esi.projeto.utils;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
+import javax.swing.JTextArea;
 import javax.xml.parsers.DocumentBuilder;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 import org.w3c.dom.Node;
 import org.w3c.dom.Element;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.PrintWriter;
 
 
 public class XMLFileEditor {
@@ -95,7 +102,6 @@ public class XMLFileEditor {
 	 */
 	public String ReadFile(String Username,String Email,String Password) {
 		try {
-
 			File fXmlFile = new File("src/DBA/config.xml");
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
@@ -129,6 +135,40 @@ public class XMLFileEditor {
 		} catch (Exception e) {
 			e.printStackTrace();
 			return "Error";
+		}
+	}
+	
+	/*
+	 * Alterar estes dois métodos para ler e escrever como um XML..
+	 */
+	
+	public void LoadXMlContent(JTextArea textArea) {
+		try {
+			File fXmlFile = new File("src/DBA/config.xml");
+			
+			BufferedReader br = new BufferedReader(new FileReader(fXmlFile));
+			String line;
+			
+			String newline = System.getProperty("line.separator");
+
+			while((line=br.readLine())!= null){
+				textArea.setText(textArea.getText() + line + newline);
+			}
+			br.close();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void SaveXMLContent(JTextArea textArea) {
+		try {
+			File fXmlFile = new File("src/DBA/config.xml");		
+			PrintWriter bw = new PrintWriter(new FileWriter(fXmlFile));		
+			bw.print(textArea.getText());
+			bw.close();		
+		}catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 

@@ -14,6 +14,8 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+import src.pt.iscte.esi.projeto.utils.XMLFileEditor;
+
 public class RegisterWindow {
 
 	private JFrame frame;
