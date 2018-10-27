@@ -25,7 +25,7 @@ public class LoginWindow {
 
 
 	/**
-	 * Create the application.
+	 * Class constructor.
 	 */
 	public LoginWindow() {
 		initialize();
@@ -33,7 +33,7 @@ public class LoginWindow {
 	}
 
 	/**
-	 * Initialize the contents of the frame.
+	 * Create and initialize Login Window.
 	 */
 	private void initialize() {
 		frame = new JFrame();

@@ -36,7 +36,7 @@ import java.awt.event.MouseEvent;
 
 		
 		/**
-		 * Create the application.
+		 * Class constructor.
 		 */
 		public MainWindow() {
 			initialize();
@@ -44,7 +44,7 @@ import java.awt.event.MouseEvent;
 		}
 
 		/**
-		 * Initialize the contents of the frame "Main Frame of the Project".
+		 * Create and initialize Window.
 		 */
 		private void initialize() {
 			frame = new JFrame();
@@ -171,14 +171,15 @@ import java.awt.event.MouseEvent;
 			image2.setBounds(0, 157, 414, 402);
  		*/
 			
-			
+		}	
 		/*
 		 * Para que serve isto????
-		 */
+		 
 		}
 		private static void addPopup(Component component, final JPopupMenu popup) {
 		}
 		
+		*/
 		
 	}
 

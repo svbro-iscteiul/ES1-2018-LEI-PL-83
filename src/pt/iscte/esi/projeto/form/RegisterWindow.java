@@ -24,7 +24,7 @@ public class RegisterWindow {
 
 
 	/**
-	 * Create the application.
+	 * Class constructor.
 	 */
 	public RegisterWindow() {
 		initialize();
@@ -32,7 +32,7 @@ public class RegisterWindow {
 	}
 
 	/**
-	 * Initialize the contents of the frame.
+	 * Create and initialize Register Window.
 	 */
 	private void initialize() {
 		frame = new JFrame();

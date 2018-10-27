@@ -19,6 +19,15 @@ public class XMLFileEditor {
 	 * If the username already exists it will return "Username Taken"
 	 * if the email already exists it will return "Email Taken"
 	 * */
+	
+	/**
+	 * 
+	 * Used to register user in the xml file
+	 * @param Username
+	 * @param Email
+	 * @param Password
+	 * @return
+	 */
 	public String SignIn(String Username, String Email, String Password) 
 	{
 		String s=ReadFile(Username,Email,Password);
@@ -74,6 +83,15 @@ public class XMLFileEditor {
 	 * If the username does not exist returns: "Username Not Found"
 	 * If the email exists returns: Email Taken
 	 * If an error occurs returns: "Error"
+	 */
+	
+	/**
+	 * 
+	 * Used to read xml file and Username Found if user is found a password matches
+	 * @param Username
+	 * @param Email
+	 * @param Password
+	 * @return
 	 */
 	public String ReadFile(String Username,String Email,String Password) {
 		try {
