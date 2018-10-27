@@ -142,6 +142,7 @@ public class XMLFileEditor {
 	 * Alterar estes dois métodos para ler e escrever como um XML..
 	 */
 	
+
 	public void LoadXMlContent(JTextArea textArea) {
 		try {
 			File fXmlFile = new File("src/DBA/config.xml");

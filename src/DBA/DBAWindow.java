@@ -19,6 +19,7 @@ import javax.swing.border.BevelBorder;
 import javax.swing.border.SoftBevelBorder;
 
 import src.pt.iscte.esi.projeto.utils.XMLFileEditor;
+import java.awt.Color;
 
 public class DBAWindow {
 
@@ -49,7 +50,7 @@ public class DBAWindow {
 		frmDbaEditor.getContentPane().add(btnSave);
 		
 		JTextArea textArea = new JTextArea();
-		textArea.setBackground(UIManager.getColor("info"));
+		textArea.setBackground(Color.WHITE);
 		textArea.setFont(new Font("Monospaced", Font.BOLD, 15));
 		textArea.setBounds(2, 2, 914, 571);
 				
