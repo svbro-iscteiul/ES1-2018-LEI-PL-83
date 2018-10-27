@@ -22,7 +22,7 @@ public class XMLFileEditor {
 	
 	/**
 	 * 
-	 * Used to register user in the xml file
+	 * Used to register user in the xml file.
 	 * @param Username
 	 * @param Email
 	 * @param Password
@@ -87,7 +87,7 @@ public class XMLFileEditor {
 	
 	/**
 	 * 
-	 * Used to read xml file and Username Found if user is found a password matches
+	 * Used to read xml file. Username is Found if user exists the password given match.
 	 * @param Username
 	 * @param Email
 	 * @param Password
