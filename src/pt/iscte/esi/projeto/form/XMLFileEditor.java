@@ -28,7 +28,7 @@ public class XMLFileEditor {
 				try {
 				DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
 				DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
-				Document document = documentBuilder.parse("src/pt/iscte/esi/projeto/form/config.xml");
+				Document document = documentBuilder.parse("src/DBA/config.xml");
 				Element root = document.getDocumentElement();
 				Element newUser = document.createElement("User");
 
@@ -49,7 +49,7 @@ public class XMLFileEditor {
 
 				TransformerFactory transformerFactory = TransformerFactory.newInstance();
 				Transformer transformer = transformerFactory.newTransformer();
-				StreamResult result = new StreamResult("src/pt/iscte/esi/projeto/form/config.xml");
+				StreamResult result = new StreamResult("src/DBA/config.xml");
 				transformer.transform(source, result);
 				return "New Username Added";
 				} catch (Exception e) {
@@ -78,7 +78,7 @@ public class XMLFileEditor {
 	public String ReadFile(String Username,String Email,String Password) {
 		try {
 
-			File fXmlFile = new File("src/pt/iscte/esi/projeto/form/config.xml");
+			File fXmlFile = new File("src/DBA/config.xml");
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 			Document doc = dBuilder.parse(fXmlFile);
