@@ -45,8 +45,10 @@ public class XMLFileEditor {
 				DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
 				DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
 				Document document = documentBuilder.parse("src/DBA/config.xml");
-				Element root = document.getDocumentElement();
-				Element newUser = document.createElement("User");
+				
+				//Element root = document.getDocumentElement();
+				
+				Element newUser = document.createElement("User_Login");
 
 				Element name = document.createElement("Username");
 				name.appendChild(document.createTextNode(Username));
@@ -59,7 +61,8 @@ public class XMLFileEditor {
 				Element password = document.createElement("Email");
 				password.appendChild(document.createTextNode(Email));
 				newUser.appendChild(password);
-				root.appendChild(newUser);
+				
+				document.getElementsByTagName("User_Login").item(0).appendChild(newUser);
 
 				DOMSource source = new DOMSource(document);
 
@@ -109,7 +112,7 @@ public class XMLFileEditor {
 
 			doc.getDocumentElement().normalize();
 
-			NodeList nList = doc.getElementsByTagName("User");
+			NodeList nList = doc.getElementsByTagName("User_Login");
 
 			for (int temp = 0; temp < nList.getLength(); temp++) {
 
