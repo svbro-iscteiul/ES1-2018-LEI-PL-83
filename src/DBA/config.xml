@@ -1,26 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?><Users>
-<User>
-<Username>username</Username>
-<Password>password</Password>
-<Email>email</Email>
-</User>
-<User><Username>TestUser</Username><Password>test</Password><Email>TestEmail</Email></User><User><Username>NewUser</Username><Password>aaaaa</Password><Email>teste@gmail.com</Email></User><User><Username>user</Username><Password>123</Password><Email>pass</Email></User>
-<Facebook_Acount>
-	<User>
-		<Username></Username>
-		<Password></Password>
-	</User>
-</Facebook_Acount>
-<Twiteer_Acount>
-	<User>
-		<Username></Username>
-		<Password></Password>
-	</User>
-</Twiteer_Acount>
-<Email_Acount>
-	<User>
-		<Username></Username>
-		<Password></Password>
-	</User>
-</Email_Acount>
-</Users>
+		<User>
+			<Username>username</Username>
+			<Password>password</Password>
+			<Email>email</Email>
+		</User>
+<User><Username>user</Username><Password>123</Password><Email>user</Email></User></Users>
