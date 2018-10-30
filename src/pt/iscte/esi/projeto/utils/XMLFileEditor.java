@@ -11,6 +11,7 @@ import org.w3c.dom.NodeList;
 import org.w3c.dom.Node;
 import org.w3c.dom.Element;
 
+import java.awt.List;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -146,26 +147,52 @@ public class XMLFileEditor {
 	 * Alterar estes dois métodos para ler e escrever como um XML..
 	 */
 	
-
+	/**
+	 * 
+	 * @param textArea
+	 */
 	public void LoadXMlContent(JTextArea textArea) {
 		try {
 			File fXmlFile = new File("src/DBA/config.xml");
 			
-			BufferedReader br = new BufferedReader(new FileReader(fXmlFile));
-			String line;
+			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+			Document doc = dBuilder.parse(fXmlFile);
 			
-			String newline = System.getProperty("line.separator");
-
-			while((line=br.readLine())!= null){
-				textArea.setText(textArea.getText() + line + newline);
+			doc.getDocumentElement().normalize();
+			
+			NodeList nList = doc.getElementsByTagName("*");
+			
+			for(int i=0; i<nList.getLength();i++) {
+				//if(!nList.item(i).toString().contains("null"))
+					textArea.setText(textArea.getText() + nList.item(i).toString().replaceAll("\n", "") + ": \n");
+				if(nList.item(i).hasChildNodes()) {
+					printChilNodes(nList.item(i), textArea);
+				}
 			}
-			br.close();
-			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 	
+	/**
+	 * 
+	 * @param node
+	 * @param textArea
+	 */
+	private void printChilNodes(Node node, JTextArea textArea) {
+		NodeList childnodes = node.getChildNodes();
+		for(int j=0; j<childnodes.getLength();j++) {
+			//if(!childnodes.item(j).toString().contains("null"))
+				textArea.setText(textArea.getText() + "   " + childnodes.item(j).toString().replaceAll("\n", "") + ": \n");
+		}
+	}
+	
+	
+	/**
+	 * Alterar isto!
+	 * @param textArea
+	 */
 	public void SaveXMLContent(JTextArea textArea) {
 		try {
 			File fXmlFile = new File("src/DBA/config.xml");		
@@ -176,5 +203,7 @@ public class XMLFileEditor {
 			e.printStackTrace();
 		}
 	}
+	
+	
 
 }
