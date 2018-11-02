@@ -67,7 +67,7 @@ public class DBAWindow {
 		btnSave.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				int result = JOptionPane.showConfirmDialog(frmDbaEditor, "Your about to overwrite config.xml file.\nAre you sure?", "Confirmation",JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
+				int result = JOptionPane.showConfirmDialog(frmDbaEditor, "You are about to overwrite config.xml file.\nAre you sure?", "Confirmation",JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
 				if(result == JOptionPane.YES_OPTION) {
 					xmlEditor.SaveXMLContent(textArea);
 					frmDbaEditor.setTitle(frmDbaEditor.getTitle() + " (Saved)");

@@ -2,18 +2,38 @@ package src.pt.iscte.esi.projeto.form.models;
 
 import java.security.Timestamp;
 
-public interface Message {
+public class Message {
 	
-	public String getMessage();
+	private String message;
+	private String sender;
+	private Timestamp time;
 	
-	public void setMessage(String message);
-	
-	public String getTime();
-	
-	public void setTime(Timestamp time);
-	
-	public String getSender();
-	
-	public void setSender(String sender);
+	public Message() {}
+
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;		
+	}
+
+	public String getTime() {
+		String stringTime = time.toString();
+		return stringTime;
+	}
+
+	public void setTime(Timestamp time) {
+		this.time = time;
+		
+	}
+
+	public String getSender() {
+		return sender;
+	}
+
+	public void setSender(String sender) {
+		this.sender = sender;		
+	}
 
 }
