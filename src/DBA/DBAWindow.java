@@ -62,14 +62,16 @@ public class DBAWindow {
 		
 		XMLFileEditor xmlEditor = new XMLFileEditor();
 
-		xmlEditor.LoadXMlContent(textArea);
+		xmlEditor.LoadXMLContentRAW(textArea);
 		
 		btnSave.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				int result = JOptionPane.showConfirmDialog(frmDbaEditor, "Your about to overwrite config.xml file.\nAre you sure?", "Confirmation",JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
-				if(result == 1)
+				if(result == JOptionPane.YES_OPTION) {
 					xmlEditor.SaveXMLContent(textArea);
+					frmDbaEditor.setTitle(frmDbaEditor.getTitle() + " (Saved)");
+				}
 				else
 					return;
 			}

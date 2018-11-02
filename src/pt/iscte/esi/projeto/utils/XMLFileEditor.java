@@ -1,5 +1,6 @@
 package src.pt.iscte.esi.projeto.utils;
 import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
@@ -18,6 +19,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.PrintWriter;
+import java.io.StringWriter;
 
 
 public class XMLFileEditor {
@@ -190,14 +192,44 @@ public class XMLFileEditor {
 	
 	
 	/**
+	 *  retirado de https://www.topjavatutorial.com/java/java-programs/pretty-print-xml-java/
+	 * @param textArea
+	 */
+	public void LoadXMLContentRAW(JTextArea textArea) {
+		try {
+			File fXmlFile = new File("src/DBA/config.xml");
+			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+			DocumentBuilder builder = factory.newDocumentBuilder();
+			Document document = builder.parse(fXmlFile);
+			
+			String out = "";
+			
+			Transformer tform = TransformerFactory.newInstance().newTransformer();
+			tform.setOutputProperty(OutputKeys.INDENT, "yes");
+			tform.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
+			DOMSource source = new DOMSource(document);
+	        StringWriter strWriter = new StringWriter();
+	        StreamResult result = new StreamResult(strWriter);
+	 
+	        tform.transform(source, result);
+			
+			textArea.setText(strWriter.getBuffer().toString());
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
+	/**
 	 * Alterar isto!
 	 * @param textArea
 	 */
 	public void SaveXMLContent(JTextArea textArea) {
 		try {
 			File fXmlFile = new File("src/DBA/config.xml");		
-			PrintWriter bw = new PrintWriter(new FileWriter(fXmlFile));		
-			bw.print(textArea.getText());
+			BufferedWriter  bw = new BufferedWriter (new FileWriter(fXmlFile));		
+			bw.write(textArea.getText());
 			bw.close();		
 		}catch (Exception e) {
 			e.printStackTrace();
