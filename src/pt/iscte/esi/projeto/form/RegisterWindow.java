@@ -47,13 +47,13 @@ public class RegisterWindow {
 		
 		JLabel lblNewLabel = new JLabel("");
 		
-		ImageIcon imgIcon = new ImageIcon(RegisterWindow.class.getResource("/src/pt/iscte/esi/projeto/form/images/logo_ISCTE-IUL.png"));;
+		ImageIcon imgIcon = new ImageIcon(RegisterWindow.class.getResource("/pt/iscte/esi/projeto/form/images/logo_ISCTE-IUL.png"));;
 		Image img = imgIcon.getImage();
 		img = img.getScaledInstance(200, 500, java.awt.Image.SCALE_SMOOTH);
 		imgIcon = new ImageIcon(img);
 		//frame.getContentPane().setLayout(new GridLayout(4, 5, 0, 0));
 		
-		lblNewLabel.setIcon(new ImageIcon(RegisterWindow.class.getResource("/src/pt/iscte/esi/projeto/form/images/logo_ISCTE-IUL.png")));
+		lblNewLabel.setIcon(new ImageIcon(RegisterWindow.class.getResource("/pt/iscte/esi/projeto/form/images/logo_ISCTE-IUL.png")));
 		frame.getContentPane().add(lblNewLabel, BorderLayout.WEST);
 		
 		JPanel logInPanel = new JPanel();

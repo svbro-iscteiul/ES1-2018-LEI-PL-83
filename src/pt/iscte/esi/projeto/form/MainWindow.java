@@ -117,7 +117,7 @@ import pt.iscte.esi.projeto.utils.MainMsgList;
 			JLabel foto = new JLabel("");
 			foto.setBounds(0, 26, 784, 99);
 			
-			ImageIcon image = new ImageIcon(MainWindow.class.getResource("/src/pt/iscte/esi/projeto/form/images/ImageMainWindow.png"));
+			ImageIcon image = new ImageIcon(MainWindow.class.getResource("/pt/iscte/esi/projeto/form/images/ImageMainWindow.png"));
 			Image img = image.getImage().getScaledInstance(foto.getWidth(), foto.getHeight(), Image.SCALE_SMOOTH);
 			
 			foto.setIcon(new ImageIcon(img));
