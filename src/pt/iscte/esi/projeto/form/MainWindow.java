@@ -29,6 +29,7 @@ import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 
 import src.DBA.DBAWindow;
+import src.pt.iscte.esi.projeto.utils.MainMsgList;
 	
 
 	public class MainWindow {
@@ -37,6 +38,8 @@ import src.DBA.DBAWindow;
 		private JTable table;
 		private JLabel image2;
 		private JTextField txtPesquisaMensagensPor;
+		private MainMsgList msgList;
+		private DefaultTableModel defaultTableModel;
 
 		
 		/**
@@ -67,42 +70,13 @@ import src.DBA.DBAWindow;
 			table.setBackground(new Color(255, 255, 204));
 			table.setBorder(new LineBorder(new Color(0, 0, 139), 1, true));
 			table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-			table.setModel(new DefaultTableModel(
-					/*
-					 * Pensar noutra maneira para implementar isto..
-					 * o acesso por classes exteriores não é permitido. (ex APIs Face, Twitter)
-					 * 
-					 * além disso a bibliotéca com.jgoodies está desactualizada e deixou de ser OpenSource,
-					 * Para atualizar tem de se pagar
-					 * 
-					 * implementar antes uma lista como a lista usada no projecto de PCD
-					 */
-				new Object[][] {
-					{"01/01/1000", "teste", "teste", "teste"},
-					{null, null, null, null},
-					{null, null, null, null},
-					{null, null, null, null},
-					{null, null, null, null},
-					{null, null, null, null},
-					{null, null, null, null},
-					{null, null, null, null},
-					{null, null, null, null},
-					{null, null, null, null},
-					{null, null, null, null},
-					{null, null, null, null},
-					{null, null, null, null},
-					{null, null, null, null},
-					{null, null, null, null},
-					{null, null, null, null},
-					{null, null, null, null},
-					{null, null, null, null},
-				},
-				new String[] {
-					"Data", "Canal", "Origem", "Mensagem"
-				}
-			) {
+			
+			msgList = new MainMsgList(frame);
+			msgList.setHeaders(new String[] { "Data", "Canal", "Origem", "Mensagem"});
+			
+			defaultTableModel = new DefaultTableModel(msgList.getMsgMatrix(), msgList.getHeaders()) {
 				/**
-				 * Para que serve ?? 
+				 * Serializa a informação dada na linha anterior
 				 */
 				private static final long serialVersionUID = 1L;
 				Class[] columnTypes = new Class[] {
@@ -112,11 +86,13 @@ import src.DBA.DBAWindow;
 					return columnTypes[columnIndex];
 				}
 				
-			});
+			};
+			
+			refreshTable();
+
+			table.setModel(defaultTableModel);		
 			table.getColumnModel().getColumn(3).setPreferredWidth(402);
-			
-	
-			
+
 			JLabel lblLogOut = new JLabel("<html><font color='white'>Logout</font></html>");
 			lblLogOut.setBounds(709, 98, 61, 14);
 			lblLogOut.addMouseListener(new MouseAdapter() {
@@ -190,6 +166,16 @@ import src.DBA.DBAWindow;
 			mntmDbaEditor.setFont(new Font("Segoe UI", Font.PLAIN, 13));
 			mnTools.add(mntmDbaEditor);
 			
+			JButton btnRefresh = new JButton("Refresh");
+			btnRefresh.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent arg0) {
+					refreshTable();
+				}
+			});
+			btnRefresh.setBounds(44, 501, 93, 23);
+			frame.getContentPane().add(btnRefresh);
+			
 		/*
 		 * Para implementação no Sprint 2
 		 * 			
@@ -202,7 +188,24 @@ import src.DBA.DBAWindow;
 			image2.setBounds(0, 157, 414, 402);
  		*/
 			
-		}	
+		}
+		
+		private void refreshTable() {
+			Object[][] matrix = msgList.getMsgMatrix();
+			if(defaultTableModel.getRowCount() == 0 && matrix == null) {
+				matrix = new Object[100][100];
+				for(int i=0; i<21;i++) {
+					for(int j=0; j<21;j++) {
+						matrix[i][j] = null;
+						defaultTableModel.setDataVector(matrix, msgList.getHeaders());
+					}
+				}
+			}else {
+				defaultTableModel.setDataVector(msgList.getMsgMatrix(), msgList.getHeaders());
+			}
+		}
+		
+		
 		private static void addPopup(Component component, final JPopupMenu popup) {
 			component.addMouseListener(new MouseAdapter() {
 				public void mousePressed(MouseEvent e) {
