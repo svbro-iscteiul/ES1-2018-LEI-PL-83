@@ -1,8 +1,8 @@
-package src.pt.iscte.esi.projeto.utils;
+package pt.iscte.esi.projeto.utils;
 
 import java.awt.Frame;
 
-import src.pt.iscte.esi.projeto.form.models.Message;
+import pt.iscte.esi.projeto.form.models.Message;
 
 public class MainMsgList {
 	

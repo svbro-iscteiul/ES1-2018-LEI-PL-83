@@ -1,4 +1,4 @@
-package src.pt.iscte.esi.projeto.form;
+package pt.iscte.esi.projeto.form;
 
 import java.awt.BorderLayout;
 import java.awt.Font;
@@ -14,7 +14,7 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import src.pt.iscte.esi.projeto.utils.XMLFileEditor;
+import pt.iscte.esi.projeto.utils.XMLFileEditor;
 
 public class RegisterWindow {
 

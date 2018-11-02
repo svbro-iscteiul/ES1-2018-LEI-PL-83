@@ -1,4 +1,4 @@
-package src.DBA;
+package DBA;
 
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
@@ -18,7 +18,7 @@ import javax.swing.UIManager;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.SoftBevelBorder;
 
-import src.pt.iscte.esi.projeto.utils.XMLFileEditor;
+import pt.iscte.esi.projeto.utils.XMLFileEditor;
 import java.awt.Color;
 
 public class DBAWindow {

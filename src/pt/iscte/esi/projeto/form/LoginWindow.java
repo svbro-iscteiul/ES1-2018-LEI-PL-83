@@ -1,4 +1,4 @@
-package src.pt.iscte.esi.projeto.form;
+package pt.iscte.esi.projeto.form;
 
 import java.awt.BorderLayout;
 import java.awt.Cursor;
@@ -18,7 +18,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 
-import src.pt.iscte.esi.projeto.utils.XMLFileEditor;
+import pt.iscte.esi.projeto.utils.XMLFileEditor;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;

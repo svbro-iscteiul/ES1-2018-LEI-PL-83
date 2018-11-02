@@ -1,4 +1,4 @@
-package src.pt.iscte.esi.projeto.form.models;
+package pt.iscte.esi.projeto.form.models;
 
 import java.security.Timestamp;
 

@@ -1,4 +1,5 @@
-package src.pt.iscte.esi.projeto.utils;
+package pt.iscte.esi.projeto.utils;
+
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Transformer;

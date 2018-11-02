@@ -1,5 +1,5 @@
 
-package src.pt.iscte.esi.projeto.form;
+package pt.iscte.esi.projeto.form;
 
 
 import java.awt.Color;
@@ -28,8 +28,8 @@ import javax.swing.SwingUtilities;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 
-import src.DBA.DBAWindow;
-import src.pt.iscte.esi.projeto.utils.MainMsgList;
+import DBA.DBAWindow;
+import pt.iscte.esi.projeto.utils.MainMsgList;
 	
 
 	public class MainWindow {
