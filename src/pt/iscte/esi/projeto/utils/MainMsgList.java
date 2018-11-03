@@ -31,29 +31,36 @@ public class MainMsgList {
 	}
 
 	public void addMessage(Message msg) {
-		if(msgMatrix.length == 100) {
+		if(msgMatrix == null) {
+			msgMatrix = new Object[100][100];
+		}
+		if(msgMatrix[99] != null) {
 			return;
 		}
 		else {
 			for(int i=0; i<=100; i++) {
 				if(msgMatrix[i]!=null) {
-					for(int j=0; j<=msgMatrix[i].length;j++) {
-						switch (j) {
-						case 0:
-							msgMatrix[i][j] = msg.getTime();
-							break;
-						case 1:
-							msgMatrix[i][j] = msg.getTime(); // alterar para canal (twitter, mail ou facebook)
-							break;
-						case 2:
-							msgMatrix[i][j] = msg.getSender();
-							break;
-						case 3:
-							msgMatrix[i][j] = msg.getMessage();
-							break;
-						default:
-							break;
+					for(int j=0; j<=msgMatrix[i].length; j++) {
+						if(msgMatrix[i][j] == null) {
+							switch (j) {
+							case 0:
+								msgMatrix[i][j] = msg.getTime();
+								break;
+							case 1:
+								msgMatrix[i][j] = msg.getChannel();
+								break;
+							case 2:
+								msgMatrix[i][j] = msg.getSender();
+								break;
+							case 3:
+								msgMatrix[i][j] = msg.getMessage();
+								break;
+							default:
+								break;
+							}
+							return;
 						}
+						
 					}
 				}
 			}

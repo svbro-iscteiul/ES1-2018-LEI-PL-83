@@ -19,6 +19,7 @@ import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -27,8 +28,10 @@ import javax.swing.ListSelectionModel;
 import javax.swing.SwingUtilities;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellRenderer;
 
 import DBA.DBAWindow;
+import pt.iscte.esi.projeto.form.models.Message;
 import pt.iscte.esi.projeto.utils.MainMsgList;
 	
 
@@ -74,6 +77,13 @@ import pt.iscte.esi.projeto.utils.MainMsgList;
 			msgList = new MainMsgList(frame);
 			msgList.setHeaders(new String[] { "Data", "Canal", "Origem", "Mensagem"});
 			
+			//para testes!! 
+			for(int i=0;i<10;i++) {
+				msgList.addMessage(new Message("01/01/0001", "teste", "teste", "mensagem de teste " + i));
+			}
+			
+			
+			
 			defaultTableModel = new DefaultTableModel(msgList.getMsgMatrix(), msgList.getHeaders()) {
 				/**
 				 * Serializa a informação dada na linha anterior
@@ -88,10 +98,28 @@ import pt.iscte.esi.projeto.utils.MainMsgList;
 				
 			};
 			
-			refreshTable();
+			//refreshTable();
 
 			table.setModel(defaultTableModel);		
 			table.getColumnModel().getColumn(3).setPreferredWidth(402);
+			
+			table.addMouseListener(new MouseAdapter() {
+				
+				@Override
+		        public void mouseClicked(MouseEvent e) {
+					
+					 JTable table = (JTable) e.getComponent();
+			            int col = table.columnAtPoint(e.getPoint());
+			            int row = table.rowAtPoint(e.getPoint());
+			            if (col > 0 || row > 0) {
+			            	if(!table.getValueAt(row, col).toString().equals(null)) {
+			            		String value = table.getValueAt(row, col).toString();
+				                JOptionPane.showMessageDialog(null," Value in the cell clicked : "+ value);
+			            	}
+			            }
+				}
+				
+			});
 
 			JLabel lblLogOut = new JLabel("<html><font color='white'>Logout</font></html>");
 			lblLogOut.setBounds(709, 98, 61, 14);

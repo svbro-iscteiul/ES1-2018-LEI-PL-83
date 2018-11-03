@@ -6,9 +6,17 @@ public class Message {
 	
 	private String message;
 	private String sender;
-	private Timestamp time;
+	private String channel;
+	private String time;
 	
 	public Message() {}
+	
+	public Message(String time, String channel, String sender, String message) {
+		this.time=time;
+		this.channel=channel;
+		this.sender=sender;
+		this.message=message;
+	}
 
 	public String getMessage() {
 		return message;
@@ -23,7 +31,7 @@ public class Message {
 		return stringTime;
 	}
 
-	public void setTime(Timestamp time) {
+	public void setTime(String time) {
 		this.time = time;
 		
 	}
@@ -35,5 +43,15 @@ public class Message {
 	public void setSender(String sender) {
 		this.sender = sender;		
 	}
+
+	public String getChannel() {
+		return channel;
+	}
+
+	public void setChannel(String channel) {
+		this.channel = channel;
+	}
+	
+	
 
 }
