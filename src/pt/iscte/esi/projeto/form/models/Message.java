@@ -1,12 +1,13 @@
 package pt.iscte.esi.projeto.form.models;
 
-import java.security.Timestamp;
+
+import java.sql.Date;
 
 public class Message {
 	
 	private String message;
 	private String sender;
-	private Timestamp time;
+	private String date;
 	
 	public Message() {}
 
@@ -19,12 +20,11 @@ public class Message {
 	}
 
 	public String getTime() {
-		String stringTime = time.toString();
-		return stringTime;
+		return date;
 	}
 
-	public void setTime(Timestamp time) {
-		this.time = time;
+	public void setTime(String date) {
+		this.date = date;
 		
 	}
 
