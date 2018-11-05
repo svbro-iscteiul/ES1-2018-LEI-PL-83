@@ -6,7 +6,7 @@ public class TwitterAPITest {
  * */
 	public static void main(String[] args) {
 		TwitterAPI p = new TwitterAPI();
-		List<Message> message = p.getMessage();
+		List<Message> message = p.getTweets();
 		for(Message m: message)
 			System.out.println(m.getTime() + ":" +m.getMessage()+ "\n");
 		

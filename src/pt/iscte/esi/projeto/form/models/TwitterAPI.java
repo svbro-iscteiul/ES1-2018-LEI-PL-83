@@ -16,7 +16,7 @@ public class TwitterAPI {
 	 * This class uses the API twitter4j to get the tweets of the user 
 	 * and creates a object message with the text, time of the tweet 
 	 * */
-	public ArrayList<Message> getMessage() {
+	public ArrayList<Message> getTweets() {
         try {
         	ConfigurationBuilder cb = new ConfigurationBuilder();
         	cb.setDebugEnabled(true)

@@ -31,6 +31,7 @@ import javax.swing.table.DefaultTableModel;
 
 import DBA.DBAWindow;
 import pt.iscte.esi.projeto.form.models.Message;
+import pt.iscte.esi.projeto.form.models.TwitterAPI;
 import pt.iscte.esi.projeto.utils.MainMsgList;
 	
 
@@ -42,7 +43,7 @@ import pt.iscte.esi.projeto.utils.MainMsgList;
 		private JTextField txtPesquisaMensagensPor;
 		private MainMsgList msgList;
 		private DefaultTableModel defaultTableModel;
-		private ArrayList<Message> Tweets= new ArrayList<Message>();
+		private ArrayList<Message> tweets= new ArrayList<Message>();
 
 		
 		/**
@@ -76,6 +77,8 @@ import pt.iscte.esi.projeto.utils.MainMsgList;
 			
 			msgList = new MainMsgList(frame);
 			msgList.setHeaders(new String[] { "Data", "Canal", "Origem", "Mensagem"});
+			getTweets();
+			//Falta escrever para a msgList
 			
 			defaultTableModel = new DefaultTableModel(msgList.getMsgMatrix(), msgList.getHeaders()) {
 				/**
@@ -225,6 +228,13 @@ import pt.iscte.esi.projeto.utils.MainMsgList;
 					popup.show(e.getComponent(), e.getX(), e.getY());
 				}
 			});
+		}
+		
+		private void getTweets()
+		{
+			TwitterAPI t = new TwitterAPI();
+			tweets=t.getTweets();
+			//System.out.println(tweets.get(0).getMessage());
 		}
 	}
 
