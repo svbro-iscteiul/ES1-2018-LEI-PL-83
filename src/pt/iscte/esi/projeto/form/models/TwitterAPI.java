@@ -9,7 +9,7 @@ import twitter4j.conf.ConfigurationBuilder;
 
 public class TwitterAPI {
 	private ArrayList<Message> message = new ArrayList<Message>();
-	private final static String user= "ISCTE - IUL";
+	private final static String user= "ISCTE";
 	
 	
 	/*
@@ -20,17 +20,17 @@ public class TwitterAPI {
         try {
         	ConfigurationBuilder cb = new ConfigurationBuilder();
         	cb.setDebugEnabled(true)
-        	  .setOAuthConsumerKey("W1f0VvgWPfT8OBqVxvy4Mw")
-        	  .setOAuthConsumerSecret("zKH2yAtRyefwsgOO8h8Szc4kru68iEm95QmIG7svw")
-        	  .setOAuthAccessToken("36481851-VhzByC4f9MSsZES1QZQ4e4iBvA9bWGLyv9HKFpy7c")
-        	  .setOAuthAccessTokenSecret("OahDuXF2Lhl5xlNYALhYZir6xSflAxKP9Zh89T05po");
+        	 .setOAuthConsumerKey("lssQlInMSR48WEhVnhhEpLKlU")
+       	  .setOAuthConsumerSecret("HJoUp0olU7wGYFFSbB6gEMRtfxJBUunM2ZirdOznPRoGpcBBy9")
+       	  .setOAuthAccessToken("1056204591581290497-qChkQRfvnqCsNq5fTlJ6kFiaDdOfos")
+       	  .setOAuthAccessTokenSecret("Ikwu8aWLHnm7GduV5SCX1rwfOck5FlEyItvEIzYpRkhsd");
         	TwitterFactory tf = new TwitterFactory(cb.build());
         	Twitter twitter = tf.getInstance();        		
             List<Status> statuses = twitter.getHomeTimeline();
             for (Status status : statuses) {
 				if (status.getUser().getName() != null && status.getUser().getName().contains(user)) {
 					Message m = new Message();
-					m.setSender("Twitter");
+					m.setSender(status.getUser().getName());
 					m.setMessage(status.getText());
 					String date=SetDateFormat(status.getCreatedAt().toString());
 					m.setTime(date);
