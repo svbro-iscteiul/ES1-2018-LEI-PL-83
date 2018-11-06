@@ -78,9 +78,12 @@ import pt.iscte.esi.projeto.utils.MainMsgList;
 			msgList = new MainMsgList(frame);
 			msgList.setHeaders(new String[] { "Data", "Canal", "Origem", "Mensagem"});
 			getTweets();
+			String[][] temp = new String[101][4];
+			msgList.setMsgMatrix(temp);
+			msgList.addMessage(tweets.get(0));
 			//Falta escrever para a msgList
 			
-			defaultTableModel = new DefaultTableModel(msgList.getMsgMatrix(), msgList.getHeaders()) {
+			defaultTableModel =  new DefaultTableModel(msgList.getMsgMatrix(), msgList.getHeaders()) {
 				/**
 				 * Serializa a informação dada na linha anterior
 				 */

@@ -5,9 +5,9 @@ import java.awt.Frame;
 import pt.iscte.esi.projeto.form.models.Message;
 
 public class MainMsgList {
-	
+	/*101 linesm 4 rows*/
 	private String[] headers;
-	private Object[][] msgMatrix;
+	private String[][] msgMatrix;
 	private Frame frame;
 	
 	public MainMsgList(Frame frame) {
@@ -18,7 +18,7 @@ public class MainMsgList {
 		return msgMatrix;
 	}
 	
-	public void setMsgMatrix(Object[][] msgMatrix) {
+	public void setMsgMatrix(String[][] msgMatrix) {
 		this.msgMatrix = msgMatrix;
 	}
 	
@@ -36,7 +36,8 @@ public class MainMsgList {
 		}
 		else {
 			for(int i=0; i<=100; i++) {
-				if(msgMatrix[i]!=null) {
+				if(msgMatrix[i]==null) {
+					System.out.println("Not null");
 					for(int j=0; j<=msgMatrix[i].length;j++) {
 						switch (j) {
 						case 0:
@@ -55,7 +56,10 @@ public class MainMsgList {
 							break;
 						}
 					}
+					break;
 				}
+				else
+					System.out.println(msgMatrix[i][0]);
 			}
 		}
 	}
