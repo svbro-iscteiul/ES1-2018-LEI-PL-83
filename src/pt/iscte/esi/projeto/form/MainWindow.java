@@ -80,7 +80,8 @@ import pt.iscte.esi.projeto.utils.MainMsgList;
 			getTweets();
 			String[][] temp = new String[101][4];
 			msgList.setMsgMatrix(temp);
-			msgList.addMessage(tweets.get(0));
+			for(Message m : tweets)
+				msgList.addMessage(m, "Twitter");
 			//Falta escrever para a msgList
 			
 			defaultTableModel =  new DefaultTableModel(msgList.getMsgMatrix(), msgList.getHeaders()) {

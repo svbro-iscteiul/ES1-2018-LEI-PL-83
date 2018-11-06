@@ -30,21 +30,20 @@ public class MainMsgList {
 		this.headers = headers;
 	}
 
-	public void addMessage(Message msg) {
+	public void addMessage(Message msg, String channel) {
 		if(msgMatrix.length == 100) {
 			return;
 		}
 		else {
 			for(int i=0; i<=100; i++) {
-				if(msgMatrix[i]==null) {
-					System.out.println("Not null");
+				if(msgMatrix[i][0]==null) {
 					for(int j=0; j<=msgMatrix[i].length;j++) {
 						switch (j) {
 						case 0:
 							msgMatrix[i][j] = msg.getTime();
 							break;
 						case 1:
-							msgMatrix[i][j] = msg.getTime(); // alterar para canal (twitter, mail ou facebook)
+							msgMatrix[i][j] = channel; 
 							break;
 						case 2:
 							msgMatrix[i][j] = msg.getSender();
@@ -58,8 +57,6 @@ public class MainMsgList {
 					}
 					break;
 				}
-				else
-					System.out.println(msgMatrix[i][0]);
 			}
 		}
 	}
