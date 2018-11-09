@@ -25,6 +25,11 @@
            <artifactId>twitter4j-core</artifactId>
            <version>[4.0,)</version>
     </dependency>
+    	<dependency>
+		    <groupId>com.restfb</groupId>
+		    <artifactId>restfb</artifactId>
+		    <version>2.10.0</version>
+		</dependency>
   	<dependency>
   		<groupId>com.jgoodies</groupId>
   		<artifactId>jgoodies-forms</artifactId>

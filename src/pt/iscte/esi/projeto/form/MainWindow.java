@@ -82,7 +82,9 @@ import pt.iscte.esi.projeto.utils.MainMsgList;
 			msgList.setMsgMatrix(temp);
 			for(Message m : tweets)
 				msgList.addMessage(m, "Twitter");
-			//Falta escrever para a msgList
+			
+			//for(Message f : facebook)   fazer depois get messages from face
+				
 			
 			defaultTableModel =  new DefaultTableModel(msgList.getMsgMatrix(), msgList.getHeaders()) {
 				/**
