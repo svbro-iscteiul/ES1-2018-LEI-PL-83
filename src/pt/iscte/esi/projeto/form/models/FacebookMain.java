@@ -32,6 +32,7 @@ public class FacebookMain {
 		 * https://www.youtube.com/watch?v=qFZazZ1JXsM&list=PLYPFxrXyK0BwiXNe09hTPjFqYbsWv8gxb&index=5
 		 */
 		String accessToken4 = "EAAD0JjeESBwBAHMZAmdkKgkZCnDiJxu1LLnZAONofCxZBlXZBMPnEc1L8TOZA6VjgvW5j7L7wxlAzN5N3UR818hnnO3tzlFn5kDHz4zN7PwIRrl7x6VKdyHfDlPAR7t7IMzDWINbGXo76fHh3xgsMZBHhF0ZCgTbsmGqSal9UwcbRgFpZA7y9VG71Yn9BIQ2EZArwivpUpLrGDOZAWenEEu6wKF";
+		@SuppressWarnings("deprecation")
 		FacebookClient fbClient4 = new DefaultFacebookClient(accessToken4);
 		AccessToken extendedAccessToken4 = fbClient4.obtainExtendedAccessToken("268444977350684","75a7638dfa1a64929a408b3955681d0a");
 		
