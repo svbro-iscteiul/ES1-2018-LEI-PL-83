@@ -5,23 +5,23 @@
 			<Username>username</Username>
 			<Password>password</Password>
 			<Email>email</Email>
-			<User_Login>
-				<Username>user2</Username>
-				<Password>123</Password>
-				<Email>user2</Email>
-			</User_Login>
-			<User_Login>
-				<Username>user3</Username>
-				<Password>123</Password>
-				<Email>user3</Email>
-			</User_Login>
+			
+			
 		</User_Login>
 		<User_Login>
 			<Username>user</Username>
 			<Password>123</Password>
 			<Email>user</Email>
 		</User_Login>
-	</Login>
+	<User_Login>
+				<Username>user2</Username>
+				<Password>123</Password>
+				<Email>user2</Email>
+			</User_Login><User_Login>
+				<Username>user3</Username>
+				<Password>123</Password>
+				<Email>user3</Email>
+			</User_Login></Login>
 	<Facebook>
 		<User_Facebook>
 			<Username>username</Username>
