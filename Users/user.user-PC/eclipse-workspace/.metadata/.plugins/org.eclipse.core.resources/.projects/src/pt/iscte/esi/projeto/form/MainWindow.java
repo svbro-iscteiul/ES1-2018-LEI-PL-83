@@ -5,6 +5,7 @@ package pt.iscte.esi.projeto.form;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Cursor;
+import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -35,6 +36,9 @@ import pt.iscte.esi.projeto.form.models.TwitterAPI;
 import pt.iscte.esi.projeto.utils.MainMsgList;
 	
 
+
+
+
 	public class MainWindow {
 
 		private JFrame frame;
@@ -45,6 +49,22 @@ import pt.iscte.esi.projeto.utils.MainMsgList;
 		private DefaultTableModel defaultTableModel;
 		private ArrayList<Message> tweets= new ArrayList<Message>();
 
+		
+		public static void main(String[] args) {
+			EventQueue.invokeLater(new Runnable() {
+				public void run() {
+					try {
+						new MainWindow();
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+			});
+		}
+		
+		
+		
+		
 		
 		/**
 		 * Class constructor.
@@ -244,4 +264,4 @@ import pt.iscte.esi.projeto.utils.MainMsgList;
 		}
 	}
 
-
+	

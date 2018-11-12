@@ -42,7 +42,7 @@ public class TwitterAPI {
      }
 	
 	/*
-	 * This method recives the date of the Tweet, for example:Fri Oct 26 15:59:50 BST 2018
+	 * This method recieves the date of the Tweet, for example:Fri Oct 26 15:59:50 BST 2018
 	 * and return 26/Oct/2018
 	 * */
 	private String SetDateFormat(String s)
