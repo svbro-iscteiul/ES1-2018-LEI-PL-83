@@ -71,12 +71,12 @@ public class AccountManageWindow extends JFrame {
 		
 		
 		/**
-		 * Add the logo accounts image to the window
+		 * Add Symbol accounts image to the window
 		 */
 		//Adding the image icons
 		JLabel newLabel = new JLabel("");
 		newLabel.setBounds(87, 105, 119, 421);
-		ImageIcon image = new ImageIcon(AccountManageWindow.class.getResource("/teste/LogosContas.png"));
+		ImageIcon image = new ImageIcon(AccountManageWindow.class.getResource("/pt/iscte/esi/projeto/form/images/LogosContas.png"));
 		Image img = image.getImage().getScaledInstance(newLabel.getWidth(), newLabel.getHeight(), Image.SCALE_SMOOTH);
 		newLabel .setIcon(new ImageIcon(img));
 		getContentPane().add(newLabel );
