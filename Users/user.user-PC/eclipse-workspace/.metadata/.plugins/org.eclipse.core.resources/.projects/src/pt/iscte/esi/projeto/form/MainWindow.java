@@ -2,6 +2,7 @@
 package pt.iscte.esi.projeto.form;
 
 
+import java.awt.Choice;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Cursor;
@@ -63,9 +64,6 @@ import pt.iscte.esi.projeto.utils.MainMsgList;
 		}
 		
 		
-		
-		
-		
 		/**
 		 * Class constructor.
 		 */
@@ -124,7 +122,12 @@ import pt.iscte.esi.projeto.utils.MainMsgList;
 
 			table.setModel(defaultTableModel);		
 			table.getColumnModel().getColumn(3).setPreferredWidth(402);
-
+			scrollPane.setViewportView(table);
+			frame.getContentPane().add(scrollPane);
+			
+			/*
+			 * Add the LogOut option to the window and link it to Login Window
+			 */
 			JLabel lblLogOut = new JLabel("<html><font color='white'>Logout</font></html>");
 			lblLogOut.setBounds(709, 98, 61, 14);
 			lblLogOut.addMouseListener(new MouseAdapter() {
@@ -134,18 +137,55 @@ import pt.iscte.esi.projeto.utils.MainMsgList;
 					frame.dispose();
 				}
 			});
-			frame.getContentPane().setLayout(null);
+			
 			lblLogOut.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			lblLogOut.setFont(new Font("Tahoma", Font.BOLD, 11));
 			lblLogOut.setForeground(new Color(240, 255, 255));
 			frame.getContentPane().add(lblLogOut);
 
-			scrollPane.setViewportView(table);
-			frame.getContentPane().add(scrollPane);
+			/*
+			 * Add the "add accounts" option to the window and link it to "Account Manage Window".
+			 */
+			JLabel lblAdd_tokens = new JLabel("<html><font color='white'>Adicionar Contas | </font></html>");
+			lblAdd_tokens.setBounds(600, 98, 110, 14);
+			lblAdd_tokens.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent arg0) {
+					new AccountManageWindow();
+					frame.dispose();
+				}
+			});
+			frame.getContentPane().setLayout(null);
+			lblAdd_tokens.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+			lblAdd_tokens.setFont(new Font("Tahoma", Font.BOLD, 11));
+			lblAdd_tokens.setForeground(new Color(240, 255, 255));
+			frame.getContentPane().add(lblAdd_tokens);
 			
-
-			//Add the top image to the main window
+			/*
+			 * Add the filter boxes to the window
+			 */
+			Choice choice = new Choice();
+			choice.setBounds(35, 129, 95, 20);
+			choice.add("filtrar data");
+			frame.getContentPane().add(choice);
 			
+			Choice choice_1 = new Choice();
+			choice_1.setBounds(132, 129, 92, 20);
+			choice_1.add("Twitter");
+			choice_1.add("Facebook");
+			choice_1.add("E-mail");
+			frame.getContentPane().add(choice_1);
+			
+			Choice choice_2 = new Choice();
+			choice_2.setBounds(226, 129, 92, 20);
+			choice_2.add("filtrar origem");
+			frame.getContentPane().add(choice_2);
+			
+			
+			
+			/*
+			 * Add the top image to the main window
+			 */
 			JLabel foto = new JLabel("");
 			foto.setBounds(0, 26, 784, 99);
 			
@@ -155,7 +195,9 @@ import pt.iscte.esi.projeto.utils.MainMsgList;
 			foto.setIcon(new ImageIcon(img));
 			frame.getContentPane().add(foto);
 			
-			//Add the Button "Pesquisar" to the window
+			/*
+			 * Add the Button "Pesquisar" to the window
+			 */
 			JButton btnNewButton = new JButton("Pesquisar");
 			btnNewButton.setBounds(634, 501, 93, 23);
 			btnNewButton.addActionListener(new ActionListener() {
@@ -167,7 +209,7 @@ import pt.iscte.esi.projeto.utils.MainMsgList;
 			txtPesquisaMensagensPor = new JTextField();
 			txtPesquisaMensagensPor.setBounds(390, 502, 234, 20);
 			txtPesquisaMensagensPor.setForeground(new Color(112, 128, 144));
-			txtPesquisaMensagensPor.setText("Pesquisa mensagens por palavra-chave ");
+			txtPesquisaMensagensPor.setText("Filtrar mensagens por palavra-chave ");
 			frame.getContentPane().add(txtPesquisaMensagensPor);
 			txtPesquisaMensagensPor.setColumns(10);
 			
@@ -208,17 +250,7 @@ import pt.iscte.esi.projeto.utils.MainMsgList;
 			btnRefresh.setBounds(44, 501, 93, 23);
 			frame.getContentPane().add(btnRefresh);
 			
-		/*
-		 * Para implementação no Sprint 2
-		 * 			
-			//Add the Button "Adicionar Contas" to the window
-			JButton btnNewButton_1 = new JButton("Adicionar contas");
-			btnNewButton_1.setBounds(612, 113, 133, 23);
-			frame.getContentPane().add(btnNewButton_1);
-			
-			image2 = new JLabel("");
-			image2.setBounds(0, 157, 414, 402);
- 		*/
+						
 			
 		}
 		

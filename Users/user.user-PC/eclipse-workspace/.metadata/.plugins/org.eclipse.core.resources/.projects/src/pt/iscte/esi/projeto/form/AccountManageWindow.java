@@ -70,6 +70,9 @@ public class AccountManageWindow extends JFrame {
 		contentPane.setLayout(null);
 		
 		
+		/**
+		 * Add the logo accounts image to the window
+		 */
 		//Adding the image icons
 		JLabel newLabel = new JLabel("");
 		newLabel.setBounds(87, 105, 119, 421);
@@ -83,16 +86,21 @@ public class AccountManageWindow extends JFrame {
 		label.setBounds(318, 84, 88, 14);
 		contentPane.add(label);
 		
-		JRadioButton rdbtnNewRadioButton = new JRadioButton("Desactivar mensagens deste canal");
-		rdbtnNewRadioButton.setBackground(Color.WHITE);
-		rdbtnNewRadioButton.setBounds(491, 171, 241, 23);
-		contentPane.add(rdbtnNewRadioButton);
 		
 		JLabel lblAdicionarContas = DefaultComponentFactory.getInstance().createTitle("ADICIONAR CONTAS");
 		lblAdicionarContas.setForeground(new Color(0, 0, 128));
 		lblAdicionarContas.setFont(new Font("Tahoma", Font.BOLD, 17));
 		lblAdicionarContas.setBounds(318, 28, 195, 23);
 		contentPane.add(lblAdicionarContas);
+		
+		
+		/**
+		 * Adding the different "frame components" to the window
+		 */
+		JRadioButton rdbtnNewRadioButton = new JRadioButton("Desactivar mensagens deste canal");
+		rdbtnNewRadioButton.setBackground(Color.WHITE);
+		rdbtnNewRadioButton.setBounds(491, 171, 241, 23);
+		contentPane.add(rdbtnNewRadioButton);
 		
 		JRadioButton rdbtnDesactivarMensagensDeste = new JRadioButton("Desactivar mensagens deste canal");
 		rdbtnDesactivarMensagensDeste.setBackground(Color.WHITE);
