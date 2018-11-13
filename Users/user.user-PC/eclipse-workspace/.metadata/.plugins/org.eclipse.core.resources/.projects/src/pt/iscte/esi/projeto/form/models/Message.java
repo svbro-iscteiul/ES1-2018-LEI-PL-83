@@ -1,15 +1,21 @@
 package pt.iscte.esi.projeto.form.models;
 
 
-import java.sql.Date;
-
 public class Message {
 	
 	private String message;
 	private String sender;
-	private String date;
+	private String channel;
+	private String time;
 	
 	public Message() {}
+	
+	public Message(String time, String channel, String sender, String message) {
+		this.time=time;
+		this.channel=channel;
+		this.sender=sender;
+		this.message=message;
+	}
 
 	public String getMessage() {
 		return message;
@@ -20,11 +26,12 @@ public class Message {
 	}
 
 	public String getTime() {
-		return date;
+		String stringTime = time.toString();
+		return stringTime;
 	}
 
-	public void setTime(String date) {
-		this.date = date;
+	public void setTime(String time) {
+		this.time = time;
 		
 	}
 
@@ -35,5 +42,15 @@ public class Message {
 	public void setSender(String sender) {
 		this.sender = sender;		
 	}
+
+	public String getChannel() {
+		return channel;
+	}
+
+	public void setChannel(String channel) {
+		this.channel = channel;
+	}
+	
+	
 
 }
