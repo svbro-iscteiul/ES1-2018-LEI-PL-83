@@ -48,7 +48,7 @@ public class XMLFileEditor {
 				try {
 				DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
 				DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
-				Document document = documentBuilder.parse("src/DBA/config.xml");
+				Document document = documentBuilder.parse("Users/user.user-PC/eclipse-workspace/.metadata/.plugins/org.eclipse.core.resources/.projects/src/DBA/config.xml");
 				
 				//Element root = document.getDocumentElement();
 				
@@ -72,7 +72,7 @@ public class XMLFileEditor {
 
 				TransformerFactory transformerFactory = TransformerFactory.newInstance();
 				Transformer transformer = transformerFactory.newTransformer();
-				StreamResult result = new StreamResult("src/DBA/config.xml");
+				StreamResult result = new StreamResult("Users/user.user-PC/eclipse-workspace/.metadata/.plugins/org.eclipse.core.resources/.projects/src/DBA/config.xml");
 				transformer.transform(source, result);
 				return "New Username Added";
 				} catch (Exception e) {
@@ -109,7 +109,7 @@ public class XMLFileEditor {
 	 */
 	public String ReadFile(String Username,String Email,String Password) {
 		try {
-			File fXmlFile = new File("src/DBA/config.xml");
+			File fXmlFile = new File("Users/user.user-PC/eclipse-workspace/.metadata/.plugins/org.eclipse.core.resources/.projects/src/DBA/config.xml");
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 			Document doc = dBuilder.parse(fXmlFile);
@@ -145,15 +145,7 @@ public class XMLFileEditor {
 		}
 	}
 	
-	
-	/*
-	 * Alterar estes dois métodos para ler e escrever como um XML..
-	 */
-	
-	/**
-	 * 
-	 * @param textArea
-	 */
+	/* Testes !! apagar antes de entregar
 	public void LoadXMlContent(JTextArea textArea) {
 		try {
 			File fXmlFile = new File("src/DBA/config.xml");
@@ -178,11 +170,7 @@ public class XMLFileEditor {
 		}
 	}
 	
-	/**
-	 * 
-	 * @param node
-	 * @param textArea
-	 */
+
 	private void printChilNodes(Node node, JTextArea textArea) {
 		NodeList childnodes = node.getChildNodes();
 		for(int j=0; j<childnodes.getLength();j++) {
@@ -190,15 +178,15 @@ public class XMLFileEditor {
 				textArea.setText(textArea.getText() + "   " + childnodes.item(j).toString().replaceAll("\n", "") + ": \n");
 		}
 	}
-	
+	*/
 	
 	/**
-	 *  retirado de https://www.topjavatutorial.com/java/java-programs/pretty-print-xml-java/
+	 * Vai buscar o conteúdo do xml e carrega o mesmo no editor
 	 * @param textArea
 	 */
 	public void LoadXMLContentRAW(JTextArea textArea) {
 		try {
-			File fXmlFile = new File("src/DBA/config.xml");
+			File fXmlFile = new File("Users/user.user-PC/eclipse-workspace/.metadata/.plugins/org.eclipse.core.resources/.projects/src/DBA/config.xml");
 			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder builder = factory.newDocumentBuilder();
 			Document document = builder.parse(fXmlFile);
@@ -223,12 +211,12 @@ public class XMLFileEditor {
 	
 	
 	/**
-	 * Alterar isto!
+	 * Altera o conteudo do ficheiro XML pelo conteúdo presente no editor
 	 * @param textArea
 	 */
 	public void SaveXMLContent(JTextArea textArea) {
 		try {
-			File fXmlFile = new File("src/DBA/config.xml");		
+			File fXmlFile = new File("Users/user.user-PC/eclipse-workspace/.metadata/.plugins/org.eclipse.core.resources/.projects/src/DBA/config.xml");		
 			BufferedWriter  bw = new BufferedWriter (new FileWriter(fXmlFile));		
 			bw.write(textArea.getText());
 			bw.close();		
