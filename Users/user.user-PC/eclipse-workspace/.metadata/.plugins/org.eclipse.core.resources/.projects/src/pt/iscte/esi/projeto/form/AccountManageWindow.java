@@ -8,6 +8,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.GridLayout;
 import java.awt.Image;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -19,6 +21,8 @@ import java.awt.Frame;
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import java.awt.Color;
+import java.awt.Cursor;
+
 import com.jgoodies.forms.factories.DefaultComponentFactory;
 import javax.swing.JRadioButton;
 import java.awt.Font;
@@ -51,7 +55,7 @@ public class AccountManageWindow extends JFrame {
 	}
 
 	/**
-	 * Create and initialize Window.
+	 * Creates and initializes Window.
 	 */
 	public void initialize() {
 		frame = new JFrame();
@@ -65,9 +69,8 @@ public class AccountManageWindow extends JFrame {
 		
 		
 		/**
-		 * Add Symbol accounts image to the window
+		 * Adds image to the window
 		 */
-		//Adding the image icons
 		JLabel newLabel = new JLabel("");
 		newLabel.setBounds(87, 105, 119, 421);
 		ImageIcon image = new ImageIcon(AccountManageWindow.class.getResource("/pt/iscte/esi/projeto/form/images/LogosContas.png"));
@@ -76,16 +79,23 @@ public class AccountManageWindow extends JFrame {
 		getContentPane().add(newLabel );
 		contentPane.add(newLabel);
 		
+		/**
+		 * Creates window titles
+		 */
 		JLabel label = DefaultComponentFactory.getInstance().createTitle("");
 		label.setBounds(318, 84, 88, 14);
 		contentPane.add(label);
-		
 		
 		JLabel lblAdicionarContas = DefaultComponentFactory.getInstance().createTitle("ADICIONAR CONTAS");
 		lblAdicionarContas.setForeground(new Color(0, 0, 128));
 		lblAdicionarContas.setFont(new Font("Tahoma", Font.BOLD, 17));
 		lblAdicionarContas.setBounds(318, 28, 195, 23);
 		contentPane.add(lblAdicionarContas);
+		
+		JLabel lblNewLabel = new JLabel("Adiciona os c\u00F3digos de acesso relativos a cada conta e recebe informa\u00E7\u00E3o acad\u00E9mica proveniente de cada canal.");
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		lblNewLabel.setBounds(158, 49, 553, 14);
+		contentPane.add(lblNewLabel);
 		
 		
 		/**
@@ -100,6 +110,11 @@ public class AccountManageWindow extends JFrame {
 		rdbtnDesactivarMensagensDeste.setBackground(Color.WHITE);
 		rdbtnDesactivarMensagensDeste.setBounds(491, 326, 225, 23);
 		contentPane.add(rdbtnDesactivarMensagensDeste);
+		
+		JRadioButton radioButton = new JRadioButton("Desactivar mensagens deste canal");
+		radioButton.setBackground(Color.WHITE);
+		radioButton.setBounds(491, 485, 225, 23);
+		contentPane.add(radioButton);
 		
 		textField = new JTextField();
 		textField.setBounds(377, 140, 121, 20);
@@ -144,6 +159,17 @@ public class AccountManageWindow extends JFrame {
 		textField_8.setBounds(377, 458, 251, 20);
 		contentPane.add(textField_8);
 		
+
+		//Inacabado;
+		
+		JLabel lblNewJgoodiesLabel_00 = DefaultComponentFactory.getInstance().createLabel("AuthConsumerSecret:");
+		lblNewJgoodiesLabel_00.setBounds(257, 240, 124, 14);
+		contentPane.add(lblNewJgoodiesLabel_00);
+		
+		JLabel lblNewJgoodiesLabel_0 = DefaultComponentFactory.getInstance().createLabel("AuthConsumerKey:");
+		lblNewJgoodiesLabel_0.setBounds(257, 250, 124, 14);
+		contentPane.add(lblNewJgoodiesLabel_0);
+		
 		JLabel lblNewJgoodiesLabel_2 = DefaultComponentFactory.getInstance().createLabel("Auth. access token:");
 		lblNewJgoodiesLabel_2.setBounds(257, 267, 124, 14);
 		contentPane.add(lblNewJgoodiesLabel_2);
@@ -171,22 +197,23 @@ public class AccountManageWindow extends JFrame {
 		JButton button_1 = new JButton("Adicionar");
 		button_1.setBounds(396, 489, 89, 23);
 		contentPane.add(button_1);
+
 		
+		/**
+		 * Adds Ok button to the frame and his action
+		 */
 		JButton btnOk = new JButton("OK");
 		btnOk.setBounds(690, 527, 69, 29);
+		btnOk.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				new MainWindow();
+				frame.dispose();
+			}
+		});
+		btnOk.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		contentPane.add(btnOk);
-		
-		JLabel lblNewLabel = new JLabel("Adiciona os c\u00F3digos de acesso relativos a cada conta e recebe informa\u00E7\u00E3o acad\u00E9mica proveniente de cada canal.");
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		lblNewLabel.setBounds(158, 49, 553, 14);
-		contentPane.add(lblNewLabel);
-		
-		JRadioButton radioButton = new JRadioButton("Desactivar mensagens deste canal");
-		radioButton.setBackground(Color.WHITE);
-		radioButton.setBounds(491, 485, 225, 23);
-		contentPane.add(radioButton);
-		
-		
+	
 
 	}
 }

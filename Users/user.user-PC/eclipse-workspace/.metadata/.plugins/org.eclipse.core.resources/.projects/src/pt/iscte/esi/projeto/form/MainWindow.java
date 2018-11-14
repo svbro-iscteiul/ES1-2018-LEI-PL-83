@@ -158,8 +158,8 @@ import pt.iscte.esi.projeto.utils.MainMsgList;
 			lblAdd_tokens.setForeground(new Color(240, 255, 255));
 			frame.getContentPane().add(lblAdd_tokens);
 			
-			/*
-			 * Add the filter boxes to the window
+			/**
+			 * Add filter boxes to the window
 			 */
 			Choice choice = new Choice();
 			choice.setBounds(35, 129, 95, 20);
@@ -180,8 +180,8 @@ import pt.iscte.esi.projeto.utils.MainMsgList;
 			
 			
 			
-			/*
-			 * Add the top image to the main window
+			/**
+			 * Add image to the main window
 			 */
 			JLabel foto = new JLabel("");
 			foto.setBounds(0, 26, 784, 99);
@@ -192,10 +192,11 @@ import pt.iscte.esi.projeto.utils.MainMsgList;
 			foto.setIcon(new ImageIcon(img));
 			frame.getContentPane().add(foto);
 			
-			/*
-			 * Add the Button "Pesquisar" to the window
+			
+			/**
+			 * Add Button "Filtrar" to the window
 			 */
-			JButton btnNewButton = new JButton("Pesquisar");
+			JButton btnNewButton = new JButton("Filtrar");
 			btnNewButton.setBounds(634, 501, 93, 23);
 			btnNewButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
@@ -206,7 +207,7 @@ import pt.iscte.esi.projeto.utils.MainMsgList;
 			txtPesquisaMensagensPor = new JTextField();
 			txtPesquisaMensagensPor.setBounds(390, 502, 234, 20);
 			txtPesquisaMensagensPor.setForeground(new Color(112, 128, 144));
-			txtPesquisaMensagensPor.setText("Filtrar mensagens por palavra-chave ");
+			txtPesquisaMensagensPor.setText("Filtrar mensagens por palavra-chave");
 			frame.getContentPane().add(txtPesquisaMensagensPor);
 			txtPesquisaMensagensPor.setColumns(10);
 			
@@ -237,6 +238,9 @@ import pt.iscte.esi.projeto.utils.MainMsgList;
 			mntmDbaEditor.setFont(new Font("Segoe UI", Font.PLAIN, 13));
 			mnTools.add(mntmDbaEditor);
 			
+			/**
+			 * Create Refresh button and his action 
+			 */
 			JButton btnRefresh = new JButton("Refresh");
 			btnRefresh.addMouseListener(new MouseAdapter() {
 				@Override
@@ -251,6 +255,9 @@ import pt.iscte.esi.projeto.utils.MainMsgList;
 			
 		}
 		
+		/**
+		 * Updates new information in academic news frame
+		 */
 		private void refreshTable() {
 			Object[][] matrix = msgList.getMsgMatrix();
 			if(defaultTableModel.getRowCount() == 0 && matrix == null) {
@@ -267,6 +274,7 @@ import pt.iscte.esi.projeto.utils.MainMsgList;
 		}
 		
 		
+		//Para que serve este método?? Não está a ser usado .....(ET)
 		private static void addPopup(Component component, final JPopupMenu popup) {
 			component.addMouseListener(new MouseAdapter() {
 				public void mousePressed(MouseEvent e) {
