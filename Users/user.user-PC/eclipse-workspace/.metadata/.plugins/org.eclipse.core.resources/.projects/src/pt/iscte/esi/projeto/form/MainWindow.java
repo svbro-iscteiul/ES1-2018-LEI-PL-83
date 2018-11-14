@@ -37,9 +37,6 @@ import pt.iscte.esi.projeto.form.models.TwitterAPI;
 import pt.iscte.esi.projeto.utils.MainMsgList;
 	
 
-
-
-
 	public class MainWindow {
 
 		private JFrame frame;
@@ -150,7 +147,7 @@ import pt.iscte.esi.projeto.utils.MainMsgList;
 			lblAdd_tokens.setBounds(600, 98, 110, 14);
 			lblAdd_tokens.addMouseListener(new MouseAdapter() {
 				@Override
-				public void mouseClicked(MouseEvent arg0) {
+				public void mouseClicked(MouseEvent arg1) {
 					new AccountManageWindow();
 					frame.dispose();
 				}

@@ -31,7 +31,8 @@ import javax.swing.JButton;
 import javax.swing.JTextPane;
 
 public class AccountManageWindow extends JFrame {
-
+	
+	private JFrame frame;
 	private JPanel contentPane;
 	private JTextField textField;
 	private JTextField textField_2;
@@ -42,31 +43,24 @@ public class AccountManageWindow extends JFrame {
 	private JTextField textField_8;
 
 	/**
-	 * Launch the application.
+	 * Class constructor.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					AccountManageWindow frame = new AccountManageWindow();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+	public AccountManageWindow() {
+		initialize();
+		frame.setVisible(true);
 	}
 
 	/**
-	 * Create the frame.
+	 * Create and initialize Window.
 	 */
-	public AccountManageWindow() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 800, 605);
+	public void initialize() {
+		frame = new JFrame();
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setBounds(100, 100, 800, 605);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.WHITE);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
+		frame.setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		
