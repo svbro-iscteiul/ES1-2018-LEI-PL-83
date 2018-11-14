@@ -3,7 +3,7 @@ package pt.iscte.esi.projeto.form.models;
 import java.util.List;
 
 public class GmailAPITest {
-	
+	/*Test class, its going to be deleted*/
 	public static void main(String[] args) {
 		GmailAPI p = new GmailAPI();
 		List<Message> message;

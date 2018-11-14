@@ -15,9 +15,15 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMultipart;
 
 public class GmailAPI {
+	
 	private ArrayList<pt.iscte.esi.projeto.form.models.Message> emails = new ArrayList<pt.iscte.esi.projeto.form.models.Message>();
 	private final static String user= "ISCTE";
 	
+	
+	/*
+	 * This class uses the Javax to fetch the emails of the user.
+	 * For this to happen, the user has to give permitions to access their inbox 
+	 * */
 	public ArrayList<pt.iscte.esi.projeto.form.models.Message> getMails() throws Exception {
 		Session session = Session.getDefaultInstance(new Properties( ));
 		Store store = session.getStore("imaps");
@@ -36,19 +42,18 @@ public class GmailAPI {
 				throw new RuntimeException( e );
 			}
 		} );
-		//int i=1;
+
 		for ( Message message : messages ) {
+			// if the sender is svbro@iscte-iul.pt
 			if(InternetAddress.toString(message.getFrom()).equals("=?UTF-8?Q?S=C3=A9rgio_Ribeiro?= <Sergio_Vaz@iscte-iul.pt>")) {
 				String body = getTextFromMessage(message);
-				AddMessage(message.getSentDate().toString(), "Gmail", message.getSubject(), body);
-			//	result+="Email " + i + "\n" + "sendDate: " + message.getSentDate()+ "\n" +"subject:" + message.getSubject()
-				//+ "\n" + "Body" +"\n"+a + "\n" ;
-				//i++;
+				AddMessage(message.getSentDate().toString(), "Email", message.getSubject(), body);
 			}
 		}
 		return emails;
 	}
 	
+	//This class creates and adds a message to the emails list
 	private void AddMessage(String time, String channel, String sender, String message) 
 	{
 		String date=SetDateFormat(time);
@@ -57,6 +62,7 @@ public class GmailAPI {
 		emails.add(a);
 	}
 	
+	//This class gets the body of the email, since the body comes encrypted 
 	private String getTextFromMessage(Message message) throws MessagingException, IOException {
 		String result = "";
 		if (message.isMimeType("text/plain")) {
@@ -67,6 +73,7 @@ public class GmailAPI {
 		}
 		return result;
 	}
+	// an auxiliar class to  getTextFromMessage
 	private String getTextFromMimeMultipart( MimeMultipart mimeMultipart)  throws MessagingException, IOException{
 		String result = "";
 		int count = mimeMultipart.getCount();
@@ -85,6 +92,11 @@ public class GmailAPI {
 		return result;
 	}
 	
+	/**
+	 * This method recieves the date of the Tweet, for example:Fri Oct 26 15:59:50 BST 2018
+	 * and return 26/Oct/2018
+	 * @param s
+	 */
 	private String SetDateFormat(String s)
 	{
 		String[] backup = s.split(" ");

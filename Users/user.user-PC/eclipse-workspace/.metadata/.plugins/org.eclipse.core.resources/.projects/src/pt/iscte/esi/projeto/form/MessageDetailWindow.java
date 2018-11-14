@@ -38,6 +38,7 @@ public class MessageDetailWindow {
 	 */
 	public MessageDetailWindow() {
 		initialize();
+		frame.setVisible(true);
 	}
 
 	/**

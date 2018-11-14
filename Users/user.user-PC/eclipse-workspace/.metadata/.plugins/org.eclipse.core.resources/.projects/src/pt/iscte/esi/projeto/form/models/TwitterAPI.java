@@ -42,10 +42,13 @@ public class TwitterAPI {
         } catch (Exception e) { System.out.println(e.getMessage()); return null;}
      }
 	
-	/*
+	/**
 	 * This method recieves the date of the Tweet, for example:Fri Oct 26 15:59:50 BST 2018
 	 * and return 26/Oct/2018
-	 * */
+	 * @param s
+	 */
+	
+	
 	private String SetDateFormat(String s)
 	{
 		String[] backup = s.split(" ");
