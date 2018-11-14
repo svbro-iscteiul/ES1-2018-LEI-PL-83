@@ -33,6 +33,7 @@ public class TwitterAPI {
 					m.setSender(status.getUser().getName());
 					m.setMessage(status.getText());
 					String date=SetDateFormat(status.getCreatedAt().toString());
+					m.setChannel("Twitter");
 					m.setTime(date);
 					message.add(m);
 				}

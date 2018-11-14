@@ -34,6 +34,21 @@
 			<artifactId>jgoodies-forms</artifactId>
 			<version>1.6.0</version>
 		</dependency>
+		<dependency>
+     <groupId>com.google.api-client</groupId>
+     <artifactId>google-api-client</artifactId>
+     <version>1.25.0</version>
+   </dependency>
+   <dependency>
+    <groupId>com.google.apis</groupId>
+    <artifactId>google-api-services-gmail</artifactId>
+    <version>v1-rev96-1.25.0</version>
+</dependency>
+<dependency>
+    <groupId>javax.mail</groupId>
+    <artifactId>mail</artifactId>
+    <version>1.4</version>
+</dependency>
 <!-- 		<dependency> -->
 <!-- 			<groupId>com.vogella.build.maven.simple</groupId> -->
 <!-- 			<artifactId>com.vogella.build.maven.simple</artifactId> -->

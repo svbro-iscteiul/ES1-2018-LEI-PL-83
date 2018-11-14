@@ -32,6 +32,7 @@ import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 
 import DBA.DBAWindow;
+import pt.iscte.esi.projeto.form.models.GmailAPI;
 import pt.iscte.esi.projeto.form.models.Message;
 import pt.iscte.esi.projeto.form.models.TwitterAPI;
 import pt.iscte.esi.projeto.utils.MainMsgList;
@@ -46,6 +47,7 @@ import pt.iscte.esi.projeto.utils.MainMsgList;
 		private MainMsgList msgList;
 		private DefaultTableModel defaultTableModel;
 		private ArrayList<Message> tweets= new ArrayList<Message>();
+		private ArrayList<Message> emails= new ArrayList<Message>();
 
 		
 		public static void main(String[] args) {
@@ -93,10 +95,13 @@ import pt.iscte.esi.projeto.utils.MainMsgList;
 			msgList = new MainMsgList(frame);
 			msgList.setHeaders(new String[] { "Data", "Canal", "Origem", "Mensagem"});
 			getTweets();
+			getEmails();
 			String[][] temp = new String[101][4];
 			msgList.setMsgMatrix(temp);
 			for(Message m : tweets)
-				msgList.addMessage(m, "Twitter");
+				msgList.addMessage(m);
+			for(Message m : emails)
+				msgList.addMessage(m);
 			
 			//for(Message f : facebook)   fazer depois get messages from face
 				
@@ -298,6 +303,15 @@ import pt.iscte.esi.projeto.utils.MainMsgList;
 			TwitterAPI t = new TwitterAPI();
 			tweets=t.getTweets();
 			//System.out.println(tweets.get(0).getMessage());
+		}
+		private void getEmails(){
+			GmailAPI g = new GmailAPI();
+			try {
+				emails= g.getMails();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 

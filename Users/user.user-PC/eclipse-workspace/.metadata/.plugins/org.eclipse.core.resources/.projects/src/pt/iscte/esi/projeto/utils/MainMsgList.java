@@ -30,7 +30,7 @@ public class MainMsgList {
 		this.headers = headers;
 	}
 
-	public void addMessage(Message msg, String channel) {
+	public void addMessage(Message msg) {
 		if(msgMatrix.length == 100) {
 			return;
 		}
@@ -43,7 +43,7 @@ public class MainMsgList {
 							msgMatrix[i][j] = msg.getTime();
 							break;
 						case 1:
-							msgMatrix[i][j] = channel; 
+							msgMatrix[i][j] = msg.getChannel(); 
 							break;
 						case 2:
 							msgMatrix[i][j] = msg.getSender();
