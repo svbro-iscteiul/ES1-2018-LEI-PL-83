@@ -34,6 +34,11 @@ import javax.swing.JRadioButtonMenuItem;
 import javax.swing.JButton;
 import javax.swing.JTextPane;
 
+/**
+ * Window UI for Account Management
+ * @author jose.f.santos
+ *
+ */
 public class AccountManageWindow extends JFrame {
 	
 	private JFrame frame;

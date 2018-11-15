@@ -4,7 +4,11 @@ package pt.iscte.esi.projeto.form;
 import java.awt.EventQueue;
 
 
-
+/**
+ * Main class
+ * @author jose.f.santos
+ *
+ */
 public class Main {
 
 	/**

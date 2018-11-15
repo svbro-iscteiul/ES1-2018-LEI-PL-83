@@ -9,7 +9,11 @@ import com.restfb.Parameter;
 import com.restfb.types.Post;
 import com.restfb.types.User;
 
-//restfb
+/**
+ * Facebook Main
+ * @author jose.f.santos
+ *
+ */
 public class FacebookMain {
 	public static String Token="EAAD0JjeESBwBAL8OQ9yVoX5tGOqpgQiWhMyoyOYmtka1QWCVAlxxRzi97QFeUyAxOOb7mnpvwYiId2n6lr58iyqZBinEckQvj4ZBVKLHCfGuF61r1OdQMBidrpC2MNgLmCc2AupdDRGIvjJCMVembyTgm9FdCDX0sp1bld1w5VNLk5zZCKQHp19Gfg5aSXna1qFwZCDzkbnwKuP4KZCwG";
 	/**

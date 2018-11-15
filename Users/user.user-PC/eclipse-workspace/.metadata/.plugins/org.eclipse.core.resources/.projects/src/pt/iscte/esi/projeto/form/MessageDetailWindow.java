@@ -13,6 +13,11 @@ import com.jgoodies.forms.factories.DefaultComponentFactory;
 import java.awt.Font;
 import java.awt.Color;
 
+/**
+ * Window UI for message details
+ * @author jose.f.santos
+ *
+ */
 public class MessageDetailWindow {
 
 	private JFrame frame;

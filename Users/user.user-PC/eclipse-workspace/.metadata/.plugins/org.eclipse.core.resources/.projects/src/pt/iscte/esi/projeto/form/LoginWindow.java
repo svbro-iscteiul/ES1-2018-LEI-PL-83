@@ -23,6 +23,11 @@ import pt.iscte.esi.projeto.utils.XMLFileEditor;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
+/**
+ * Window UI for Application Login
+ * @author jose.f.santos
+ *
+ */
 public class LoginWindow {
 
 	private JFrame frame;

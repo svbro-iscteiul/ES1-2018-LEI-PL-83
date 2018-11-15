@@ -1,6 +1,11 @@
 package pt.iscte.esi.projeto.form.models;
 import java.util.List;
 
+/**
+ * Twitter API class, used only for testing
+ * @author jose.f.santos
+ *
+ */
 public class TwitterAPITest {
 /*
  * This is just to see if the Twitter api is working, it will be deleted later
