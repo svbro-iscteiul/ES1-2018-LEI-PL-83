@@ -38,7 +38,11 @@ import pt.iscte.esi.projeto.form.models.Message;
 import pt.iscte.esi.projeto.form.models.TwitterAPI;
 import pt.iscte.esi.projeto.utils.MainMsgList;
 
-
+/**
+ * Window UI with list of tweets, emails and facebook posts
+ * @author jose.f.santos
+ *
+ */
 public class MainWindow {
 
 	private JFrame frame;
@@ -97,7 +101,7 @@ public class MainWindow {
 		table.setBorder(new LineBorder(new Color(0, 0, 139), 1, true));
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
-		msgList = new MainMsgList(frame);
+		msgList = new MainMsgList();
 		msgList.setHeaders(new String[] { "Data", "Canal", "Origem", "Mensagem"});
 		getTweets();
 		getEmails();

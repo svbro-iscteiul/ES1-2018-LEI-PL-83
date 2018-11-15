@@ -9,7 +9,11 @@ import com.restfb.Parameter;
 import com.restfb.types.Post;
 import com.restfb.types.User;
 
-//restfb
+/**
+ * Facebook Main
+ * @author jose.f.santos
+ *
+ */
 public class FacebookMain {
 	
 	/**

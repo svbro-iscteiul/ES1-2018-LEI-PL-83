@@ -1,22 +1,43 @@
 package pt.iscte.esi.projeto.utils;
 
-import java.awt.Frame;
 
 import pt.iscte.esi.projeto.form.models.Message;
 
+/**
+ * Class that defines list in Main Window.
+ * this matrix only supports 100 lines and 4 rows max.
+ * 
+ * @author jose.f.santos
+ *
+ */
 public class MainMsgList {
-	/*101 linesm 4 rows*/
+	
 	private String[] headers;
 	private String[][] msgMatrix;
-	private Frame frame;
+	private int counter;
 	
 	/**
 	 * Constructor
-	 * 
-	 * @param frame as Frame
 	 */
-	public MainMsgList(Frame frame) {
-		this.frame = frame;
+	public MainMsgList() {
+		counter = 0;
+	}
+	
+
+	public MainMsgList(String[] headers,String[][] msgMatrix) {
+		this.headers = headers;
+		this.msgMatrix = msgMatrix;
+		
+		counter = 0;
+		
+		for(int i=0;i<msgMatrix.length;i++) {
+			for(int j=0; j< msgMatrix[i].length;j++) {
+				if(msgMatrix[i][j] != null){
+					counter++;
+					break;
+				}
+			}
+		}
 	}
 	
 	/**
@@ -24,7 +45,7 @@ public class MainMsgList {
 	 * 
 	 * @return Object[][]
 	 */
-	public Object[][] getMsgMatrix() {
+	public String[][] getMsgMatrix() {
 		return msgMatrix;
 	}
 	
@@ -35,6 +56,17 @@ public class MainMsgList {
 	 */
 	public void setMsgMatrix(String[][] msgMatrix) {
 		this.msgMatrix = msgMatrix;
+		
+		counter = 0;
+		
+		for(int i=0;i<msgMatrix.length;i++) {
+			for(int j=0; j< msgMatrix[i].length;j++) {
+				if(msgMatrix[i][j] != null){
+					counter++;
+					break;
+				}
+			}
+		}
 	}
 	
 	/**
@@ -54,6 +86,15 @@ public class MainMsgList {
 	public void setHeaders(String[] headers) {
 		this.headers = headers;
 	}
+	
+	/**
+	 * get for stack counter
+	 * 
+	 * @return counter as int
+	 */
+	public int getCounter() {
+		return counter;
+	}
 
 	/**
 	 * Add a message to msg
@@ -61,31 +102,32 @@ public class MainMsgList {
 	 * @param msg as Message
 	 */
 	public void addMessage(Message msg) {
-		if(msgMatrix.length == 100) {
+		if(counter >= 100) {
 			return;
 		}
 		else {
-			for(int i=0; i<=100; i++) {
-				if(msgMatrix[i][0]==null) {
-					for(int j=0; j<=msgMatrix[i].length;j++) {
+			for(int i=0; i<100; i++) {
+				for(int j=0; j<msgMatrix[i].length;j++) {
+					if(msgMatrix[i][j] == null) {
 						switch (j) {
-						case 0:
-							msgMatrix[i][j] = msg.getTime();
-							break;
-						case 1:
-							msgMatrix[i][j] = msg.getChannel(); 
-							break;
-						case 2:
-							msgMatrix[i][j] = msg.getSender();
-							break;
-						case 3:
-							msgMatrix[i][j] = msg.getMessage();
-							break;
-						default:
-							break;
-						}
+							case 0:
+								msgMatrix[i][j] = msg.getTime();
+								break;
+							case 1:
+								msgMatrix[i][j] = msg.getChannel(); 
+								break;
+							case 2:
+								msgMatrix[i][j] = msg.getSender();
+								break;
+							case 3:
+								msgMatrix[i][j] = msg.getMessage();
+								break;
+							default:
+								break;
+							}
+						counter++;
+						return;
 					}
-					break;
 				}
 			}
 		}

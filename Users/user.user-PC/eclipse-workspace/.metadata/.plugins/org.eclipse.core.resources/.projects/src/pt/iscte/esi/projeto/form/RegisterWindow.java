@@ -16,6 +16,11 @@ import javax.swing.JTextField;
 
 import pt.iscte.esi.projeto.utils.XMLFileEditor;
 
+/**
+ * Window UI for Registering in Application
+ * @author jose.f.santos
+ *
+ */
 public class RegisterWindow {
 
 	private JFrame frame;

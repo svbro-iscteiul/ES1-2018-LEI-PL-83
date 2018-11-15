@@ -22,7 +22,11 @@ import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 
-
+/**
+ * XML Editor class, all methods for editing or gather information from configs.xml are here.
+ * @author jose.f.santos
+ *
+ */
 public class XMLFileEditor {
 	/*
 	 * This class registers the user in the app

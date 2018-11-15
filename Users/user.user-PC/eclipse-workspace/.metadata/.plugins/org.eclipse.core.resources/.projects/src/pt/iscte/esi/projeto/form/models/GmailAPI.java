@@ -14,6 +14,11 @@ import javax.mail.Store;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMultipart;
 
+/**
+ * Gmail API class
+ * @author jose.f.santos
+ *
+ */
 public class GmailAPI {
 	
 	private ArrayList<pt.iscte.esi.projeto.form.models.Message> emails = new ArrayList<pt.iscte.esi.projeto.form.models.Message>();

@@ -7,6 +7,11 @@ import twitter4j.Twitter;
 import twitter4j.TwitterFactory;
 import twitter4j.conf.ConfigurationBuilder;
 
+/**
+ * Twitter API class
+ * @author jose.f.santos
+ *
+ */
 public class TwitterAPI {
 	
 	private ArrayList<Message> message = new ArrayList<Message>();
