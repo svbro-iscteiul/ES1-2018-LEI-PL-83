@@ -32,12 +32,12 @@ public class XMLFileEditor {
 	 * */
 	
 	/**
-	 * 
 	 * Used to register user in the xml file.
-	 * @param Username
-	 * @param Email
-	 * @param Password
-	 * @return
+	 * 
+	 * @param Username as String
+	 * @param Email as String
+	 * @param Password as String
+	 * @return "Error", "Username Taken" or "Email Taken" if an error is found. If the user is added the returns "New Username Added"
 	 */
 	public String SignIn(String Username, String Email, String Password) 
 	{
@@ -100,12 +100,12 @@ public class XMLFileEditor {
 	 */
 	
 	/**
-	 * 
 	 * Used to read xml file. Username is Found if user exists the password given match.
-	 * @param Username
-	 * @param Email
-	 * @param Password
-	 * @return
+	 * 
+	 * @param Username as String
+	 * @param Email as String
+	 * @param Password as String
+	 * @return If error returns "Error", "Username Not Found", "Password Incorrect" or "Email Taken". If all is correct then "Email Taken".
 	 */
 	public String ReadFile(String Username,String Email,String Password) {
 		try {
@@ -145,44 +145,11 @@ public class XMLFileEditor {
 		}
 	}
 	
-	/* Testes !! apagar antes de entregar
-	public void LoadXMlContent(JTextArea textArea) {
-		try {
-			File fXmlFile = new File("src/DBA/config.xml");
-			
-			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-			Document doc = dBuilder.parse(fXmlFile);
-			
-			doc.getDocumentElement().normalize();
-			
-			NodeList nList = doc.getElementsByTagName("*");
-			
-			for(int i=0; i<nList.getLength();i++) {
-				//if(!nList.item(i).toString().contains("null"))
-					textArea.setText(textArea.getText() + nList.item(i).toString().replaceAll("\n", "") + ": \n");
-				if(nList.item(i).hasChildNodes()) {
-					printChilNodes(nList.item(i), textArea);
-				}
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-	
-
-	private void printChilNodes(Node node, JTextArea textArea) {
-		NodeList childnodes = node.getChildNodes();
-		for(int j=0; j<childnodes.getLength();j++) {
-			//if(!childnodes.item(j).toString().contains("null"))
-				textArea.setText(textArea.getText() + "   " + childnodes.item(j).toString().replaceAll("\n", "") + ": \n");
-		}
-	}
-	*/
 	
 	/**
-	 * Vai buscar o conteúdo do xml e carrega o mesmo no editor
-	 * @param textArea
+	 * Retrieve the xml content and then set the content in textArea
+	 * 
+	 * @param textArea as JTextArea
 	 */
 	public void LoadXMLContentRAW(JTextArea textArea) {
 		try {
@@ -211,8 +178,9 @@ public class XMLFileEditor {
 	
 	
 	/**
-	 * Altera o conteudo do ficheiro XML pelo conteúdo presente no editor
-	 * @param textArea
+	 * Replaces the xml content with the text in the JTextArea
+	 * 
+	 * @param textArea as JTextArea
 	 */
 	public void SaveXMLContent(JTextArea textArea) {
 		try {

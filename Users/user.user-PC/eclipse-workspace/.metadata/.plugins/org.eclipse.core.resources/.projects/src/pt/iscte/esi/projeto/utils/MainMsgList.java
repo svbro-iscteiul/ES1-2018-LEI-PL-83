@@ -10,26 +10,56 @@ public class MainMsgList {
 	private String[][] msgMatrix;
 	private Frame frame;
 	
+	/**
+	 * Constructor
+	 * 
+	 * @param frame as Frame
+	 */
 	public MainMsgList(Frame frame) {
 		this.frame = frame;
 	}
 	
+	/**
+	 * get method for msgMatrix
+	 * 
+	 * @return Object[][]
+	 */
 	public Object[][] getMsgMatrix() {
 		return msgMatrix;
 	}
 	
+	/**
+	 * set method for msgMatrix
+	 * 
+	 * @param msgMatrix as String[][]
+	 */
 	public void setMsgMatrix(String[][] msgMatrix) {
 		this.msgMatrix = msgMatrix;
 	}
 	
+	/**
+	 * get method for headers
+	 * 
+	 * @return String[]
+	 */
 	public String[] getHeaders() {
 		return headers;
 	}
 
+	/**
+	 * set method for headers
+	 * 
+	 * @param headers as String[]
+	 */
 	public void setHeaders(String[] headers) {
 		this.headers = headers;
 	}
 
+	/**
+	 * Add a message to msg
+	 * 
+	 * @param msg as Message
+	 */
 	public void addMessage(Message msg) {
 		if(msgMatrix.length == 100) {
 			return;

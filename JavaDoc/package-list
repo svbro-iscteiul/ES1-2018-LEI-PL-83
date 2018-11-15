@@ -1,3 +1,4 @@
-src.DBA
-src.pt.iscte.esi.projeto.form
-src.pt.iscte.esi.projeto.utils
+DBA
+pt.iscte.esi.projeto.form
+pt.iscte.esi.projeto.form.models
+pt.iscte.esi.projeto.utils

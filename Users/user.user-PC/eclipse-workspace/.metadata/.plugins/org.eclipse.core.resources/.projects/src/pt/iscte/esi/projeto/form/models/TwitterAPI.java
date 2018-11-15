@@ -8,14 +8,17 @@ import twitter4j.TwitterFactory;
 import twitter4j.conf.ConfigurationBuilder;
 
 public class TwitterAPI {
+	
 	private ArrayList<Message> message = new ArrayList<Message>();
 	private final static String user= "ISCTE";
 	
 	
-	/*
+	/**
 	 * This class uses the API twitter4j to get the tweets of the user 
 	 * and creates a object message with the text, time of the tweet 
-	 * */
+	 * 
+	 * @return message as ArrayList<Message>
+	 */
 	public ArrayList<Message> getTweets() {
         try {
         	ConfigurationBuilder cb = new ConfigurationBuilder();
@@ -43,12 +46,12 @@ public class TwitterAPI {
      }
 	
 	/**
-	 * This method recieves the date of the Tweet, for example:Fri Oct 26 15:59:50 BST 2018
+	 * This method receives the date of the Tweet, for example:Fri Oct 26 15:59:50 BST 2018
 	 * and return 26/Oct/2018
-	 * @param s
+	 * 
+	 * @param s as String
+	 * @return date as String
 	 */
-	
-	
 	private String SetDateFormat(String s)
 	{
 		String[] backup = s.split(" ");

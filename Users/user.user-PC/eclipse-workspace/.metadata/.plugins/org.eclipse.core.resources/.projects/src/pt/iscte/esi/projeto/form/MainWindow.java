@@ -51,6 +51,10 @@ public class MainWindow {
 	private ArrayList<Message> emails= new ArrayList<Message>();
 
 
+	/**
+	 * 
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -289,7 +293,11 @@ public class MainWindow {
 	}
 
 
-	//Para que serve este método?? Não está a ser usado .....(ET)
+	/**
+	 * Under work!! used to select an element in the list.
+	 * @param component
+	 * @param popup
+	 */
 	private static void addPopup(Component component, final JPopupMenu popup) {
 		component.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent e) {
@@ -309,13 +317,18 @@ public class MainWindow {
 	}
 	
 	
-	//gets the tweets and adds them to the specific list
+	/**
+	 * gets the tweets and adds them to the specific list
+	 */
 	private void getTweets()
 	{
 		TwitterAPI t = new TwitterAPI();
 		tweets=t.getTweets();
 	}
-	//gets the emails and adds them to the specific list
+	
+	/**
+	 * gets the emails and adds them to the specific list
+	 */
 	private void getEmails(){
 		GmailAPI g = new GmailAPI();
 		try {

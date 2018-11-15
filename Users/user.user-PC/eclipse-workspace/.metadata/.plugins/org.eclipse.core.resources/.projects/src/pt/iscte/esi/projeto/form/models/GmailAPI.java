@@ -20,10 +20,13 @@ public class GmailAPI {
 	private final static String user= "ISCTE";
 	
 	
-	/*
+	/**
 	 * This class uses the Javax to fetch the emails of the user.
 	 * For this to happen, the user has to give permitions to access their inbox 
-	 * */
+	 * 
+	 * @return: emails as ArrayList<pt.iscte.esi.projeto.form.models.Message>
+	 * @throws Exception
+	 */
 	public ArrayList<pt.iscte.esi.projeto.form.models.Message> getMails() throws Exception {
 		Session session = Session.getDefaultInstance(new Properties( ));
 		Store store = session.getStore("imaps");
@@ -53,7 +56,14 @@ public class GmailAPI {
 		return emails;
 	}
 	
-	//This class creates and adds a message to the emails list
+	/**
+	 * This class creates and adds a message to the emails list
+	 * 
+	 * @param time as String
+	 * @param channel as String
+	 * @param sender as String
+	 * @param message as String
+	 */
 	private void AddMessage(String time, String channel, String sender, String message) 
 	{
 		String date=SetDateFormat(time);
@@ -62,7 +72,14 @@ public class GmailAPI {
 		emails.add(a);
 	}
 	
-	//This class gets the body of the email, since the body comes encrypted 
+	/**
+	 * This class gets the body of the email, since the body comes encrypted 
+	 * 
+	 * @param message as Message
+	 * @return result as String
+	 * @throws MessagingException
+	 * @throws IOException
+	 */
 	private String getTextFromMessage(Message message) throws MessagingException, IOException {
 		String result = "";
 		if (message.isMimeType("text/plain")) {
@@ -73,7 +90,15 @@ public class GmailAPI {
 		}
 		return result;
 	}
-	// an auxiliar class to  getTextFromMessage
+	
+	/**
+	 * An auxiliary class to getTextFromMessage
+	 * 
+	 * @param mimeMultipart as MimeMultipart
+	 * @return result as String
+	 * @throws MessagingException
+	 * @throws IOException
+	 */
 	private String getTextFromMimeMultipart( MimeMultipart mimeMultipart)  throws MessagingException, IOException{
 		String result = "";
 		int count = mimeMultipart.getCount();
@@ -93,9 +118,14 @@ public class GmailAPI {
 	}
 	
 	/**
-	 * This method recieves the date of the Tweet, for example:Fri Oct 26 15:59:50 BST 2018
-	 * and return 26/Oct/2018
-	 * @param s
+	 * This method receives the date of the Mail and convert into a simpler date
+	 * 
+	 * example:
+	 * 	receives: Fri Oct 26 15:59:50 BST 2018
+	 * 	returns:  26/Oct/2018
+	 * 
+	 * @param s as String
+	 * @return date as String
 	 */
 	private String SetDateFormat(String s)
 	{

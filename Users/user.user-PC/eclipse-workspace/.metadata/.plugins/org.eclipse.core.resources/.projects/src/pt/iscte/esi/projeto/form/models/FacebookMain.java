@@ -11,6 +11,11 @@ import com.restfb.types.User;
 
 //restfb
 public class FacebookMain {
+	
+	/**
+	 * Facebook API Main
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		/* 
 		 * Facebook API Tutorials in Java # 1 | Setup Development Environment 
