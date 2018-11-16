@@ -55,22 +55,6 @@ public class MainWindow {
 	private ArrayList<Message> emails= new ArrayList<Message>();
 
 
-	/**
-	 * 
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					new MainWindow();
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
 
 	/**
 	 * Class constructor.

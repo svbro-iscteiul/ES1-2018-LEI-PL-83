@@ -35,7 +35,7 @@ public class GmailAPI {
 	public ArrayList<pt.iscte.esi.projeto.form.models.Message> getMails() throws Exception {
 		Session session = Session.getDefaultInstance(new Properties( ));
 		Store store = session.getStore("imaps");
-		store.connect("imap.googlemail.com", 993, "happyc0d3rtwo@gmail.com", "happy.two");
+		store.connect("imap.googlemail.com", "happyc0d3rtwo@gmail.com", "happy.two");
 		Folder inbox = store.getFolder( "INBOX" );
 		inbox.open( Folder.READ_ONLY );
 
