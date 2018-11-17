@@ -11,7 +11,7 @@ import com.restfb.types.User;
 
 /**
  * Facebook Main
- * @author jose.f.santos
+ * @author 
  *
  */
 public class FacebookMain {
@@ -27,7 +27,7 @@ public class FacebookMain {
 
 		Connection<Post> result = fbClient5.fetchConnection("me/feed",Post.class,  Parameter.with("type", "post"));
 		
-		//Parameter.with("since", "<timestamp>"); //adicionei
+		//Parameter.with("since", "<timestamp>"); 
 		
 //		Connection<Post> messages = fbClient.fetchConnection("search",
 //		        Post.class,
