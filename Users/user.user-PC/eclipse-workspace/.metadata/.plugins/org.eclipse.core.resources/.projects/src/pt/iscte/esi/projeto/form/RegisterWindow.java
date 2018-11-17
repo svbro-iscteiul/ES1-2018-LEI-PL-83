@@ -18,7 +18,7 @@ import pt.iscte.esi.projeto.utils.XMLFileEditor;
 
 /**
  * Window UI for Registering in Application
- * @author jose.f.santos
+ * @author Elsa Teixeira, José Santos, Sérgio Ribeiro - LEI ISCTE
  *
  */
 public class RegisterWindow {

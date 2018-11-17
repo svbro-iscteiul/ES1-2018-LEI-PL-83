@@ -40,7 +40,7 @@ import pt.iscte.esi.projeto.utils.MainMsgList;
 
 /**
  * Window UI with list of tweets, emails and facebook posts
- * @author jose.f.santos
+ * @author Elsa Teixeira, José Santos, Sérgio Ribeiro - LEI ISCTE
  *
  */
 public class MainWindow {
@@ -165,7 +165,7 @@ public class MainWindow {
 		lblAdd_tokens.setForeground(new Color(240, 255, 255));
 		frame.getContentPane().add(lblAdd_tokens);
 
-		/**
+		/*
 		 * Add filter boxes to the window
 		 */
 		Choice choice = new Choice();
@@ -187,7 +187,7 @@ public class MainWindow {
 
 
 
-		/**
+		/*
 		 * Add image to the main window
 		 */
 		JLabel foto = new JLabel("");
@@ -200,7 +200,7 @@ public class MainWindow {
 		frame.getContentPane().add(foto);
 
 
-		/**
+		/*
 		 * Add Button "Filtrar" to the window
 		 */
 		JButton btnNewButton = new JButton("Filtrar");
@@ -245,7 +245,7 @@ public class MainWindow {
 		mntmDbaEditor.setFont(new Font("Segoe UI", Font.PLAIN, 13));
 		mnTools.add(mntmDbaEditor);
 
-		/**
+		/*
 		 * Create Refresh button and his action 
 		 */
 		JButton btnRefresh = new JButton("Refresh");

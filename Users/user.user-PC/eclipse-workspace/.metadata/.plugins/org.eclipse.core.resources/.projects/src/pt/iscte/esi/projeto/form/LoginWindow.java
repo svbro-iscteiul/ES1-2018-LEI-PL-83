@@ -25,7 +25,7 @@ import java.awt.event.KeyEvent;
 
 /**
  * Window UI for Application Login
- * @author jose.f.santos
+ *  @author Elsa Teixeira, José Santos, Sérgio Ribeiro - LEI ISCTE
  *
  */
 public class LoginWindow {
