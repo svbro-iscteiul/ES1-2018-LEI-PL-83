@@ -109,8 +109,7 @@ public class LoginWindow {
 						try {
 							if(txtUtilizador.getText().equals("") || txtPassw.getPassword().length==0)
 								lblNewLabel_5.setText("<html><font color='red'>Error: All input fields are mandatory.</font></html>");
-							else
-							{
+							else{
 								XMLFileEditor i = new XMLFileEditor();
 								char[] pass = txtPassw.getPassword();
 								String password = new String(pass);

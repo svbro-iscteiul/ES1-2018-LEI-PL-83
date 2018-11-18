@@ -3,7 +3,7 @@
 		<User_Login>
 			<Username>username</Username>
 			<Password>password</Password>
-			<Email>email</Email><User_Login><Username>Test</Username><Password>a</Password><Email>teste</Email></User_Login></User_Login>
+			<Email>email</Email><User_Login><Username>Test</Username><Password>a</Password><Email>teste</Email></User_Login><User_Login><Username>Elsa</Username><Password>elsa</Password><Email>eptaa@iscte-iul.pt</Email></User_Login></User_Login>
 		<User_Login>
 			<Username>user2</Username>
 			<Password>123</Password>

@@ -18,7 +18,7 @@ import pt.iscte.esi.projeto.utils.XMLFileEditor;
 
 /**
  * Window UI for Registering in Application
- * @author Elsa Teixeira, José Santos, Sérgio Ribeiro - LEI ISCTE
+ * @author Elsa Teixeira, José Santos, Sérgio Ribeiro - LEI ISCTE - Engenharia de Software
  *
  */
 public class RegisterWindow {
@@ -45,6 +45,8 @@ public class RegisterWindow {
 		frame = new JFrame();
 		frame.setBounds(350, 350, 804, 536);
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+			
+		//from here, window construction...
 		
 		frame.setTitle("Bom dia Academia - Signin Window");
 		
@@ -56,7 +58,6 @@ public class RegisterWindow {
 		Image img = imgIcon.getImage();
 		img = img.getScaledInstance(200, 500, java.awt.Image.SCALE_SMOOTH);
 		imgIcon = new ImageIcon(img);
-		//frame.getContentPane().setLayout(new GridLayout(4, 5, 0, 0));
 		
 		lblNewLabel.setIcon(new ImageIcon(RegisterWindow.class.getResource("/pt/iscte/esi/projeto/form/images/logo_ISCTE-IUL.png")));
 		frame.getContentPane().add(lblNewLabel, BorderLayout.WEST);
@@ -118,6 +119,7 @@ public class RegisterWindow {
 		lblNewLabel_5.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblNewLabel_5.setBounds(99, 330, 396, 25);
 		logInPanel.add(lblNewLabel_5);
+		
 		
 		btnSignIn.addMouseListener(new MouseAdapter() {
 			@Override

@@ -32,10 +32,10 @@ public class MessageDetailWindow {
 	private JFrame frame;
 	private MainWindow zoomInInfo;
 	
-	private String channelMsg;
-	private String dateMsg;
-	private String originMsg;
-	private String textMsg;
+//	private String channelMsg;
+//	private String dateMsg;
+//	private String originMsg;
+//	private String textMsg;
 	//private TwitterAPI twitter; 
 
 	/**
@@ -45,7 +45,7 @@ public class MessageDetailWindow {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					MessageDetailWindow window = new MessageDetailWindow(null, null, null, null);
+					MessageDetailWindow window = new MessageDetailWindow();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -57,14 +57,14 @@ public class MessageDetailWindow {
 	/**
 	 * Create the application.
 	 */
-	public MessageDetailWindow(String dateMsg, String channelMsg, String originMsg, String textMsg) {
+	public MessageDetailWindow() {
 		initialize();
 		
-		//adicionei 17/11 (elsa) - apagar
-		dateMsg=zoomInInfo.getDate();
-		channelMsg = zoomInInfo.getChannel();
-		originMsg= zoomInInfo.getOrigin();
-		textMsg=zoomInInfo.getMessagePost();
+//		//adicionei 17/11 (elsa) - apagar
+//		dateMsg=zoomInInfo.getDate();
+//		channelMsg = zoomInInfo.getChannel();
+//		originMsg= zoomInInfo.getOrigin();
+//		textMsg=zoomInInfo.getMessagePost();
 		frame.setVisible(true);
 	}
 
@@ -72,7 +72,7 @@ public class MessageDetailWindow {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		String dateSelected= zoomInInfo.getDate();
+//		String dateSelected= zoomInInfo.getDate();
 		
 		frame = new JFrame();
 		frame.setBounds(100, 100, 800, 605);
@@ -131,10 +131,10 @@ public class MessageDetailWindow {
 		frame.getContentPane().add(textPane_2);
 		
 		
-		//adicionei 17/11 (elsa) - apagar
-		//dateSelected= zoomInInfo.getDate();     //-->está a dar null porque????
-		System.out.println("chego aqui   " + dateMsg);
-		textPane_2.setText(dateMsg);
+//		//adicionei 17/11 (elsa) - apagar
+//		//dateSelected= zoomInInfo.getDate();     //-->está a dar null porque????
+//		System.out.println("chego aqui   " + dateMsg);
+//		textPane_2.setText(dateMsg);
 		
 			
 		

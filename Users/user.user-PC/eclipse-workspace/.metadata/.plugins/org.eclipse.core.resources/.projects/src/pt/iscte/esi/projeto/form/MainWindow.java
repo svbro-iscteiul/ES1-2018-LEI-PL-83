@@ -180,7 +180,7 @@ public class MainWindow {
 					messagePost = (table.getModel().getValueAt(row, 3)).toString();
 					setMessagePost(messagePost);
 					
-					new MessageDetailWindow(date, origin, channel, messagePost);
+					new MessageDetailWindow();
 					frame.dispose();
 				}
 			}
