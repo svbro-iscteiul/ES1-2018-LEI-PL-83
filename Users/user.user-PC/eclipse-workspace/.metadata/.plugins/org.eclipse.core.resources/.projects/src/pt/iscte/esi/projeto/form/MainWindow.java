@@ -1,7 +1,6 @@
 
 package pt.iscte.esi.projeto.form;
 
-
 import java.awt.Choice;
 import java.awt.Color;
 import java.awt.Component;
@@ -40,7 +39,8 @@ import pt.iscte.esi.projeto.utils.MainMsgList;
 
 /**
  * Window UI with list of tweets, emails and facebook posts
- * @author jose.f.santos
+ * 
+ * @author Elsa Teixeira, José Santos, Sérgio Ribeiro - LEI ISCTE
  *
  */
 public class MainWindow {
@@ -51,11 +51,49 @@ public class MainWindow {
 	private JTextField txtPesquisaMensagensPor;
 	private MainMsgList msgList;
 	private DefaultTableModel defaultTableModel;
-	private ArrayList<Message> tweets= new ArrayList<Message>();
-	private ArrayList<Message> emails= new ArrayList<Message>();
+	private ArrayList<Message> tweets = new ArrayList<Message>();
+	private ArrayList<Message> emails = new ArrayList<Message>();
+	String date;
+	String origin;
+	String channel;
+	String messagePost;
 
+	
+	
+	//adicionei 17/11 (elsa) - apagar
+	public String getOrigin() {
+		return origin;
+	}
 
+	public void setOrigin(String origin) {
+		this.origin = origin;
+	}
 
+	public String getDate() {
+		return date;
+	}
+
+	public void setDate(String date) {
+		this.date = date;
+	}
+	
+	public String getChannel() {
+		return channel;
+	}
+
+	public void setChannel(String channel) {
+		this.channel = channel;
+	}
+	
+	public String getMessagePost() {
+		return messagePost;
+	}
+	
+	public void setMessagePost(String messagePost) {
+		this.messagePost = messagePost;
+	}
+	
+	
 	/**
 	 * Class constructor.
 	 */
@@ -86,52 +124,69 @@ public class MainWindow {
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
 		msgList = new MainMsgList();
-		msgList.setHeaders(new String[] { "Data", "Canal", "Origem", "Mensagem"});
+		msgList.setHeaders(new String[] { "Data", "Canal", "Origem", "Mensagem" });
 		getTweets();
 		getEmails();
 		String[][] temp = new String[101][4];
 		msgList.setMsgMatrix(temp);
-		for(Message m : tweets)
+		for (Message m : tweets)
 			msgList.addMessage(m);
-		for(Message m : emails)
+		for (Message m : emails)
 			msgList.addMessage(m);
 
-		//for(Message f : facebook)   fazer depois get messages from face
+		// for(Message f : facebook) fazer depois get messages from face
 
-		defaultTableModel =  new DefaultTableModel(msgList.getMsgMatrix(), msgList.getHeaders()) {
+		defaultTableModel = new DefaultTableModel(msgList.getMsgMatrix(), msgList.getHeaders()) {
 			/**
 			 * Serializa a informação dada na linha anterior
 			 */
 			private static final long serialVersionUID = 1L;
-			Class[] columnTypes = new Class[] {
-					String.class, String.class, String.class, String.class
-			};
+			Class[] columnTypes = new Class[] { String.class, String.class, String.class, String.class };
+
 			public Class getColumnClass(int columnIndex) {
 				return columnTypes[columnIndex];
 			}
 
 		};
-		
-		
+
 		refreshTable();
 
-		table.setModel(defaultTableModel);		
+		table.setModel(defaultTableModel);
 		table.getColumnModel().getColumn(3).setPreferredWidth(402);
 		scrollPane.setViewportView(table);
 		frame.getContentPane().add(scrollPane);
 		table.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mousePressed(MouseEvent arg0) {
-                if (arg0.getButton() == MouseEvent.BUTTON1 || arg0.getButton()==MouseEvent.BUTTON2){
-                	new MessageDetailWindow();
-                	frame.dispose();
-                }
-              
-            }
-        });
-		/*
-		 * Add the LogOut option to the window and link it to Login Window
-		 */
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+				if (arg0.getButton() == MouseEvent.BUTTON1 || arg0.getButton() == MouseEvent.BUTTON2) {
+						
+					
+					//adicionei 17/11 (elsa) - apagar
+					int row = table.getSelectedRow();
+
+					//atualiza os atributos String (data, origem,...) de acordo com a seleção do mouse no momento;
+					date = (table.getModel().getValueAt(row, 0)).toString();
+					setDate (date);
+					System.out.println(date);
+				
+					origin = (table.getModel().getValueAt(row, 1)).toString();
+					setOrigin (origin);
+					
+					System.out.println(origin);
+					
+					channel = (table.getModel().getValueAt(row, 2)).toString();
+					setChannel (channel);
+					
+					messagePost = (table.getModel().getValueAt(row, 3)).toString();
+					setMessagePost(messagePost);
+					
+					new MessageDetailWindow(date, origin, channel, messagePost);
+					frame.dispose();
+				}
+			}
+		});
+
+		// Adds the LogOut option to the window and link it to Login Window
 		JLabel lblLogOut = new JLabel("<html><font color='white'>Logout</font></html>");
 		lblLogOut.setBounds(709, 98, 61, 14);
 		lblLogOut.addMouseListener(new MouseAdapter() {
@@ -148,7 +203,8 @@ public class MainWindow {
 		frame.getContentPane().add(lblLogOut);
 
 		/*
-		 * Add the "add accounts" option to the window and link it to "Account Manage Window".
+		 * Adds the "add accounts" option to the window and link it to
+		 * "Account Manage Window".
 		 */
 		JLabel lblAdd_tokens = new JLabel("<html><font color='white'>Adicionar Contas | </font></html>");
 		lblAdd_tokens.setBounds(600, 98, 110, 14);
@@ -165,8 +221,8 @@ public class MainWindow {
 		lblAdd_tokens.setForeground(new Color(240, 255, 255));
 		frame.getContentPane().add(lblAdd_tokens);
 
-		/**
-		 * Add filter boxes to the window
+		/*
+		 * Adds filter boxes to the window
 		 */
 		Choice choice = new Choice();
 		choice.setBounds(35, 129, 95, 20);
@@ -185,23 +241,21 @@ public class MainWindow {
 		choice_2.add("filtrar origem");
 		frame.getContentPane().add(choice_2);
 
-
-
-		/**
-		 * Add image to the main window
+		/*
+		 * Adds image to the main window
 		 */
 		JLabel foto = new JLabel("");
 		foto.setBounds(0, 26, 784, 99);
 
-		ImageIcon image = new ImageIcon(MainWindow.class.getResource("/pt/iscte/esi/projeto/form/images/ImageMainWindow.png"));
+		ImageIcon image = new ImageIcon(
+				MainWindow.class.getResource("/pt/iscte/esi/projeto/form/images/ImageMainWindow.png"));
 		Image img = image.getImage().getScaledInstance(foto.getWidth(), foto.getHeight(), Image.SCALE_SMOOTH);
 
 		foto.setIcon(new ImageIcon(img));
 		frame.getContentPane().add(foto);
 
-
-		/**
-		 * Add Button "Filtrar" to the window
+		/*
+		 * Adds Button "Filtrar" to the window
 		 */
 		JButton btnNewButton = new JButton("Filtrar");
 		btnNewButton.setBounds(634, 501, 93, 23);
@@ -245,8 +299,8 @@ public class MainWindow {
 		mntmDbaEditor.setFont(new Font("Segoe UI", Font.PLAIN, 13));
 		mnTools.add(mntmDbaEditor);
 
-		/**
-		 * Create Refresh button and his action 
+		/*
+		 * Creates Refresh button and his action
 		 */
 		JButton btnRefresh = new JButton("Refresh");
 		btnRefresh.addMouseListener(new MouseAdapter() {
@@ -258,8 +312,6 @@ public class MainWindow {
 		btnRefresh.setBounds(44, 501, 93, 23);
 		frame.getContentPane().add(btnRefresh);
 
-
-
 	}
 
 	/**
@@ -267,22 +319,22 @@ public class MainWindow {
 	 */
 	private void refreshTable() {
 		Object[][] matrix = msgList.getMsgMatrix();
-		if(defaultTableModel.getRowCount() == 0 && matrix == null) {
+		if (defaultTableModel.getRowCount() == 0 && matrix == null) {
 			matrix = new Object[100][100];
-			for(int i=0; i<21;i++) {
-				for(int j=0; j<21;j++) {
+			for (int i = 0; i < 21; i++) {
+				for (int j = 0; j < 21; j++) {
 					matrix[i][j] = null;
 					defaultTableModel.setDataVector(matrix, msgList.getHeaders());
 				}
 			}
-		}else {
+		} else {
 			defaultTableModel.setDataVector(msgList.getMsgMatrix(), msgList.getHeaders());
 		}
 	}
 
-
 	/**
 	 * Under work!! used to select an element in the list.
+	 * 
 	 * @param component
 	 * @param popup
 	 */
@@ -293,39 +345,37 @@ public class MainWindow {
 					showMenu(e);
 				}
 			}
+
 			public void mouseReleased(MouseEvent e) {
 				if (e.isPopupTrigger()) {
 					showMenu(e);
 				}
 			}
+
 			private void showMenu(MouseEvent e) {
 				popup.show(e.getComponent(), e.getX(), e.getY());
 			}
 		});
 	}
-	
-	
+
 	/**
 	 * gets the tweets and adds them to the specific list
 	 */
-	private void getTweets()
-	{
+	private void getTweets() {
 		TwitterAPI t = new TwitterAPI();
-		tweets=t.getTweets();
+		tweets = t.getTweets();
 	}
-	
+
 	/**
 	 * gets the emails and adds them to the specific list
 	 */
-	private void getEmails(){
+	private void getEmails() {
 		GmailAPI g = new GmailAPI();
 		try {
-			emails= g.getMails();
+			emails = g.getMails();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 }
-
-

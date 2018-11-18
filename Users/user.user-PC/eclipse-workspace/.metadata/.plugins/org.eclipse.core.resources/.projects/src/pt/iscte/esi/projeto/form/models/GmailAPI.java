@@ -17,7 +17,7 @@ import javax.mail.internet.MimeMultipart;
 
 /**
  * Gmail API class
- * @author jose.f.santos
+ * @author Sérgio Ribeiro
  *
  */
 public class GmailAPI {

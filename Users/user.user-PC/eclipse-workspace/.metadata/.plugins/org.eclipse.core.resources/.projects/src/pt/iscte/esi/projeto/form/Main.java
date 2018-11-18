@@ -6,7 +6,7 @@ import java.awt.EventQueue;
 
 /**
  * Main class
- * @author jose.f.santos
+ * @author Elsa Teixeira, José Santos, Sérgio Ribeiro - LEI ISCTE
  *
  */
 public class Main {
