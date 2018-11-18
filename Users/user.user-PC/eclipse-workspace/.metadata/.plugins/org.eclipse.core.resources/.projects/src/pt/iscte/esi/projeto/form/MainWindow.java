@@ -64,8 +64,6 @@ public class MainWindow {
 		//MessageDetailWindow window = new MessageDetailWindow(null, null, null, null);
 		MainWindow window = new MainWindow();
 
-
-
 	}
 
 
@@ -76,7 +74,75 @@ public class MainWindow {
 		initialize();
 		frame.setVisible(true);
 	}
+	
+	
+	/**
+	 * gets the tweets and adds them to the specific list
+	 */
+	private void getTweets() {
+		TwitterAPI t = new TwitterAPI();
+		tweets = t.getTweets();
+	}
 
+	/**
+	 * gets the emails and adds them to the specific list
+	 */
+	private void getEmails() {
+		GmailAPI g = new GmailAPI();
+		try {
+			emails = g.getMails();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	
+	/**
+	 * Updates new information in academic news frame
+	 */
+	private void refreshTable() {
+		Object[][] matrix = msgList.getMsgMatrix();
+		if (defaultTableModel.getRowCount() == 0 && matrix == null) {
+			matrix = new Object[100][100];
+			for (int i = 0; i < 21; i++) {
+				for (int j = 0; j < 21; j++) {
+					matrix[i][j] = null;
+					defaultTableModel.setDataVector(matrix, msgList.getHeaders());
+				}
+			}
+		} else {
+			defaultTableModel.setDataVector(msgList.getMsgMatrix(), msgList.getHeaders());
+		}
+	}
+	
+	/**
+	 * Under work!! used to select an element in the list.
+	 * 
+	 * @param component
+	 * @param popup
+	 */
+	private static void addPopup(Component component, final JPopupMenu popup) {
+		component.addMouseListener(new MouseAdapter() {
+			public void mousePressed(MouseEvent e) {
+				if (e.isPopupTrigger()) {
+					showMenu(e);
+				}
+			}
+
+			public void mouseReleased(MouseEvent e) {
+				if (e.isPopupTrigger()) {
+					showMenu(e);
+				}
+			}
+
+			private void showMenu(MouseEvent e) {
+				popup.show(e.getComponent(), e.getX(), e.getY());
+			}
+		});
+	}
+
+	
 	/**
 	 * Create and initialize Window.
 	 */
@@ -131,7 +197,8 @@ public class MainWindow {
 
 		};
 
-		refreshTable();
+		
+		//refreshTable();
 
 		table.setModel(defaultTableModel);
 		table.getColumnModel().getColumn(3).setPreferredWidth(402);
@@ -140,21 +207,20 @@ public class MainWindow {
 		table.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent arg0) {
-				if (arg0.getButton() == MouseEvent.BUTTON1 || arg0.getButton() == MouseEvent.BUTTON2) {
-					int row = table.getSelectedRow();
-<<<<<<< HEAD
-
-					if(table.getModel().getValueAt(row, 0)!=null) {
-					new MessageDetailWindow(table.getModel().getValueAt(row, 0).toString(),table.getModel().getValueAt(row, 1).toString(),
-							table.getModel().getValueAt(row, 2).toString(),table.getModel().getValueAt(row, 3).toString());
-
-					frame.dispose();
-=======
-					if(table.getModel().getValueAt(row, 0)!="") {
+					if (arg0.getButton() == MouseEvent.BUTTON1 || arg0.getButton() == MouseEvent.BUTTON2) {
+						int row = table.getSelectedRow();
+	
+						if(table.getModel().getValueAt(row, 0)!=null) {
 						new MessageDetailWindow(table.getModel().getValueAt(row, 0).toString(),table.getModel().getValueAt(row, 1).toString(),
 								table.getModel().getValueAt(row, 2).toString(),table.getModel().getValueAt(row, 3).toString());
+	
 						frame.dispose();
->>>>>>> branch 'master' of https://github.com/svbro-iscteiul/ES1-2018-LEI-PL-83.git
+	
+						if(table.getModel().getValueAt(row, 0)!="") {
+							new MessageDetailWindow(table.getModel().getValueAt(row, 0).toString(),table.getModel().getValueAt(row, 1).toString(),
+									table.getModel().getValueAt(row, 2).toString(),table.getModel().getValueAt(row, 3).toString());
+							frame.dispose();
+						}
 					}
 				}
 			}
@@ -383,74 +449,6 @@ public class MainWindow {
 		});
 		btnRefresh.setBounds(44, 501, 93, 23);
 		frame.getContentPane().add(btnRefresh);
-		
-		
-	}
 
-	/**
-	 * Updates new information in academic news frame
-	 */
-	private void refreshTable() {
-		Object[][] matrix = msgList.getMsgMatrix();
-		if (defaultTableModel.getRowCount() == 0 && matrix == null) {
-			matrix = new Object[100][100];
-			for (int i = 0; i < 21; i++) {
-				for (int j = 0; j < 21; j++) {
-					matrix[i][j] = null;
-					defaultTableModel.setDataVector(matrix, msgList.getHeaders());
-				}
-			}
-		} else {
-			defaultTableModel.setDataVector(msgList.getMsgMatrix(), msgList.getHeaders());
-		}
-
-
-	}
-
-	/**
-	 * Under work!! used to select an element in the list.
-	 * 
-	 * @param component
-	 * @param popup
-	 */
-	private static void addPopup(Component component, final JPopupMenu popup) {
-		component.addMouseListener(new MouseAdapter() {
-			public void mousePressed(MouseEvent e) {
-				if (e.isPopupTrigger()) {
-					showMenu(e);
-				}
-			}
-
-			public void mouseReleased(MouseEvent e) {
-				if (e.isPopupTrigger()) {
-					showMenu(e);
-				}
-			}
-
-			private void showMenu(MouseEvent e) {
-				popup.show(e.getComponent(), e.getX(), e.getY());
-			}
-		});
-	}
-
-	/**
-	 * gets the tweets and adds them to the specific list
-	 */
-	private void getTweets() {
-		TwitterAPI t = new TwitterAPI();
-		tweets = t.getTweets();
-	}
-
-	/**
-	 * gets the emails and adds them to the specific list
-	 */
-	private void getEmails() {
-		GmailAPI g = new GmailAPI();
-		try {
-			emails = g.getMails();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	}
 }

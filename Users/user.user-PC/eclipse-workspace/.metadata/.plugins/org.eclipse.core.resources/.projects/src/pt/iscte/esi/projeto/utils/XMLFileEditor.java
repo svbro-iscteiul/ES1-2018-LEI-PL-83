@@ -292,8 +292,8 @@ public class XMLFileEditor {
 			e.printStackTrace();
 		}
 	}
-<<<<<<< HEAD
-=======
+
+	
 	
 	public void AddAcountsForTwitter(String ConsumerKey,String ConsumerSecret,String AccessToken, String AccessTokenSecret)
 	{
@@ -378,9 +378,6 @@ public class XMLFileEditor {
 		
 		
 	}
-	
-	
-	
->>>>>>> branch 'master' of https://github.com/svbro-iscteiul/ES1-2018-LEI-PL-83.git
+
 
 }
