@@ -9,7 +9,7 @@ import twitter4j.conf.ConfigurationBuilder;
 
 /**
  * Twitter API class
- * @author jose.f.santos
+ * @author Sérgio Ribeiro
  *
  */
 public class TwitterAPI {
@@ -28,7 +28,7 @@ public class TwitterAPI {
         try {
         	ConfigurationBuilder cb = new ConfigurationBuilder();
         	cb.setDebugEnabled(true)
-        	 .setOAuthConsumerKey("lssQlInMSR48WEhVnhhEpLKlU")
+          .setOAuthConsumerKey("lssQlInMSR48WEhVnhhEpLKlU")
        	  .setOAuthConsumerSecret("HJoUp0olU7wGYFFSbB6gEMRtfxJBUunM2ZirdOznPRoGpcBBy9")
        	  .setOAuthAccessToken("1056204591581290497-qChkQRfvnqCsNq5fTlJ6kFiaDdOfos")
        	  .setOAuthAccessTokenSecret("Ikwu8aWLHnm7GduV5SCX1rwfOck5FlEyItvEIzYpRkhsd");

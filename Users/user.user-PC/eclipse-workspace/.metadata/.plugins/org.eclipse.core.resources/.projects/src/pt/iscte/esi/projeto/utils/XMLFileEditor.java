@@ -197,6 +197,91 @@ public class XMLFileEditor {
 		}
 	}
 	
+	public void AddAcountsForTwitter(String ConsumerKey,String ConsumerSecret,String AccessToken, String AccessTokenSecret)
+	{
+		try {
+				DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
+				DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
+				Document document = documentBuilder.parse("Users/user.user-PC/eclipse-workspace/.metadata/.plugins/org.eclipse.core.resources/.projects/src/DBA/config.xml");
+				
+				if(document.getElementsByTagName("Twitter").item(0).getChildNodes().getLength()!=0) {
+					document.getElementsByTagName("Twitter").item(0).removeChild(document.getElementsByTagName("Twitter").item(0).getFirstChild());
+				}
+				Element newUser = document.createElement("Twitter");
+
+				Element CK = document.createElement("ConsumerKey");
+				CK.appendChild(document.createTextNode(ConsumerKey));
+				newUser.appendChild(CK);
+
+				Element CS = document.createElement("ConsumerSecret");
+				CS.appendChild(document.createTextNode(ConsumerSecret));
+				newUser.appendChild(CS);
+
+				Element AT = document.createElement("AccessToken");
+				AT.appendChild(document.createTextNode(AccessToken));
+				newUser.appendChild(AT);
+				
+				Element ATS = document.createElement("AccessTokenSecret");
+				ATS.appendChild(document.createTextNode(AccessTokenSecret));
+				newUser.appendChild(ATS);
+				
+				document.getElementsByTagName("Twitter").item(0).appendChild(newUser);
+
+				DOMSource source = new DOMSource(document);
+
+				TransformerFactory transformerFactory = TransformerFactory.newInstance();
+				Transformer transformer = transformerFactory.newTransformer();
+				StreamResult result = new StreamResult("Users/user.user-PC/eclipse-workspace/.metadata/.plugins/org.eclipse.core.resources/.projects/src/DBA/config.xml");
+				transformer.transform(source, result);			
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+		
+		
+	}
+	public void AddAcountsForFacebook()
+	{
+		
+		
+	}
+	public void AddAcountsForEmail(String usermail,String password)
+	{
+		try {
+				DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
+				DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
+				Document document = documentBuilder.parse("Users/user.user-PC/eclipse-workspace/.metadata/.plugins/org.eclipse.core.resources/.projects/src/DBA/config.xml");
+				
+				if(document.getElementsByTagName("Gmail").item(0).getChildNodes().getLength()!=0) {
+					document.getElementsByTagName("Gmail").item(0).removeChild(document.getElementsByTagName("Gmail").item(0).getFirstChild());
+				}
+				Element newUser = document.createElement("Gmail");
+
+				Element Usermail = document.createElement("Mail");
+				Usermail.appendChild(document.createTextNode(usermail));
+				newUser.appendChild(Usermail);
+
+				Element Pass = document.createElement("Password");
+				Pass.appendChild(document.createTextNode(password));
+				newUser.appendChild(Pass);
+
+			
+				
+				document.getElementsByTagName("Gmail").item(0).appendChild(newUser);
+
+				DOMSource source = new DOMSource(document);
+
+				TransformerFactory transformerFactory = TransformerFactory.newInstance();
+				Transformer transformer = transformerFactory.newTransformer();
+				StreamResult result = new StreamResult("Users/user.user-PC/eclipse-workspace/.metadata/.plugins/org.eclipse.core.resources/.projects/src/DBA/config.xml");
+				transformer.transform(source, result);			
+			} catch (Exception e) {
+					e.printStackTrace();
+				}
+		
+		
+	}
+	
+	
 	
 
 }

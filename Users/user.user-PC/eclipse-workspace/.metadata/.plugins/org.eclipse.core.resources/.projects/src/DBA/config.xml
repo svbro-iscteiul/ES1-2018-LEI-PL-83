@@ -3,7 +3,7 @@
 		<User_Login>
 			<Username>username</Username>
 			<Password>password</Password>
-			<Email>email</Email><User_Login><Username>Test</Username><Password>a</Password><Email>teste</Email></User_Login></User_Login>
+			<Email><Email><Mail>as111111</Mail><Password>assdfsdfd</Password></Email></Email><User_Login><Username>Test</Username><Password>a</Password><Email>teste</Email></User_Login></User_Login>
 		<User_Login>
 			<Username>user2</Username>
 			<Password>123</Password>
@@ -21,21 +21,6 @@
 		</User_Login>
 	</Login>
 	<Facebook>
-		<User_Facebook>
-			<Username>username</Username>
-			<Password>password</Password>
-		</User_Facebook>
 	</Facebook>
-	<Twitter>
-		<User_Twitter>
-			<Username>username</Username>
-			<Password>password</Password>
-		</User_Twitter>
-	</Twitter>
-	<Email>
-		<User_Email>
-			<Username>username</Username>
-			<Password>password</Password>
-		</User_Email>
-	</Email>
-</Config>
+	<Twitter><Twitter><ConsumerKey>Consumer</ConsumerKey><ConsumerSecret>ConsumerS</ConsumerSecret><AccessToken>Access</AccessToken><AccessTokenSecret>Access secret</AccessTokenSecret></Twitter></Twitter>
+	<Gmail><Gmail><Mail>aaa</Mail><Password>aaa</Password></Gmail></Gmail></Config>
