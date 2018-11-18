@@ -11,25 +11,25 @@ import pt.iscte.esi.projeto.form.models.Message;
  *
  */
 public class MainMsgList {
-	
+
 	private String[] headers;
 	private String[][] msgMatrix;
 	private int counter;
-	
+
 	/**
 	 * Constructor
 	 */
 	public MainMsgList() {
 		counter = 0;
 	}
-	
+
 
 	public MainMsgList(String[] headers,String[][] msgMatrix) {
 		this.headers = headers;
 		this.msgMatrix = msgMatrix;
-		
+
 		counter = 0;
-		
+
 		for(int i=0;i<msgMatrix.length;i++) {
 			for(int j=0; j< msgMatrix[i].length;j++) {
 				if(msgMatrix[i][j] != null){
@@ -39,7 +39,7 @@ public class MainMsgList {
 			}
 		}
 	}
-	
+
 	/**
 	 * get method for msgMatrix
 	 * 
@@ -48,7 +48,7 @@ public class MainMsgList {
 	public String[][] getMsgMatrix() {
 		return msgMatrix;
 	}
-	
+
 	/**
 	 * set method for msgMatrix
 	 * 
@@ -56,19 +56,23 @@ public class MainMsgList {
 	 */
 	public void setMsgMatrix(String[][] msgMatrix) {
 		this.msgMatrix = msgMatrix;
-		
+
 		counter = 0;
-		
+
 		for(int i=0;i<msgMatrix.length;i++) {
 			for(int j=0; j< msgMatrix[i].length;j++) {
 				if(msgMatrix[i][j] != null){
 					counter++;
 					break;
 				}
+				msgMatrix[i][0]="";
+				msgMatrix[i][1]="";
+				msgMatrix[i][2]="";
+				msgMatrix[i][3]="";
 			}
 		}
 	}
-	
+
 	/**
 	 * get method for headers
 	 * 
@@ -86,7 +90,7 @@ public class MainMsgList {
 	public void setHeaders(String[] headers) {
 		this.headers = headers;
 	}
-	
+
 	/**
 	 * get for stack counter
 	 * 
@@ -102,35 +106,16 @@ public class MainMsgList {
 	 * @param msg as Message
 	 */
 	public void addMessage(Message msg) {
-		if(counter >= 100) {
-			return;
-		}
-		else {
-			for(int i=0; i<100; i++) {
-				for(int j=0; j<msgMatrix[i].length;j++) {
-					if(msgMatrix[i][j] == null) {
-						switch (j) {
-							case 0:
-								msgMatrix[i][j] = msg.getTime();
-								break;
-							case 1:
-								msgMatrix[i][j] = msg.getChannel(); 
-								break;
-							case 2:
-								msgMatrix[i][j] = msg.getSender();
-								break;
-							case 3:
-								msgMatrix[i][j] = msg.getMessage();
-								break;
-							default:
-								break;
-							}
-						counter++;
-						return;
-					}
+			for(int i=0; i<msgMatrix.length; i++) {
+				if(msgMatrix[i][0]=="") {
+					msgMatrix[i][0] = msg.getTime();
+					msgMatrix[i][1] = msg.getChannel(); 
+					msgMatrix[i][2] = msg.getSender();
+					msgMatrix[i][3] = msg.getMessage();
+					counter++;
+					break;
 				}
 			}
-		}
-	}
 
+	}
 }

@@ -11,11 +11,26 @@ import org.junit.Test;
 import pt.iscte.esi.projeto.form.models.Message;
 import pt.iscte.esi.projeto.utils.MainMsgList;
 
-class MainMsgListTest {
+public class TestMainMsgList {
+
+	@BeforeClass
+	public static void setUpBeforeClass() throws Exception {
+	}
+
+	@AfterClass
+	public static void tearDownAfterClass() throws Exception {
+	}
+
+	@Before
+	public void setUp() throws Exception {
+	}
+
+	@After
+	public void tearDown() throws Exception {
+	}
 
 	@Test
-	void test() {
-
+	public void test() {
 		String[] headers = new String[4];
 		String[][] msgMatrix = new String[100][4];
 		
@@ -106,7 +121,6 @@ class MainMsgListTest {
 		
 	
 		assertEquals(54, mainMsgList.getCounter());
-				
 	}
 
 }

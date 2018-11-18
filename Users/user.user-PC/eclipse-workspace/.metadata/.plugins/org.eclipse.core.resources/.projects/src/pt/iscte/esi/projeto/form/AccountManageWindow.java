@@ -12,10 +12,24 @@ import javax.swing.JLabel;
 import java.awt.Color;
 import java.awt.Cursor;
 import com.jgoodies.forms.factories.DefaultComponentFactory;
+//<<<<<<< HEAD
 import pt.iscte.esi.projeto.utils.XMLFileEditor;
+//=======
+
+import pt.iscte.esi.projeto.utils.XMLFileEditor;
+
+//>>>>>>> branch 'master' of https://github.com/svbro-iscteiul/ES1-2018-LEI-PL-83.git
 import javax.swing.JRadioButton;
 import java.awt.Font;
 import javax.swing.JTextField;
+//<<<<<<< HEAD
+//=======
+import javax.swing.JCheckBox;
+import javax.swing.JTree;
+import javax.swing.SwingUtilities;
+import javax.swing.JProgressBar;
+import javax.swing.JRadioButtonMenuItem;
+//>>>>>>> branch 'master' of https://github.com/svbro-iscteiul/ES1-2018-LEI-PL-83.git
 import javax.swing.JButton;
 
 
@@ -29,6 +43,7 @@ public class AccountManageWindow extends JFrame {
 
 	private JFrame frame;
 	private JPanel contentPane;
+//<<<<<<< HEAD
 	private JTextField textField;
 	private JTextField textField_2;
 	private JTextField textField_4;
@@ -39,6 +54,10 @@ public class AccountManageWindow extends JFrame {
 	private JTextField textField_9;
 	private JTextField textField_10;
 	private JTextField textField_11;
+//=======
+	private XMLFileEditor editor = new XMLFileEditor();
+
+//>>>>>>> branch 'master' of https://github.com/svbro-iscteiul/ES1-2018-LEI-PL-83.git
 
 	/**
 	 * Class constructor.
@@ -110,36 +129,61 @@ public class AccountManageWindow extends JFrame {
 		radioButton.setBounds(491, 485, 225, 23);
 		contentPane.add(radioButton);
 
+//<<<<<<< HEAD
 		textField_6 = new JTextField();
 		textField_6.setColumns(10);
 		textField_6.setBounds(377, 105, 366, 20);
 		contentPane.add(textField_6);
 
 		textField = new JTextField();
+//=======
+		JTextField textField = new JTextField();
+//>>>>>>> branch 'master' of https://github.com/svbro-iscteiul/ES1-2018-LEI-PL-83.git
 		textField.setBounds(377, 140, 121, 20);
 		contentPane.add(textField);
 		textField.setColumns(10);
 
-		textField_2 = new JTextField();
+		JTextField textField_2 = new JTextField();
 		textField_2.setColumns(10);
 		textField_2.setBounds(507, 140, 236, 20);
 		contentPane.add(textField_2);
 
+//<<<<<<< HEAD
 		textField_10 = new JTextField();
 		textField_10.setColumns(10);
 		textField_10.setBounds(376, 240, 366, 20);
 		contentPane.add(textField_10);
+//=======
+		JTextField textField_4 = new JTextField();
+		textField_4.setBounds(377, 427, 366, 20);
+		contentPane.add(textField_4);
 
-		textField_1 = new JTextField();
+		JTextField textField_6 = new JTextField();
+		textField_6.setColumns(10);
+		textField_6.setBounds(377, 105, 366, 20);
+		contentPane.add(textField_6);
+//>>>>>>> branch 'master' of https://github.com/svbro-iscteiul/ES1-2018-LEI-PL-83.git
+
+		JTextField textField_1 = new JTextField();
 		textField_1.setColumns(10);
 		textField_1.setBounds(377, 270, 366, 20);
 		contentPane.add(textField_1);
 
+//<<<<<<< HEAD
 		textField_9 = new JTextField();
+//=======
+		JTextField textField_3 = new JTextField();
+		textField_3.setColumns(10);
+		textField_3.setBounds(376, 333, 366, 20);
+		contentPane.add(textField_3);
+
+		JTextField textField_9 = new JTextField();
+//>>>>>>> branch 'master' of https://github.com/svbro-iscteiul/ES1-2018-LEI-PL-83.git
 		textField_9.setColumns(10);
 		textField_9.setBounds(376, 301, 366, 20);
 		contentPane.add(textField_9);
 
+//<<<<<<< HEAD
 		textField_3 = new JTextField();
 		textField_3.setColumns(10);
 		textField_3.setBounds(376, 333, 366, 20);
@@ -154,10 +198,20 @@ public class AccountManageWindow extends JFrame {
 		textField_4.setColumns(10);
 		textField_4.setBounds(377, 427, 366, 20);
 		contentPane.add(textField_4);
+//=======
+		JTextField textField_10 = new JTextField();
+		textField_10.setColumns(10);
+		textField_10.setBounds(376, 240, 366, 20);
+		contentPane.add(textField_10);
+//>>>>>>> branch 'master' of https://github.com/svbro-iscteiul/ES1-2018-LEI-PL-83.git
 
-		textField_8 = new JTextField();
-		textField_8.setColumns(10);
+		JTextField textField_8 = new JTextField();
 		textField_8.setBounds(377, 458, 251, 20);
+		textField_8.setColumns(10);
+		textField_8.setFont(new Font("Tahoma", Font.PLAIN, 15));
+
+	
+
 		contentPane.add(textField_8);
 
 		JLabel lblEmail = DefaultComponentFactory.getInstance().createLabel("Access token:");
@@ -200,10 +254,34 @@ public class AccountManageWindow extends JFrame {
 		btnAdicionarFace.setBounds(396, 171, 89, 23);
 		contentPane.add(btnAdicionarFace);
 
+//<<<<<<< HEAD
 		JButton btnAdicionarTwit = new JButton("Adicionar"); // Botão Adiciona tokens - Twitter
 		btnAdicionarTwit.setBounds(396, 360, 89, 23);
 		contentPane.add(btnAdicionarTwit);
+//=======
+		JButton button = new JButton("Adicionar");
+		button.setBounds(396, 360, 89, 23);
+		button.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				SwingUtilities.invokeLater(new Runnable() {
+					public void run() {
+						try {
+							if(!textField_1.getText().equals(null) && !textField_10.getText().equals(null) && !textField_9.getText().equals(null) && !textField_3.getText().equals(null)){
+								editor.AddAcountsForTwitter(textField_1.getText(),textField_10.getText(),textField_9.getText(),textField_3.getText());
+							}
+							
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+					}
+				});
+			}
+		});
+		contentPane.add(button);
+//>>>>>>> branch 'master' of https://github.com/svbro-iscteiul/ES1-2018-LEI-PL-83.git
 
+//<<<<<<< HEAD
 		JButton btnAdicionarMail = new JButton("Adicionar"); // Botão Adiciona tokens - e-mail
 		btnAdicionarMail.setBounds(396, 489, 89, 23);
 		contentPane.add(btnAdicionarMail);
@@ -212,6 +290,29 @@ public class AccountManageWindow extends JFrame {
 		infoLabel.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		infoLabel.setBounds(290, 530, 396, 25);
 		contentPane.add(infoLabel);
+//=======
+		JButton button_1 = new JButton("Adicionar");
+		button_1.setBounds(396, 489, 89, 23);
+		button_1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				SwingUtilities.invokeLater(new Runnable() {
+					public void run() {
+						try {
+							if(!textField_4.getText().equals(null) && !textField_8.getText().equals(null)){
+								editor.AddAcountsForEmail(textField_4.getText(), textField_8.getText());
+							}
+							
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+					}
+				});
+			}
+		});
+		
+		contentPane.add(button_1);
+//>>>>>>> branch 'master' of https://github.com/svbro-iscteiul/ES1-2018-LEI-PL-83.git
 
 		/*
 		 * Adds Ok button to the frame and his action
@@ -230,7 +331,6 @@ public class AccountManageWindow extends JFrame {
 
 		// (18_11_18 - elsa)
 		// Configuration of the frame, to receive tokens of Twitter from user
-
 		btnAdicionarTwit.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -306,7 +406,8 @@ public class AccountManageWindow extends JFrame {
 
 	public static void main(String[] args) {
 
-		AccountManageWindow m = new AccountManageWindow();
+		AccountManageWindow m= new AccountManageWindow();
+//>>>>>>> branch 'master' of https://github.com/svbro-iscteiul/ES1-2018-LEI-PL-83.git
 		m.initialize();
 	}
 }
