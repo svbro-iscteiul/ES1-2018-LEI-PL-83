@@ -24,6 +24,9 @@ import java.awt.Color;
 import java.awt.Cursor;
 
 import com.jgoodies.forms.factories.DefaultComponentFactory;
+
+import pt.iscte.esi.projeto.utils.XMLFileEditor;
+
 import javax.swing.JRadioButton;
 import java.awt.Font;
 import javax.swing.JTextField;
@@ -53,7 +56,6 @@ public class AccountManageWindow extends JFrame {
 	private JTextField textField_8;
 	private JTextField textField_9;
 	private JTextField textField_10;
-	
 
 	/**
 	 * Class constructor.
@@ -125,6 +127,11 @@ public class AccountManageWindow extends JFrame {
 		radioButton.setBounds(491, 485, 225, 23);
 		contentPane.add(radioButton);
 
+		textField_6 = new JTextField();
+		textField_6.setColumns(10);
+		textField_6.setBounds(377, 105, 366, 20);
+		contentPane.add(textField_6);
+
 		textField = new JTextField();
 		textField.setBounds(377, 140, 121, 20);
 		contentPane.add(textField);
@@ -135,41 +142,36 @@ public class AccountManageWindow extends JFrame {
 		textField_2.setBounds(507, 140, 236, 20);
 		contentPane.add(textField_2);
 
-		textField_4 = new JTextField();
-		textField_4.setColumns(10);
-		textField_4.setBounds(377, 427, 366, 20);
-		contentPane.add(textField_4);
-
-		textField_6 = new JTextField();
-		textField_6.setColumns(10);
-		textField_6.setBounds(377, 105, 366, 20);
-		contentPane.add(textField_6);
+		textField_10 = new JTextField();
+		textField_10.setColumns(10);
+		textField_10.setBounds(376, 240, 366, 20);
+		contentPane.add(textField_10);
 
 		textField_1 = new JTextField();
 		textField_1.setColumns(10);
 		textField_1.setBounds(377, 270, 366, 20);
 		contentPane.add(textField_1);
 
-		textField_3 = new JTextField();
-		textField_3.setColumns(10);
-		textField_3.setBounds(376, 333, 366, 20);
-		contentPane.add(textField_3);
-		
 		textField_9 = new JTextField();
 		textField_9.setColumns(10);
 		textField_9.setBounds(376, 301, 366, 20);
 		contentPane.add(textField_9);
-		
-		textField_10 = new JTextField();
-		textField_10.setColumns(10);
-		textField_10.setBounds(376, 240, 366, 20);
-		contentPane.add(textField_10);
+
+		textField_3 = new JTextField();
+		textField_3.setColumns(10);
+		textField_3.setBounds(376, 333, 366, 20);
+		contentPane.add(textField_3);
+
+		textField_4 = new JTextField();
+		textField_4.setColumns(10);
+		textField_4.setBounds(377, 427, 366, 20);
+		contentPane.add(textField_4);
 
 		textField_8 = new JTextField();
 		textField_8.setColumns(10);
 		textField_8.setBounds(377, 458, 251, 20);
 		contentPane.add(textField_8);
-		
+
 		JLabel lblEmail = DefaultComponentFactory.getInstance().createLabel("Access token:");
 		lblEmail.setBounds(285, 105, 119, 14);
 		contentPane.add(lblEmail);
@@ -178,14 +180,10 @@ public class AccountManageWindow extends JFrame {
 		lblNewJgoodiesLabel.setBounds(234, 143, 144, 14);
 		contentPane.add(lblNewJgoodiesLabel);
 
-
-
-		// Inacabado;
-
 		JLabel lblNewJgoodiesLabel_00 = DefaultComponentFactory.getInstance().createLabel("AuthConsumerSecret:");
 		lblNewJgoodiesLabel_00.setBounds(243, 240, 127, 14);
 		contentPane.add(lblNewJgoodiesLabel_00);
-        
+
 		JLabel lblNewJgoodiesLabel_0 = DefaultComponentFactory.getInstance().createLabel("AuthConsumerKey:");
 		lblNewJgoodiesLabel_0.setBounds(257, 270, 124, 14);
 		contentPane.add(lblNewJgoodiesLabel_0);
@@ -206,17 +204,22 @@ public class AccountManageWindow extends JFrame {
 		lblPassword_1.setBounds(285, 461, 82, 14);
 		contentPane.add(lblPassword_1);
 
-		JButton btnAdicionar = new JButton("Adicionar");
-		btnAdicionar.setBounds(396, 171, 89, 23);
-		contentPane.add(btnAdicionar);
+		JButton btnAdicionarFace = new JButton("Adicionar"); // Botão Adiciona tokens - facebook
+		btnAdicionarFace.setBounds(396, 171, 89, 23);
+		contentPane.add(btnAdicionarFace);
 
-		JButton button = new JButton("Adicionar");
-		button.setBounds(396, 360, 89, 23);
-		contentPane.add(button);
+		JButton btnAdicionarTwit = new JButton("Adicionar"); // Botão Adiciona tokens - Twitter
+		btnAdicionarTwit.setBounds(396, 360, 89, 23);
+		contentPane.add(btnAdicionarTwit);
 
-		JButton button_1 = new JButton("Adicionar");
-		button_1.setBounds(396, 489, 89, 23);
-		contentPane.add(button_1);
+		JButton btnAdicionarMail = new JButton("Adicionar"); // Botão Adiciona tokens - e-mail
+		btnAdicionarMail.setBounds(396, 489, 89, 23);
+		contentPane.add(btnAdicionarMail);
+
+		JLabel infoLabel = new JLabel("");
+		infoLabel.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		infoLabel.setBounds(290, 530, 396, 25);
+		contentPane.add(infoLabel);
 
 		/*
 		 * Adds Ok button to the frame and his action
@@ -232,11 +235,38 @@ public class AccountManageWindow extends JFrame {
 		});
 		btnOk.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		contentPane.add(btnOk);
+
+		// (18_11_18 - elsa)
+		// Configuration of the frame, to receive tokens of Twitter from user
+
+		btnAdicionarTwit.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if (textField_10.getText().toString().equals("") || textField_1.getText().toString().equals("")|| textField_9.getText().toString().equals("") || textField_3.getText().toString().equals("")) {
+					System.out.println("chego aqui1");
+					infoLabel.setText("<html><font color='red'>Error: All input fields are mandatory.</font></html>");
+				} else {
+
+					System.out.println("chego aqui");
+					XMLFileEditor i = new XMLFileEditor();
+					String s = i.addTwittwerTokens(textField_10.getText().toString(), textField_1.getText().toString(),
+							textField_9.getText().toString(), textField_3.getText().toString());
+
+					if (s.equals("Error"))
+						infoLabel.setText("<html><font color='red'>Error</font></html>");
+					else if (s.equals("Tokens already exists"))
+						infoLabel.setText("<html><font color='red'>Error: tokens already exists.</font></html>");
+					else
+						infoLabel.setText("<html><font color='green'>Tokens successfully registered!</font></html>");
+
+				}
+			}
+		});
 	}
 
 	public static void main(String[] args) {
-		
-		AccountManageWindow m= new AccountManageWindow();
+
+		AccountManageWindow m = new AccountManageWindow();
 		m.initialize();
 	}
 }
