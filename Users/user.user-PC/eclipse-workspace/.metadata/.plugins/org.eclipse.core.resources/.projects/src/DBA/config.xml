@@ -6,6 +6,11 @@
 			<Email>email</Email>
 		</User_Login>
 		<User_Login>
+			<Username>UserTeste</Username>
+			<Password>UserTestPass</Password>
+			<Email>UserTest@ms.com</Email>
+		</User_Login>
+		<User_Login>
 			<Username>ahaha</Username>
 			<Password>ahahah</Password>
 			<Email>ahha@gmail.com</Email>
@@ -40,18 +45,12 @@
 			<Password>elsa</Password>
 			<Email>elsa@gmail.com</Email>
 		</User_Login>
-	</Login>
 	<Facebook>
 	</Facebook>
-	<Twitter>
-		<ConsumerKey>Consumer</ConsumerKey>
+	<Twitter><ConsumerKey>Consumer</ConsumerKey>
 		<ConsumerSecret>ConsumerS</ConsumerSecret>
 		<AccessToken>Access</AccessToken>
 		<AccessTokenSecret>Access secret</AccessTokenSecret>
-	</Twitter>
-	<Gmail>
-		<Mail>aaa</Mail>
+	<Gmail><Mail>aaa</Mail>
 		<Password>aaa</Password>
-	</Gmail>	
 </Config>
-

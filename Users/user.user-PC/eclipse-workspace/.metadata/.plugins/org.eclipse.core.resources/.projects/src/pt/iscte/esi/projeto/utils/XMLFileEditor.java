@@ -67,7 +67,7 @@ public class XMLFileEditor {
 					password.appendChild(document.createTextNode(Email));
 					newUser.appendChild(password);
 
-					document.getElementsByTagName("User_Login").item(0).appendChild(newUser);
+					document.getElementsByTagName("Login").item(0).appendChild(newUser);
 
 					DOMSource source = new DOMSource(document);
 
