@@ -53,46 +53,17 @@ public class MainWindow {
 	private DefaultTableModel defaultTableModel;
 	private ArrayList<Message> tweets = new ArrayList<Message>();
 	private ArrayList<Message> emails = new ArrayList<Message>();
-	String date;
-	String origin;
-	String channel;
-	String messagePost;
+
 
 	
-	
-	//adicionei 17/11 (elsa) - apagar
-	public String getOrigin() {
-		return origin;
+	public static void main(String[] args) {
+		//MessageDetailWindow window = new MessageDetailWindow(null, null, null, null);
+		MainWindow window = new MainWindow();
+		
+		
+
 	}
 
-	public void setOrigin(String origin) {
-		this.origin = origin;
-	}
-
-	public String getDate() {
-		return date;
-	}
-
-	public void setDate(String date) {
-		this.date = date;
-	}
-	
-	public String getChannel() {
-		return channel;
-	}
-
-	public void setChannel(String channel) {
-		this.channel = channel;
-	}
-	
-	public String getMessagePost() {
-		return messagePost;
-	}
-	
-	public void setMessagePost(String messagePost) {
-		this.messagePost = messagePost;
-	}
-	
 	
 	/**
 	 * Class constructor.
@@ -126,7 +97,7 @@ public class MainWindow {
 		msgList = new MainMsgList();
 		msgList.setHeaders(new String[] { "Data", "Canal", "Origem", "Mensagem" });
 		getTweets();
-		getEmails();
+		//getEmails();
 		String[][] temp = new String[101][4];
 		msgList.setMsgMatrix(temp);
 		for (Message m : tweets)
@@ -159,29 +130,14 @@ public class MainWindow {
 			@Override
 			public void mousePressed(MouseEvent arg0) {
 				if (arg0.getButton() == MouseEvent.BUTTON1 || arg0.getButton() == MouseEvent.BUTTON2) {
-						
-					
-					//adicionei 17/11 (elsa) - apagar
 					int row = table.getSelectedRow();
 
-					//atualiza os atributos String (data, origem,...) de acordo com a seleção do mouse no momento;
-					date = (table.getModel().getValueAt(row, 0)).toString();
-					setDate (date);
-					System.out.println(date);
-				
-					origin = (table.getModel().getValueAt(row, 1)).toString();
-					setOrigin (origin);
-					
-					System.out.println(origin);
-					
-					channel = (table.getModel().getValueAt(row, 2)).toString();
-					setChannel (channel);
-					
-					messagePost = (table.getModel().getValueAt(row, 3)).toString();
-					setMessagePost(messagePost);
-					
-					new MessageDetailWindow();
+					if(table.getModel().getValueAt(row, 0)!=null) {
+					new MessageDetailWindow(table.getModel().getValueAt(row, 0).toString(),table.getModel().getValueAt(row, 1).toString(),
+							table.getModel().getValueAt(row, 2).toString(),table.getModel().getValueAt(row, 3).toString());
+
 					frame.dispose();
+					}
 				}
 			}
 		});
@@ -378,4 +334,5 @@ public class MainWindow {
 			e.printStackTrace();
 		}
 	}
+	
 }
