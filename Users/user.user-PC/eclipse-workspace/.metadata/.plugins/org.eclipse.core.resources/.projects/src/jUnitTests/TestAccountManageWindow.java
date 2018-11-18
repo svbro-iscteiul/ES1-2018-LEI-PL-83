@@ -30,7 +30,7 @@ public class TestAccountManageWindow {
 
 	@Test
 	public void test() {
-		new AccountManageWindow();
+		new AccountManageWindow().main(null);;
 	}
 
 }

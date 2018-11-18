@@ -3,6 +3,7 @@ package pt.iscte.esi.projeto.form;
 
 import java.awt.Color;
 import java.awt.Cursor;
+import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.MouseAdapter;
@@ -390,8 +391,14 @@ public class AccountManageWindow extends JFrame {
 	}
 
 	public static void main(String[] args) {
-
-		AccountManageWindow m= new AccountManageWindow();
-		m.initialize();
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					new MessageDetailWindow();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
 	}
 }

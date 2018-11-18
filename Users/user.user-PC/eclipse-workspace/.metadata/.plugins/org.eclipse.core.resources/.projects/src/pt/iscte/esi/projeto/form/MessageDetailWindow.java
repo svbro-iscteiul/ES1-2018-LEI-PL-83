@@ -44,8 +44,7 @@ public class MessageDetailWindow {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					MessageDetailWindow window = new MessageDetailWindow();
-					window.frame.setVisible(true);
+					new MessageDetailWindow();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

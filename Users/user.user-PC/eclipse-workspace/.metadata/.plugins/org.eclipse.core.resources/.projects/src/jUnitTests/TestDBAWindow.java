@@ -8,9 +8,9 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import pt.iscte.esi.projeto.form.Main;
+import DBA.DBAWindow;
 
-public class TestMain {
+public class TestDBAWindow {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -30,7 +30,7 @@ public class TestMain {
 
 	@Test
 	public void test() {
-		new Main().main(null);
+		new DBAWindow();
 	}
 
 }
