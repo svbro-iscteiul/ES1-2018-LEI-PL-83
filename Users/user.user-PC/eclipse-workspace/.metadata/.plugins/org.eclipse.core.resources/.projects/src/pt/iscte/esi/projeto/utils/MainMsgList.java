@@ -61,14 +61,19 @@ public class MainMsgList {
 
 		for(int i=0;i<msgMatrix.length;i++) {
 			for(int j=0; j< msgMatrix[i].length;j++) {
-				if(msgMatrix[i][j] != null){
+				if(msgMatrix[i][j] != null
+						|| msgMatrix[i][j+1] != null
+						|| msgMatrix[i][j+2] != null
+						|| msgMatrix[i][j+3] != null){
 					counter++;
 					break;
+				}else {
+					msgMatrix[i][0]="";
+					msgMatrix[i][1]="";
+					msgMatrix[i][2]="";
+					msgMatrix[i][3]="";
+					break;
 				}
-				msgMatrix[i][0]="";
-				msgMatrix[i][1]="";
-				msgMatrix[i][2]="";
-				msgMatrix[i][3]="";
 			}
 		}
 	}
@@ -106,12 +111,15 @@ public class MainMsgList {
 	 * @param msg as Message
 	 */
 	public void addMessage(Message msg) {
-			for(int i=0; i<msgMatrix.length; i++) {
-				if(msgMatrix[i][0]=="") {
-					msgMatrix[i][0] = msg.getTime();
-					msgMatrix[i][1] = msg.getChannel(); 
-					msgMatrix[i][2] = msg.getSender();
-					msgMatrix[i][3] = msg.getMessage();
+			for(int i=counter; i<msgMatrix.length; i++) {
+				if(msgMatrix[i][0].equals("")
+						&& msgMatrix[i][1].equals("")
+						&& msgMatrix[i][2].equals("")
+						&& msgMatrix[i][3].equals("")) {
+					msgMatrix[i][0] = ((msg.getTime() == null) ? "" : msg.getTime());
+					msgMatrix[i][1] = ((msg.getChannel() == null) ? "" : msg.getChannel()); 
+					msgMatrix[i][2] = ((msg.getSender() == null) ? "" : msg.getSender());
+					msgMatrix[i][3] = ((msg.getMessage() == null) ? "" : msg.getMessage());
 					counter++;
 					break;
 				}

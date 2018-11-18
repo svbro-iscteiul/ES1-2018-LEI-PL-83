@@ -56,8 +56,7 @@ public class Message {
 	 * @return time as String
 	 */
 	public String getTime() {
-		String stringTime = time.toString();
-		return stringTime;
+		return time;
 	}
 
 	/**
