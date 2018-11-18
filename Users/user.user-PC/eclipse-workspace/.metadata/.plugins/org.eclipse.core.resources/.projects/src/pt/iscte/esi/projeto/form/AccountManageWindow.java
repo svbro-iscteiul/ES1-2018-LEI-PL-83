@@ -24,11 +24,15 @@ import java.awt.Color;
 import java.awt.Cursor;
 
 import com.jgoodies.forms.factories.DefaultComponentFactory;
+
+import pt.iscte.esi.projeto.utils.XMLFileEditor;
+
 import javax.swing.JRadioButton;
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JCheckBox;
 import javax.swing.JTree;
+import javax.swing.SwingUtilities;
 import javax.swing.JProgressBar;
 import javax.swing.JRadioButtonMenuItem;
 import javax.swing.JButton;
@@ -44,16 +48,8 @@ public class AccountManageWindow extends JFrame {
 
 	private JFrame frame;
 	private JPanel contentPane;
-	private JTextField textField;
-	private JTextField textField_2;
-	private JTextField textField_4;
-	private JTextField textField_6;
-	private JTextField textField_1;
-	private JTextField textField_3;
-	private JTextField textField_8;
-	private JTextField textField_9;
-	private JTextField textField_10;
-	
+	private XMLFileEditor editor = new XMLFileEditor();
+
 
 	/**
 	 * Class constructor.
@@ -125,51 +121,54 @@ public class AccountManageWindow extends JFrame {
 		radioButton.setBounds(491, 485, 225, 23);
 		contentPane.add(radioButton);
 
-		textField = new JTextField();
+		JTextField textField = new JTextField();
 		textField.setBounds(377, 140, 121, 20);
 		contentPane.add(textField);
 		textField.setColumns(10);
 
-		textField_2 = new JTextField();
+		JTextField textField_2 = new JTextField();
 		textField_2.setColumns(10);
 		textField_2.setBounds(507, 140, 236, 20);
 		contentPane.add(textField_2);
 
-		textField_4 = new JTextField();
-		textField_4.setColumns(10);
+		JTextField textField_4 = new JTextField();
 		textField_4.setBounds(377, 427, 366, 20);
 		contentPane.add(textField_4);
 
-		textField_6 = new JTextField();
+		JTextField textField_6 = new JTextField();
 		textField_6.setColumns(10);
 		textField_6.setBounds(377, 105, 366, 20);
 		contentPane.add(textField_6);
 
-		textField_1 = new JTextField();
+		JTextField textField_1 = new JTextField();
 		textField_1.setColumns(10);
 		textField_1.setBounds(377, 270, 366, 20);
 		contentPane.add(textField_1);
 
-		textField_3 = new JTextField();
+		JTextField textField_3 = new JTextField();
 		textField_3.setColumns(10);
 		textField_3.setBounds(376, 333, 366, 20);
 		contentPane.add(textField_3);
-		
-		textField_9 = new JTextField();
+
+		JTextField textField_9 = new JTextField();
 		textField_9.setColumns(10);
 		textField_9.setBounds(376, 301, 366, 20);
 		contentPane.add(textField_9);
-		
-		textField_10 = new JTextField();
+
+		JTextField textField_10 = new JTextField();
 		textField_10.setColumns(10);
 		textField_10.setBounds(376, 240, 366, 20);
 		contentPane.add(textField_10);
 
-		textField_8 = new JTextField();
-		textField_8.setColumns(10);
+		JTextField textField_8 = new JTextField();
 		textField_8.setBounds(377, 458, 251, 20);
+		textField_8.setColumns(10);
+		textField_8.setFont(new Font("Tahoma", Font.PLAIN, 15));
+
+	
+
 		contentPane.add(textField_8);
-		
+
 		JLabel lblEmail = DefaultComponentFactory.getInstance().createLabel("Access token:");
 		lblEmail.setBounds(285, 105, 119, 14);
 		contentPane.add(lblEmail);
@@ -185,7 +184,7 @@ public class AccountManageWindow extends JFrame {
 		JLabel lblNewJgoodiesLabel_00 = DefaultComponentFactory.getInstance().createLabel("AuthConsumerSecret:");
 		lblNewJgoodiesLabel_00.setBounds(243, 240, 127, 14);
 		contentPane.add(lblNewJgoodiesLabel_00);
-        
+
 		JLabel lblNewJgoodiesLabel_0 = DefaultComponentFactory.getInstance().createLabel("AuthConsumerKey:");
 		lblNewJgoodiesLabel_0.setBounds(257, 270, 124, 14);
 		contentPane.add(lblNewJgoodiesLabel_0);
@@ -212,10 +211,45 @@ public class AccountManageWindow extends JFrame {
 
 		JButton button = new JButton("Adicionar");
 		button.setBounds(396, 360, 89, 23);
+		button.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				SwingUtilities.invokeLater(new Runnable() {
+					public void run() {
+						try {
+							if(!textField_1.getText().equals(null) && !textField_10.getText().equals(null) && !textField_9.getText().equals(null) && !textField_3.getText().equals(null)){
+								editor.AddAcountsForTwitter(textField_1.getText(),textField_10.getText(),textField_9.getText(),textField_3.getText());
+							}
+							
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+					}
+				});
+			}
+		});
 		contentPane.add(button);
 
 		JButton button_1 = new JButton("Adicionar");
 		button_1.setBounds(396, 489, 89, 23);
+		button_1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				SwingUtilities.invokeLater(new Runnable() {
+					public void run() {
+						try {
+							if(!textField_4.getText().equals(null) && !textField_8.getText().equals(null)){
+								editor.AddAcountsForEmail(textField_4.getText(), textField_8.getText());
+							}
+							
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+					}
+				});
+			}
+		});
+		
 		contentPane.add(button_1);
 
 		/*
@@ -235,7 +269,7 @@ public class AccountManageWindow extends JFrame {
 	}
 
 	public static void main(String[] args) {
-		
+
 		AccountManageWindow m= new AccountManageWindow();
 		m.initialize();
 	}
