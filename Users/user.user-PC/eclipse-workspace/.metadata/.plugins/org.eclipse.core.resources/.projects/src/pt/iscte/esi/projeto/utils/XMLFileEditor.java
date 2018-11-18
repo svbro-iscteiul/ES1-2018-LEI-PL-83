@@ -12,21 +12,16 @@ import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 import org.w3c.dom.Node;
 import org.w3c.dom.Element;
-
-import java.awt.List;
-import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileReader;
 import java.io.FileWriter;
-import java.io.PrintWriter;
 import java.io.StringWriter;
 
 /**
  * XML Editor class, all methods for editing or gather information from
  * configs.xml are here.
  * 
- * @author jose.f.santos
+ * @author Elsa Teixeira, jose.f.santos, Sérgio Ribeiro LEI - Engenharia de Software ISCTE
  *
  */
 public class XMLFileEditor {
@@ -94,7 +89,7 @@ public class XMLFileEditor {
 		return "Error";
 	}
 
-	// (Elsa)  18_11_18 metodo semelhante ao SignIn para os token do twitter
+	// (Elsa)  18_11_18 metodo semelhante ao SignIn para os token do twitter (melhorar dps para evitar codigo repetido)
 	public String addTwittwerTokens(String AuthConsumerSecret, String AuthConsumerKey, String AuthAccessToken,
 			String AuthAccesTokenSecret) {
 		String st = readFileTokTwiter(AuthConsumerSecret, AuthConsumerKey, AuthAccessToken, AuthAccesTokenSecret);
@@ -108,10 +103,14 @@ public class XMLFileEditor {
 					Document document = documentBuilder.parse(
 							"Users/user.user-PC/eclipse-workspace/.metadata/.plugins/org.eclipse.core.resources/.projects/src/DBA/config.xml");
 
-					// Element root = document.getDocumentElement();
+//					 Element root = document.createElement("Twitter_Tokens"); //adiciona uma raíz ?
+//			         document.appendChild(root);
+//		            
 
-					Element newUser = document.createElement("Twitter_Tokens");
-
+					Element newUser = document.createElement("User_Twitter");
+//					root.appendChild(newUser);
+					
+					
 					Element authConsumerSecret = document.createElement("AuthConsumerSecret");
 					authConsumerSecret.appendChild(document.createTextNode(AuthConsumerSecret));
 					newUser.appendChild(authConsumerSecret);
@@ -128,7 +127,7 @@ public class XMLFileEditor {
 					authAccesTokenSecret.appendChild(document.createTextNode(AuthAccesTokenSecret));
 					newUser.appendChild(authAccesTokenSecret);
 
-					document.getElementsByTagName("Twitter_Tokens").item(0).appendChild(newUser);
+					document.getElementsByTagName("User_Twitter").item(0).appendChild(newUser);
 
 					DOMSource source = new DOMSource(document);
 
@@ -208,7 +207,7 @@ public class XMLFileEditor {
 	}
 
 	
-	// (elsa) 18_11_18 - equivalente ao read file, mas para os tokens do twitter (repte codigo - alterar dps)
+	// (elsa) 18_11_18 - equivalente ao read file, mas para os tokens do twitter (repete codigo - alterar dps)
 	public String readFileTokTwiter(String AuthConsumerSecret, String AuthConsumerKey, String AuthAccessToken,
 			String AuthAccesTokenSecret) {
 		try {
@@ -220,7 +219,7 @@ public class XMLFileEditor {
 
 			doc.getDocumentElement().normalize();
 
-			NodeList nList = doc.getElementsByTagName("Twitter_Tokens");
+			NodeList nList = doc.getElementsByTagName("User_Twitter");
 
 			for (int temp = 0; temp < nList.getLength(); temp++) {
 

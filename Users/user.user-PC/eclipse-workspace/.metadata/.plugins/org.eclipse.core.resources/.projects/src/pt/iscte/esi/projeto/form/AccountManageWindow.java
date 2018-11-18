@@ -1,41 +1,23 @@
 package pt.iscte.esi.projeto.form;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
 import javax.swing.ImageIcon;
-
-import java.awt.FlowLayout;
-import java.awt.Frame;
-
-import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import java.awt.Color;
 import java.awt.Cursor;
-
 import com.jgoodies.forms.factories.DefaultComponentFactory;
-
 import pt.iscte.esi.projeto.utils.XMLFileEditor;
-
 import javax.swing.JRadioButton;
 import java.awt.Font;
 import javax.swing.JTextField;
-import javax.swing.JCheckBox;
-import javax.swing.JTree;
-import javax.swing.JProgressBar;
-import javax.swing.JRadioButtonMenuItem;
 import javax.swing.JButton;
-import javax.swing.JTextPane;
+
 
 /**
  * Window UI for Account Management
@@ -56,6 +38,7 @@ public class AccountManageWindow extends JFrame {
 	private JTextField textField_8;
 	private JTextField textField_9;
 	private JTextField textField_10;
+	private JTextField textField_11;
 
 	/**
 	 * Class constructor.
@@ -162,6 +145,11 @@ public class AccountManageWindow extends JFrame {
 		textField_3.setBounds(376, 333, 366, 20);
 		contentPane.add(textField_3);
 
+		textField_11 = new JTextField();
+		textField_11.setColumns(10);
+		textField_11.setBounds(377, 397, 366, 20);
+		contentPane.add(textField_11);
+
 		textField_4 = new JTextField();
 		textField_4.setColumns(10);
 		textField_4.setBounds(377, 427, 366, 20);
@@ -195,6 +183,10 @@ public class AccountManageWindow extends JFrame {
 		JLabel lblUsername = DefaultComponentFactory.getInstance().createLabel("Auth access \r\ntoken secret:");
 		lblUsername.setBounds(216, 335, 172, 14);
 		contentPane.add(lblUsername);
+
+		JLabel lblUsernameMail = DefaultComponentFactory.getInstance().createLabel("Username: ");
+		lblUsernameMail.setBounds(299, 400, 68, 14);
+		contentPane.add(lblUsernameMail);
 
 		JLabel lblEmail_1 = DefaultComponentFactory.getInstance().createLabel("E-mail: ");
 		lblEmail_1.setBounds(299, 430, 68, 14);
@@ -242,24 +234,72 @@ public class AccountManageWindow extends JFrame {
 		btnAdicionarTwit.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if (textField_10.getText().toString().equals("") || textField_1.getText().toString().equals("")|| textField_9.getText().toString().equals("") || textField_3.getText().toString().equals("")) {
-					System.out.println("chego aqui1");
-					infoLabel.setText("<html><font color='red'>Error: All input fields are mandatory.</font></html>");
-				} else {
 
-					System.out.println("chego aqui");
+				if (textField_10.getText().toString().equals("") || textField_1.getText().toString().equals("")
+						|| textField_9.getText().toString().equals("") || textField_3.getText().toString().equals("")) {
+					System.out.println("1 caixa texto=" + textField_10.getText().toString()); // não esta a captar info
+																								// da caixa, problema?
+					infoLabel.setText("<html><font color='red'>Error: All input fields are mandatory. Insert all Twitter tokens! </font></html>");
+
+				} else {
 					XMLFileEditor i = new XMLFileEditor();
+					System.out.println("chego aqui");
+
 					String s = i.addTwittwerTokens(textField_10.getText().toString(), textField_1.getText().toString(),
 							textField_9.getText().toString(), textField_3.getText().toString());
 
-					if (s.equals("Error"))
+					if (s.equals("Error")) {
 						infoLabel.setText("<html><font color='red'>Error</font></html>");
-					else if (s.equals("Tokens already exists"))
-						infoLabel.setText("<html><font color='red'>Error: tokens already exists.</font></html>");
-					else
-						infoLabel.setText("<html><font color='green'>Tokens successfully registered!</font></html>");
+					} else if (s.equals("Tokens already exists")) {
+						infoLabel.setText(
+								"<html><font color='red'>Error: One or more tokens already in use.</font></html>");
 
+						System.out.println(textField_10.getText().toString());
+						System.out.println(textField_9.getText().toString());
+						System.out.println(textField_3.getText().toString());
+						System.out.println(textField_1.getText().toString());
+					} else {
+						infoLabel.setText(
+								"<html><font color='green'> Twitter Tokens successfully registered!</font></html>");
+
+					}
 				}
+			}
+		});
+
+		// Implementa funcionalidade de registo de e-mail e respetiva pass, no ficheiro
+		// de texto
+		btnAdicionarMail.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+				try {
+				if (textField_11.getText().toString().equals("") || textField_4.getText().toString().equals("")
+						|| textField_8.getText().toString().equals("")) {
+					System.out.println("1 caixa texto=" + textField_4.getText().toString()); // não esta a captar info
+																								// da caixa, problema?
+					infoLabel.setText(
+							"<html><font color='red'>Error: All input fields are mandatory. Insert all e-mail inputs! </font></html>");
+
+				} else {
+					XMLFileEditor i = new XMLFileEditor();
+					String s = i.SignIn(textField_11.getText().toString(), textField_4.getText().toString(),
+							textField_8.getText().toString());
+
+					if (s.equals("Error")) {
+						infoLabel.setText("<html><font color='red'>Error</font></html>");
+
+					} else if (s.equals("Email taken")) {
+						infoLabel.setText("<html><font color='red'>Error: email already taken.</font></html>");
+
+					} else {
+						infoLabel.setText("<html><font color='green'>You got registered.</font></html>");
+					}
+				}
+				} catch (Exception e1) {
+				e1.printStackTrace();
+				
+			}
 			}
 		});
 	}

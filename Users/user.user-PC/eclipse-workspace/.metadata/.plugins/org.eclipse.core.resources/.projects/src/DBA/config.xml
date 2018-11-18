@@ -3,23 +3,13 @@
 		<User_Login>
 			<Username>username</Username>
 			<Password>password</Password>
-			<Email>email</Email><User_Login><Username>Test</Username><Password>a</Password><Email>teste</Email></User_Login><User_Login><Username>Elsa</Username><Password>elsa</Password><Email>eptaa@iscte-iul.pt</Email></User_Login></User_Login>
-		<User_Login>
-			<Username>user2</Username>
-			<Password>123</Password>
-			<Email>user2</Email>
-		</User_Login>
-		<User_Login>
-			<Username>user3</Username>
-			<Password>123</Password>
-			<Email>user3</Email>
-		</User_Login>
+			<Email>email</Email><User_Login><Username>ahaha</Username><Password>ahahah</Password><Email>ahha@gmail.com</Email></User_Login></User_Login>
 		<User_Login>
 			<Username>user</Username>
 			<Password>123</Password>
 			<Email>user</Email>
 		</User_Login>
-	</Login>
+	<User_Login><Username>Elsa</Username><Password>elsa</Password><Email>eptaa@iscte-iul.pt</Email></User_Login><User_Login><Username>elsa</Username><Password>elsa</Password><Email>elsa@gmail.com</Email></User_Login></Login>
 	<Facebook>
 		<User_Facebook>
 			<Username>username</Username>
@@ -29,13 +19,11 @@
 	<Twitter>
 		<User_Twitter>
 			<Username>username</Username>
-			<Password>password</Password>
-		</User_Twitter>
-	</Twitter>
+			<Password>password</Password></User_Twitter>
+	<User_Twitter><AuthConsumerSecret>elsa</AuthConsumerSecret><AuthConsumerKey>elsa1</AuthConsumerKey><AuthAccessToken>elsa2</AuthAccessToken><AuthAccesTokenSecret>elsa3</AuthAccesTokenSecret></User_Twitter></Twitter>
 	<Email>
 		<User_Email>
 			<Username>username</Username>
 			<Password>password</Password>
 		</User_Email>
-	</Email>
-</Config>
+	</Email></Config>
