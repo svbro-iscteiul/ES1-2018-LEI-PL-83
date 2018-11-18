@@ -9,6 +9,7 @@ import javax.mail.BodyPart;
 import javax.mail.Folder;
 import javax.mail.Message;
 import javax.mail.MessagingException;
+import javax.mail.Multipart;
 import javax.mail.Session;
 import javax.mail.Store;
 import javax.mail.internet.InternetAddress;
@@ -33,34 +34,50 @@ public class GmailAPI {
 	 * @throws Exception
 	 */
 	public ArrayList<pt.iscte.esi.projeto.form.models.Message> getMails() throws Exception {
-		Session session = Session.getDefaultInstance(new Properties( ));
-		Store store = session.getStore("imaps");
-		store.connect("imap.googlemail.com", "happyc0d3rtwo@gmail.com", "happy.two");
-		Folder inbox = store.getFolder( "INBOX" );
-		inbox.open( Folder.READ_ONLY );
+		 Session emailSession = Session.getInstance(System.getProperties());
+			Store store = emailSession.getStore("imaps");
+			store.connect("pop.googlemail.com", "happyc0d3rtwo@gmail.com", "happy.two");
+			Folder emailFolder = store.getFolder("INBOX");
+			emailFolder.open(Folder.READ_ONLY);
+	      
+	      // retrieve the messages from the folder in an array and print it
+	      Message[] messages = emailFolder.getMessages();
+	      for (int i = 0, n = messages.length; i < n; i++) {
+	    	  Message message = messages[i];
+		         
 
-		// Fetch unseen messages from inbox folder
-		Message[] messages = inbox.getMessages();
 
-		// Sort messages from recent to oldest
-		Arrays.sort( messages, ( m1, m2 ) -> {
-			try {
-				return m2.getSentDate().compareTo( m1.getSentDate() );
-			} catch ( MessagingException e ) {
-				throw new RuntimeException( e );
-			}
-		} );
+		         Object obj = message.getContent();
+		         Multipart mp = (Multipart)obj;
+		         BodyPart bp = mp.getBodyPart(0);
 
-		for ( Message message : messages ) {
+/*
+		         System.out.println("---------------------------------");
+		         System.out.println("Email Number " + (i + 1));
+		         System.out.println("Subject: " + message.getSubject());
+		         System.out.println("From: " + message.getFrom()[0]);
+		         System.out.println("To: " + message.getAllRecipients().toString());
+		         System.out.println("Received Date:" + message.getReceivedDate());*/
+		         //System.out.println("Text: " + );
+		         //AddMessageToList(, "Email", message.getFrom().toString(),bp.getContent().toString());
+		         String date=SetDateFormat(message.getSentDate().toString());
+		 		 pt.iscte.esi.projeto.form.models.Message a = new pt.iscte.esi.projeto.form.models.Message(message.getSentDate().toString(),"Email", message.getFrom().toString(),bp.getContent().toString());
+		 		
+		 		emails.add(a);
+	    		
+		      }
+		/*for ( Message message : messages ) {
 			// if the sender is svbro@iscte-iul.pt
 			if(InternetAddress.toString(message.getFrom()).equals("=?UTF-8?Q?S=C3=A9rgio_Ribeiro?= <Sergio_Vaz@iscte-iul.pt>")) {
 				String body = getTextFromMessage(message);
-				AddMessage(message.getSentDate().toString(), "Email", message.getSubject(), body);
+				ddMessage(message.getSentDate().toString(), "Email", message.getSubject(), body);
 			}
 		}
 		return emails;
 	}
-	
+	*/
+	return emails;
+	}
 	/**
 	 * This class creates and adds a message to the emails list
 	 * 
@@ -69,13 +86,13 @@ public class GmailAPI {
 	 * @param sender as String
 	 * @param message as String
 	 */
-	private void AddMessage(String time, String channel, String sender, String message) 
+/*	private void AddMessageToList(String time, String channel, String sender, String message) 
 	{
 		String date=SetDateFormat(time);
 		pt.iscte.esi.projeto.form.models.Message a = new pt.iscte.esi.projeto.form.models.Message(date,channel,sender,message);
 		
 		emails.add(a);
-	}
+*/
 	
 	/**
 	 * This class gets the body of the email, since the body comes encrypted 
@@ -85,16 +102,7 @@ public class GmailAPI {
 	 * @throws MessagingException
 	 * @throws IOException
 	 */
-	private String getTextFromMessage(Message message) throws MessagingException, IOException {
-		String result = "";
-		if (message.isMimeType("text/plain")) {
-			result = message.getContent().toString();
-		} else if (message.isMimeType("multipart/*")) {
-			MimeMultipart mimeMultipart = (MimeMultipart) message.getContent();
-			result = getTextFromMimeMultipart(mimeMultipart);
-		}
-		return result;
-	}
+	
 	
 	/**
 	 * An auxiliary class to getTextFromMessage
@@ -104,23 +112,7 @@ public class GmailAPI {
 	 * @throws MessagingException
 	 * @throws IOException
 	 */
-	private String getTextFromMimeMultipart( MimeMultipart mimeMultipart)  throws MessagingException, IOException{
-		String result = "";
-		int count = mimeMultipart.getCount();
-		for (int i = 0; i < count; i++) {
-			BodyPart bodyPart = mimeMultipart.getBodyPart(i);
-			if (bodyPart.isMimeType("text/plain")) {
-				result = result + "\n" + bodyPart.getContent();
-				break; // without break same text appears twice in my tests
-			} else if (bodyPart.isMimeType("text/html")) {
-				String html = (String) bodyPart.getContent();
-				//  result = result + "\n" + org.jsoup.Jsoup.parse(html).text();
-			} else if (bodyPart.getContent() instanceof MimeMultipart){
-				result = result + getTextFromMimeMultipart((MimeMultipart)bodyPart.getContent());
-			}
-		}
-		return result;
-	}
+	
 	
 	/**
 	 * This method receives the date of the Mail and convert into a simpler date
