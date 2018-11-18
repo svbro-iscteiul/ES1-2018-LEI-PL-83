@@ -13,6 +13,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -53,18 +55,20 @@ public class MainWindow {
 	private DefaultTableModel defaultTableModel;
 	private ArrayList<Message> tweets = new ArrayList<Message>();
 	private ArrayList<Message> emails = new ArrayList<Message>();
+	private Set<String> TwitterSenders = new HashSet<String>();
+	private Set<String> EmailSenders = new HashSet<String>();
+	private String ChoosenOrigin="";
 
 
-	
 	public static void main(String[] args) {
 		//MessageDetailWindow window = new MessageDetailWindow(null, null, null, null);
 		MainWindow window = new MainWindow();
-		
-		
+
+
 
 	}
 
-	
+
 	/**
 	 * Class constructor.
 	 */
@@ -96,14 +100,21 @@ public class MainWindow {
 
 		msgList = new MainMsgList();
 		msgList.setHeaders(new String[] { "Data", "Canal", "Origem", "Mensagem" });
-		getTweets();
-		//getEmails();
 		String[][] temp = new String[101][4];
 		msgList.setMsgMatrix(temp);
-		for (Message m : tweets)
-			msgList.addMessage(m);
-		for (Message m : emails)
-			msgList.addMessage(m);
+
+			getTweets();
+			for (Message m : tweets) {
+				msgList.addMessage(m);
+				TwitterSenders.add(m.getSender());
+			}
+
+			getEmails();
+			for (Message m : emails) {
+				msgList.addMessage(m);
+				EmailSenders.add(m.getSender());
+			}
+	
 
 		// for(Message f : facebook) fazer depois get messages from face
 
@@ -131,10 +142,10 @@ public class MainWindow {
 			public void mousePressed(MouseEvent arg0) {
 				if (arg0.getButton() == MouseEvent.BUTTON1 || arg0.getButton() == MouseEvent.BUTTON2) {
 					int row = table.getSelectedRow();
-					if(table.getModel().getValueAt(row, 0)!=null) {
-					new MessageDetailWindow(table.getModel().getValueAt(row, 0).toString(),table.getModel().getValueAt(row, 1).toString(),
-							table.getModel().getValueAt(row, 2).toString(),table.getModel().getValueAt(row, 3).toString());
-					frame.dispose();
+					if(table.getModel().getValueAt(row, 0)!="") {
+						new MessageDetailWindow(table.getModel().getValueAt(row, 0).toString(),table.getModel().getValueAt(row, 1).toString(),
+								table.getModel().getValueAt(row, 2).toString(),table.getModel().getValueAt(row, 3).toString());
+						frame.dispose();
 					}
 				}
 			}
@@ -185,19 +196,124 @@ public class MainWindow {
 
 		Choice choice_1 = new Choice();
 		choice_1.setBounds(132, 129, 92, 20);
+		choice_1.add("All Channels");
 		choice_1.add("Twitter");
 		choice_1.add("Facebook");
 		choice_1.add("E-mail");
+		JButton FilterChannel = new JButton("Filtrar Canal");
+		FilterChannel.setBounds(324,129,123,20);
+		
 		frame.getContentPane().add(choice_1);
 
 		Choice choice_2 = new Choice();
 		choice_2.setBounds(226, 129, 92, 20);
 		choice_2.add("filtrar origem");
+		choice_2.setVisible(false);
 		frame.getContentPane().add(choice_2);
+		JButton FilterSender = new JButton("Filtrar Origem");
+		FilterSender.setEnabled(false);
+		FilterSender.setBounds(454, 129, 123, 20);
+		FilterSender.addActionListener(new ActionListener() {
 
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				msgList.setHeaders(new String[] { "Data", "Canal", "Origem", "Mensagem" });
+				String[][] temp = new String[101][4];
+				msgList.setMsgMatrix(temp);
+				if(ChoosenOrigin=="Twitter"){
+					for (Message m : tweets) 
+						if(m.getSender().equals(choice_2.getItem(choice_2.getSelectedIndex())))
+							msgList.addMessage(m);
+				}
+				else if(choice_1.getItem(choice_1.getSelectedIndex()).equals("E-mail")){
+					for (Message m : emails)
+						if(m.getSender().equals(choice_2.getItem(choice_2.getSelectedIndex())))
+							msgList.addMessage(m);
+				
+				}
+				
+
+					defaultTableModel = new DefaultTableModel(msgList.getMsgMatrix(), msgList.getHeaders()) {
+						/**
+						 * Serializa a informação dada na linha anterior
+						 */
+						private static final long serialVersionUID = 1L;
+						Class[] columnTypes = new Class[] { String.class, String.class, String.class, String.class };
+
+						public Class getColumnClass(int columnIndex) {
+							return columnTypes[columnIndex];
+						}
+
+					};
+					
+					table.setModel(defaultTableModel);
+			}});
+
+		frame.getContentPane().add(FilterSender);
+
+		FilterChannel.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				msgList.setHeaders(new String[] { "Data", "Canal", "Origem", "Mensagem" });
+				String[][] temp = new String[101][4];
+				msgList.setMsgMatrix(temp);
+				if(choice_1.getItem(choice_1.getSelectedIndex()).equals("Twitter")){
+					for (Message m : tweets)
+						msgList.addMessage(m);
+					
+					ChoosenOrigin="Twitter";
+					choice_2.setVisible(true);
+					choice_2.removeAll();
+					for(String s:TwitterSenders)
+						choice_2.add(s);
+					FilterSender.setEnabled(true);
+					
+				}
+				else if(choice_1.getItem(choice_1.getSelectedIndex()).equals("E-mail")){
+					for (Message m : emails)
+						msgList.addMessage(m);
+					
+					ChoosenOrigin="E-mail";
+					choice_2.setVisible(true);
+					choice_2.removeAll();
+					for(String s:EmailSenders)
+						choice_2.add(s);
+					FilterSender.setEnabled(true);
+				}
+				else{
+					ChoosenOrigin="All";
+					for (Message m : emails)
+						msgList.addMessage(m);
+					for (Message m : tweets)
+						msgList.addMessage(m);
+					choice_2.setVisible(false);
+					FilterSender.setEnabled(false);
+				}
+
+					defaultTableModel = new DefaultTableModel(msgList.getMsgMatrix(), msgList.getHeaders()) {
+						/**
+						 * Serializa a informação dada na linha anterior
+						 */
+						private static final long serialVersionUID = 1L;
+						Class[] columnTypes = new Class[] { String.class, String.class, String.class, String.class };
+
+						public Class getColumnClass(int columnIndex) {
+							return columnTypes[columnIndex];
+						}
+
+					};
+					
+					table.setModel(defaultTableModel);
+			}});
+
+		frame.getContentPane().add(FilterChannel);
 		/*
 		 * Adds image to the main window
 		 */
+
 		JLabel foto = new JLabel("");
 		foto.setBounds(0, 26, 784, 99);
 
@@ -211,14 +327,7 @@ public class MainWindow {
 		/*
 		 * Adds Button "Filtrar" to the window
 		 */
-		JButton btnNewButton = new JButton("Filtrar");
-		btnNewButton.setBounds(634, 501, 93, 23);
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
-		frame.getContentPane().add(btnNewButton);
-
+	
 		txtPesquisaMensagensPor = new JTextField();
 		txtPesquisaMensagensPor.setBounds(390, 502, 234, 20);
 		txtPesquisaMensagensPor.setForeground(new Color(112, 128, 144));
@@ -265,7 +374,8 @@ public class MainWindow {
 		});
 		btnRefresh.setBounds(44, 501, 93, 23);
 		frame.getContentPane().add(btnRefresh);
-
+		
+		
 	}
 
 	/**
@@ -284,6 +394,8 @@ public class MainWindow {
 		} else {
 			defaultTableModel.setDataVector(msgList.getMsgMatrix(), msgList.getHeaders());
 		}
+
+
 	}
 
 	/**
@@ -332,5 +444,4 @@ public class MainWindow {
 			e.printStackTrace();
 		}
 	}
-	
 }
