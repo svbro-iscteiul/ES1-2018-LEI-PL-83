@@ -113,7 +113,7 @@ public class XMLFileEditor {
 //			         document.appendChild(root);
 //		            
 
-					Element newUser = document.createElement("User_Twitter");
+					Element newUser = document.createElement("User_Twitter_Token");
 //					root.appendChild(newUser);
 					
 					
@@ -133,7 +133,7 @@ public class XMLFileEditor {
 					authAccesTokenSecret.appendChild(document.createTextNode(AuthAccesTokenSecret));
 					newUser.appendChild(authAccesTokenSecret);
 
-					document.getElementsByTagName("User_Twitter").item(0).appendChild(newUser);
+					document.getElementsByTagName("Twitter").item(0).appendChild(newUser);
 
 					DOMSource source = new DOMSource(document);
 
@@ -233,7 +233,7 @@ public class XMLFileEditor {
 
 			doc.getDocumentElement().normalize();
 
-			NodeList nList = doc.getElementsByTagName("User_Twitter");
+			NodeList nList = doc.getElementsByTagName("User_Twitter_Token");
 
 			for (int temp = 0; temp < nList.getLength(); temp++) {
 

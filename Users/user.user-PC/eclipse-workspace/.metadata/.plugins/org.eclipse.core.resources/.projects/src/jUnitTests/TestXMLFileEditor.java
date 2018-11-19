@@ -55,15 +55,20 @@ public class TestXMLFileEditor {
 		
 		// não esquecer de apagar as entradas criadas em baixo
 		
-		assertEquals("New Username Added", xmlFileEditor.SignIn("UserTeste11" , "UserTest112@ms.com", "UserTestPass112"));
-		xmlFileEditor.AddAcountsForTwitter("teste123", "teste123", "teste123", "teste123");
-		xmlFileEditor.AddAcountsForEmail("test123", "test123");
+		assertEquals("New Username Added", xmlFileEditor.SignIn("NewTest" , "NewTest@ms.com", "NewTest"));
+		
+		assertEquals("New Twitter Tokens Added", xmlFileEditor.addTwittwerTokens("NewTest" , "NewTest", "NewTest", "NewTest"));
+		
+		assertEquals("AuthConsumerSecret Taken", xmlFileEditor.readFileTokTwiter("ConsumerT" , "test2testnew", "test2testnew", "test2testnew"));
+		assertEquals("AuthConsumerKey Taken", xmlFileEditor.readFileTokTwiter("test2testnew" , "ConsumerT", "test2testnew", "test2testnew"));
+		assertEquals("AuthAccessToken Taken", xmlFileEditor.readFileTokTwiter("test2testnew" , "test2testnew", "ConsumerT", "test2testnew"));
+		assertEquals("AuthAccesTokenSecret Taken", xmlFileEditor.readFileTokTwiter("test2testnew" , "test2testnew", "test2testnew", "ConsumerT"));
+		assertEquals("Tokens not yet inserted", xmlFileEditor.readFileTokTwiter("test2testnew" , "test2testnew", "test2testnew", "test2testnew"));
 
 		
-		
-		
+		xmlFileEditor.AddAcountsForTwitter("NewTest", "NewTest", "NewTest", "NewTest");
+		xmlFileEditor.AddAcountsForEmail("NewTest", "NewTest");
 
-		
 	}
 
 }

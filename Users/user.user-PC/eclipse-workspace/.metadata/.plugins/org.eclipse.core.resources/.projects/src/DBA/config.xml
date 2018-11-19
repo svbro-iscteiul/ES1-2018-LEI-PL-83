@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><Config>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Config>
 	<Login>
 		<User_Login>
 			<Username>username</Username>
@@ -55,7 +56,12 @@
 			<AccessToken>Access</AccessToken>
 			<AccessTokenSecret>Access secret</AccessTokenSecret>
 		</User_Twitter>
-	</Twitter>
+		<User_Twitter_Token>
+			<AuthConsumerSecret>ConsumerT</AuthConsumerSecret>
+			<AuthConsumerKey>ConsumerT</AuthConsumerKey>
+			<AuthAccessToken>ConsumerT</AuthAccessToken>
+			<AuthAccesTokenSecret>ConsumerT</AuthAccesTokenSecret>
+		</User_Twitter_Token>
 	<Gmail>
 		<User_Email>
 			<Mail>user</Mail>

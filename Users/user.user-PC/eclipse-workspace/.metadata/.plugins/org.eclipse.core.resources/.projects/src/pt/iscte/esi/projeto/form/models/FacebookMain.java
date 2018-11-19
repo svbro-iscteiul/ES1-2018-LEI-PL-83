@@ -14,11 +14,13 @@ import com.restfb.types.User;
  *
  */
 public class FacebookMain {
+	
 	public static String Token="EAAD0JjeESBwBAL8OQ9yVoX5tGOqpgQiWhMyoyOYmtka1QWCVAlxxRzi97QFeUyAxOOb7mnpvwYiId2n6lr58iyqZBinEckQvj4ZBVKLHCfGuF61r1OdQMBidrpC2MNgLmCc2AupdDRGIvjJCMVembyTgm9FdCDX0sp1bld1w5VNLk5zZCKQHp19Gfg5aSXna1qFwZCDzkbnwKuP4KZCwG";
 	/**
 	 * Facebook API Main
 	 * @param args
 	 */
+	/*
 	public static void main(String[] args) {
 		
 		String accessToken=Token;
@@ -52,4 +54,5 @@ public class FacebookMain {
 		}
 		System.out.println("-------------\nNº of Results: " + counter5+"/"+counterTotal);		
 	}
+	*/
 }
