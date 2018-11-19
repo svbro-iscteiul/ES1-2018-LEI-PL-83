@@ -62,7 +62,7 @@ public class AccountManageWindow extends JFrame {
 	 */
 	public void initialize() {
 		frame = new JFrame();
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.setBounds(100, 100, 800, 605);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.WHITE);
@@ -357,13 +357,11 @@ public class AccountManageWindow extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				
 				try {
-				if (textField_11.getText().toString().equals("") 
-						|| textField_4.getText().toString().equals("")
-						|| textField_8.getText().toString().equals("")) {
-					System.out.println("1 caixa texto=" + textField_4.getText().toString()); // não esta a captar info
-																								// da caixa, problema?
-					infoLabel.setText(
-							"<html><font color='red'>Error: All input fields are mandatory. Insert all e-mail inputs! </font></html>");
+				if (textField_11.getText().equals("") 
+						|| textField_4.getText().equals("")
+						|| textField_8.getText().equals("")) {
+					System.out.println("1 caixa texto=" + textField_4.getText()); // não esta a captar info da caixa, problema?
+					infoLabel.setText("<html><font color='red'>Error: All input fields are mandatory. Insert all e-mail inputs! </font></html>");
 
 				} else {
 					XMLFileEditor i = new XMLFileEditor();

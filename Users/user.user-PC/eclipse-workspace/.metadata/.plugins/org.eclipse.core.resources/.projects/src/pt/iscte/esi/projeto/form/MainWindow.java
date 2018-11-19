@@ -262,7 +262,7 @@ public class MainWindow {
 			@Override
 			public void mouseClicked(MouseEvent arg1) {
 				new AccountManageWindow();
-				frame.dispose();
+				//frame.dispose();
 			}
 		});
 		frame.getContentPane().setLayout(null);
