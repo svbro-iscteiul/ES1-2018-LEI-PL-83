@@ -62,6 +62,7 @@
 			<AuthAccessToken>ConsumerT</AuthAccessToken>
 			<AuthAccesTokenSecret>ConsumerT</AuthAccesTokenSecret>
 		</User_Twitter_Token>
+	</Twitter>
 	<Gmail>
 		<User_Email>
 			<Mail>user</Mail>
