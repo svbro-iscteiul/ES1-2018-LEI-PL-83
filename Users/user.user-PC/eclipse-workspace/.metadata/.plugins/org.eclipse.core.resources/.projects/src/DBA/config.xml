@@ -46,11 +46,6 @@
 			<Password>elsa</Password>
 			<Email>elsa@gmail.com</Email>
 		</User_Login>
-		<User_Login>
-			<Username>UserTeste11</Username>
-			<Password>UserTestPass112</Password>
-			<Email>UserTest112@ms.com</Email>
-		</User_Login>
 	</Login>
 	<Facebook>
 	</Facebook>
@@ -64,8 +59,8 @@
 	</Twitter>
 	<Gmail>
 		<User_Email>
-			<Mail>aaa</Mail>
-			<Password>aaa</Password>
+			<Mail>klldfsldvxjjlskldfj111111</Mail>
+			<Password>assdfsdfd</Password>
 		</User_Email>
 	</Gmail>
 </Config>
