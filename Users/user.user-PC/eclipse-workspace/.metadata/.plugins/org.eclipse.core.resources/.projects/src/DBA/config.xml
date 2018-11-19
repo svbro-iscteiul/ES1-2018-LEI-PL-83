@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<Config>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><Config>
 	<Login>
 		<User_Login>
 			<Username>username</Username>
@@ -57,14 +56,9 @@
 			<AccessTokenSecret>Access secret</AccessTokenSecret>
 		</User_Login>
 	</Twitter>
-	<Gmail>
-		<User_Login>
+	<Gmail><User_Login>
 			<Mail>aaa</Mail>
 			<Password>aaa</Password>
-		</User_Login>
-		<User_Login>
-			<Mail>klldfsldvxjjlskldfj111111</Mail>
-			<Password>assdfsdfd</Password>
 		</User_Login>
 	</Gmail>
 </Config>
