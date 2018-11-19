@@ -49,16 +49,17 @@
 	<Facebook>
 	</Facebook>
 	<Twitter>
-		<User_Login>
+		<User_Twitter>
 			<ConsumerKey>Consumer</ConsumerKey>
 			<ConsumerSecret>ConsumerS</ConsumerSecret>
 			<AccessToken>Access</AccessToken>
 			<AccessTokenSecret>Access secret</AccessTokenSecret>
-		</User_Login>
+		</User_Twitter>
 	</Twitter>
-	<Gmail><User_Login>
-			<Mail>aaa</Mail>
-			<Password>aaa</Password>
-		</User_Login>
+	<Gmail>
+		<User_Email>
+			<Mail>user</Mail>
+			<Password>pass</Password>
+		</User_Email>
 	</Gmail>
 </Config>
