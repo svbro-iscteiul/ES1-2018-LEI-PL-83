@@ -11,7 +11,6 @@ import com.restfb.types.User;
 
 /**
  * Facebook Main
- * @author 
  *
  */
 public class FacebookMain {

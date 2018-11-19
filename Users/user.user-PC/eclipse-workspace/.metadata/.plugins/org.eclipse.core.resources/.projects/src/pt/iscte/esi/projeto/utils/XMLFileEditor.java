@@ -20,8 +20,6 @@ import java.io.StringWriter;
 /**
  * XML Editor class, all methods for editing or gather information from
  * configs.xml are here.
- * 
- * @author Elsa Teixeira, jose.f.santos, Sérgio Ribeiro LEI - Engenharia de Software ISCTE
  *
  */
 public class XMLFileEditor {
@@ -90,6 +88,14 @@ public class XMLFileEditor {
 	}
 
 	// (Elsa)  18_11_18 metodo semelhante ao SignIn para os token do twitter (melhorar dps para evitar codigo repetido)
+	/**
+	 * Add twitter tokens 
+	 * @param AuthConsumerSecret
+	 * @param AuthConsumerKey
+	 * @param AuthAccessToken
+	 * @param AuthAccesTokenSecret
+	 * @return
+	 */
 	public String addTwittwerTokens(String AuthConsumerSecret, String AuthConsumerKey, String AuthAccessToken,
 			String AuthAccesTokenSecret) {
 		String st = readFileTokTwiter(AuthConsumerSecret, AuthConsumerKey, AuthAccessToken, AuthAccesTokenSecret);
@@ -208,6 +214,14 @@ public class XMLFileEditor {
 
 	
 	// (elsa) 18_11_18 - equivalente ao read file, mas para os tokens do twitter (repete codigo - alterar dps)
+	/**
+	 * Read File Tokens from Twitter
+	 * @param AuthConsumerSecret
+	 * @param AuthConsumerKey
+	 * @param AuthAccessToken
+	 * @param AuthAccesTokenSecret
+	 * @return
+	 */
 	public String readFileTokTwiter(String AuthConsumerSecret, String AuthConsumerKey, String AuthAccessToken,
 			String AuthAccesTokenSecret) {
 		try {
@@ -294,7 +308,13 @@ public class XMLFileEditor {
 	}
 
 	
-	
+	/**
+	 * Add account information in XML
+	 * @param ConsumerKey
+	 * @param ConsumerSecret
+	 * @param AccessToken
+	 * @param AccessTokenSecret
+	 */
 	public void AddAcountsForTwitter(String ConsumerKey,String ConsumerSecret,String AccessToken, String AccessTokenSecret)
 	{
 		try {
@@ -305,7 +325,7 @@ public class XMLFileEditor {
 				if(document.getElementsByTagName("Twitter").item(0).getChildNodes().getLength()!=0) {
 					document.getElementsByTagName("Twitter").item(0).removeChild(document.getElementsByTagName("Twitter").item(0).getFirstChild());
 				}
-				Element newUser = document.createElement("Twitter");
+				Element newUser = document.createElement("User_Login");
 
 				Element CK = document.createElement("ConsumerKey");
 				CK.appendChild(document.createTextNode(ConsumerKey));
@@ -337,11 +357,21 @@ public class XMLFileEditor {
 		
 		
 	}
+	
+	/**
+	 * 
+	 */
 	public void AddAcountsForFacebook()
 	{
 		
 		
 	}
+	
+	/**
+	 * Add Email account information 
+	 * @param usermail
+	 * @param password
+	 */
 	public void AddAcountsForEmail(String usermail,String password)
 	{
 		try {
@@ -352,7 +382,7 @@ public class XMLFileEditor {
 				if(document.getElementsByTagName("Gmail").item(0).getChildNodes().getLength()!=0) {
 					document.getElementsByTagName("Gmail").item(0).removeChild(document.getElementsByTagName("Gmail").item(0).getFirstChild());
 				}
-				Element newUser = document.createElement("Gmail");
+				Element newUser = document.createElement("User_Login");
 
 				Element Usermail = document.createElement("Mail");
 				Usermail.appendChild(document.createTextNode(usermail));

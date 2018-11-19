@@ -12,6 +12,10 @@ import org.junit.Test;
 
 import pt.iscte.esi.projeto.utils.XMLFileEditor;
 
+/**
+ * Test class
+ *
+ */
 public class TestXMLFileEditor {
 
 	@BeforeClass

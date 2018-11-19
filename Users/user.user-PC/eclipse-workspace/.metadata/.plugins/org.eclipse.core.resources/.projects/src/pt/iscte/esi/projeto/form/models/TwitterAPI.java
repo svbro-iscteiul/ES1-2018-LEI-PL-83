@@ -9,7 +9,6 @@ import twitter4j.conf.ConfigurationBuilder;
 
 /**
  * Twitter API class
- * @author Sérgio Ribeiro
  *
  */
 public class TwitterAPI {

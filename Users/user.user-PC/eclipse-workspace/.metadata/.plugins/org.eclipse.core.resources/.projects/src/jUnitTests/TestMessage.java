@@ -10,6 +10,10 @@ import org.junit.Test;
 
 import pt.iscte.esi.projeto.form.models.Message;
 
+/**
+ * Test class
+ *
+ */
 public class TestMessage {
 
 	@BeforeClass

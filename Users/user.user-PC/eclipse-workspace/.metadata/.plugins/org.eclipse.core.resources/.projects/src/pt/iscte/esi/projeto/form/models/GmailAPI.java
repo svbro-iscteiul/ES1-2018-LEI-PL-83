@@ -19,7 +19,6 @@ import javax.mail.search.FlagTerm;
 
 /**
  * Gmail API class
- * @author Sérgio Ribeiro
  *
  */
 public class GmailAPI {
@@ -28,46 +27,10 @@ public class GmailAPI {
 	private final static String user= "=?UTF-8?Q?S=C3=A9rgio_Ribeiro?= <Sergio_Vaz@iscte-iul.pt>";
 	
 	/**
-	 * This class uses the Javax to fetch the emails of the user.
-	 * For this to happen, the user has to give permitions to access their inbox 
-	 * 
-	 * @return: emails as ArrayList<pt.iscte.esi.projeto.form.models.Message>
+	 * Get a list of emails.
+	 * @return ArrayList<Message> 
 	 * @throws Exception
 	 */
-	
-	
-	/**
-	 * This class gets the body of the email, since the body comes encrypted 
-	 * 
-	 * @param message as Message
-	 * @return result as String
-	 * @throws MessagingException
-	 * @throws IOException
-	 */
-	
-	
-	/**
-	 * An auxiliary class to getTextFromMessage
-	 * 
-	 * @param mimeMultipart as MimeMultipart
-	 * @return result as String
-	 * @throws MessagingException
-	 * @throws IOException
-	 */
-	
-	
-	/**
-	 * This method receives the date of the Mail and convert into a simpler date
-	 * 
-	 * example:
-	 * 	receives: Fri Oct 26 15:59:50 BST 2018
-	 * 	returns:  26/Oct/2018
-	 * 
-	 * @param s as String
-	 * @return date as String
-	 */
-	
-
 	public ArrayList<pt.iscte.esi.projeto.form.models.Message> getMails() throws Exception {
 		Session sesion = Session.getInstance(System.getProperties());
 		Store store = sesion.getStore("imaps");
@@ -88,6 +51,11 @@ public class GmailAPI {
 		return emails;
 	}
 
+	/**
+	 * creates a Message
+	 * @param original as String
+	 * @return
+	 */
 	private pt.iscte.esi.projeto.form.models.Message createMessage(String original){
 		pt.iscte.esi.projeto.form.models.Message m = new pt.iscte.esi.projeto.form.models.Message();
 		
@@ -109,6 +77,13 @@ public class GmailAPI {
 		return m;
 	}
 	
+	/**
+	 * Returns text from message 
+	 * @param message Message
+	 * @return text as String
+	 * @throws MessagingException
+	 * @throws IOException
+	 */
 	private String getTextFromMessage(Message message) throws MessagingException, IOException {
 		String result = "";
 		if (message.isMimeType("text/plain")) {
@@ -119,6 +94,14 @@ public class GmailAPI {
 		}
 		return result;
 	}
+	
+	/**
+	 * Returns TextFromMimeMultipart
+	 * @param mimeMultipart
+	 * @return String
+	 * @throws MessagingException
+	 * @throws IOException
+	 */
 	private String getTextFromMimeMultipart( MimeMultipart mimeMultipart)  throws MessagingException, IOException{
 		String result = "";
 		int count = mimeMultipart.getCount();

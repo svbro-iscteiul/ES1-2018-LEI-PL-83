@@ -5,7 +5,6 @@ import java.util.List;
 
 /**
  * Used for testing, delete after
- * @author jose.f.santos
  *
  */
 public class GmailAPITest {

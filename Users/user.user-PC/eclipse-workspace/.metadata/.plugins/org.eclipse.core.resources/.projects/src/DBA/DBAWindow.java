@@ -21,6 +21,10 @@ import javax.swing.border.SoftBevelBorder;
 import pt.iscte.esi.projeto.utils.XMLFileEditor;
 import java.awt.Color;
 
+/**
+ * DBAWindow Editor
+ *
+ */
 public class DBAWindow {
 
 	private JFrame frmDbaEditor;

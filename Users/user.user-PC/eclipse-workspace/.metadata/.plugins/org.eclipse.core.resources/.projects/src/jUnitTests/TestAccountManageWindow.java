@@ -1,7 +1,5 @@
 package jUnitTests;
 
-import static org.junit.Assert.*;
-
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -10,6 +8,10 @@ import org.junit.Test;
 
 import pt.iscte.esi.projeto.form.AccountManageWindow;
 
+/**
+ * Test class
+ *
+ */
 public class TestAccountManageWindow {
 
 	@BeforeClass

@@ -11,6 +11,10 @@ import org.junit.Test;
 import pt.iscte.esi.projeto.form.models.Message;
 import pt.iscte.esi.projeto.utils.MainMsgList;
 
+/**
+ * Test class
+ *
+ */
 public class TestMainMsgList {
 
 	@BeforeClass

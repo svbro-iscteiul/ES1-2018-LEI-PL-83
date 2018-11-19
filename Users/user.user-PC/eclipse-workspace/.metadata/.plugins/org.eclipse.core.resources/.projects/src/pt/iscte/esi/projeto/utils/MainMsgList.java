@@ -6,8 +6,6 @@ import pt.iscte.esi.projeto.form.models.Message;
 /**
  * Class that defines list in Main Window.
  * this matrix only supports 100 lines and 4 rows max.
- * 
- * @author jose.f.santos
  *
  */
 public class MainMsgList {
@@ -23,7 +21,11 @@ public class MainMsgList {
 		counter = 0;
 	}
 
-
+	/**
+	 * Constructor 
+	 * @param headers
+	 * @param msgMatrix
+	 */
 	public MainMsgList(String[] headers,String[][] msgMatrix) {
 		this.headers = headers;
 		this.msgMatrix = msgMatrix;

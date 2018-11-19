@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><Config>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Config>
 	<Login>
 		<User_Login>
 			<Username>username</Username>
@@ -45,12 +46,25 @@
 			<Password>elsa</Password>
 			<Email>elsa@gmail.com</Email>
 		</User_Login>
+	</Login>
 	<Facebook>
 	</Facebook>
-	<Twitter><ConsumerKey>Consumer</ConsumerKey>
-		<ConsumerSecret>ConsumerS</ConsumerSecret>
-		<AccessToken>Access</AccessToken>
-		<AccessTokenSecret>Access secret</AccessTokenSecret>
-	<Gmail><Mail>aaa</Mail>
-		<Password>aaa</Password>
+	<Twitter>
+		<User_Login>
+			<ConsumerKey>Consumer</ConsumerKey>
+			<ConsumerSecret>ConsumerS</ConsumerSecret>
+			<AccessToken>Access</AccessToken>
+			<AccessTokenSecret>Access secret</AccessTokenSecret>
+		</User_Login>
+	</Twitter>
+	<Gmail>
+		<User_Login>
+			<Mail>aaa</Mail>
+			<Password>aaa</Password>
+		</User_Login>
+		<User_Login>
+			<Mail>klldfsldvxjjlskldfj111111</Mail>
+			<Password>assdfsdfd</Password>
+		</User_Login>
+	</Gmail>
 </Config>

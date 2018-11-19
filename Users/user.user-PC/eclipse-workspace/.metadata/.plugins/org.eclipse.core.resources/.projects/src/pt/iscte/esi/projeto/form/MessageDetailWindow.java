@@ -23,8 +23,6 @@ import java.awt.Cursor;
 
 /**
  * Window UI for message details
- * 
- * @author Elsa Teixeira, José Santos, Sérgio Ribeiro - LEI ISCTE
  *
  */
 public class MessageDetailWindow {

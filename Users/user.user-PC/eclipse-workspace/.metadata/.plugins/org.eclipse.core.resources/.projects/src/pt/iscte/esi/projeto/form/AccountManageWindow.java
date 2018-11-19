@@ -27,8 +27,6 @@ import pt.iscte.esi.projeto.utils.XMLFileEditor;
 
 /**
  * Window UI for Account Management
- * 
- * @author Elsa Teixeira, José Santos, Sérgio Ribeiro LEI ISCTE
  *
  */
 public class AccountManageWindow extends JFrame {

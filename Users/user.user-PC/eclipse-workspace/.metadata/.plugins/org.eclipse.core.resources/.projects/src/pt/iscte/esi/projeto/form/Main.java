@@ -6,7 +6,6 @@ import java.awt.EventQueue;
 
 /**
  * Main class
- * @author Elsa Teixeira, José Santos, Sérgio Ribeiro - LEI ISCTE
  *
  */
 public class Main {

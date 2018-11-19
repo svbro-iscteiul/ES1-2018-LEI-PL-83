@@ -18,8 +18,7 @@ import pt.iscte.esi.projeto.utils.XMLFileEditor;
 
 /**
  * Window UI for Registering in Application
- * @author Elsa Teixeira, José Santos, Sérgio Ribeiro - LEI ISCTE - Engenharia de Software
- *
+ * 
  */
 public class RegisterWindow {
 
@@ -28,7 +27,6 @@ public class RegisterWindow {
 	private JTextField textField_1;
 	private JTextField textField_2;
 	private JTextField textField_3;
-
 
 	/**
 	 * Class constructor.

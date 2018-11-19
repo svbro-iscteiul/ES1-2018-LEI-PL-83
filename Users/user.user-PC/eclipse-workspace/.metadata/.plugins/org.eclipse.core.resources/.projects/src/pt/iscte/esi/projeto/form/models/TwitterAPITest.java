@@ -3,8 +3,6 @@ import java.util.List;
 
 /**
  * Twitter API class, used only for testing
- * @author jose.f.santos
- *
  */
 public class TwitterAPITest {
 /*

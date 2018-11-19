@@ -41,8 +41,6 @@ import pt.iscte.esi.projeto.utils.MainMsgList;
 
 /**
  * Window UI with list of tweets, emails and facebook posts
- * 
- * @author Elsa Teixeira, José Santos, Sérgio Ribeiro - LEI ISCTE
  *
  */
 public class MainWindow {
@@ -59,10 +57,22 @@ public class MainWindow {
 	private Set<String> EmailSenders = new HashSet<String>();
 	private String ChoosenOrigin="";
 
-
+	/**
+	 * Main
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		//MessageDetailWindow window = new MessageDetailWindow(null, null, null, null);
-		MainWindow window = new MainWindow();
+		
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					new MainWindow();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
 
 	}
 
