@@ -325,7 +325,7 @@ public class XMLFileEditor {
 				if(document.getElementsByTagName("Twitter").item(0).getChildNodes().getLength()!=0) {
 					document.getElementsByTagName("Twitter").item(0).removeChild(document.getElementsByTagName("Twitter").item(0).getFirstChild());
 				}
-				Element newUser = document.createElement("User_Login");
+				Element newUser = document.createElement("User_Twitter");
 
 				Element CK = document.createElement("ConsumerKey");
 				CK.appendChild(document.createTextNode(ConsumerKey));
@@ -382,7 +382,7 @@ public class XMLFileEditor {
 				if(document.getElementsByTagName("Gmail").item(0).getChildNodes().getLength()!=0) {
 					document.getElementsByTagName("Gmail").item(0).removeChild(document.getElementsByTagName("Gmail").item(0).getFirstChild());
 				}
-				Element newUser = document.createElement("User_Login");
+				Element newUser = document.createElement("User_Email");
 
 				Element Usermail = document.createElement("Mail");
 				Usermail.appendChild(document.createTextNode(usermail));
