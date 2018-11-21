@@ -48,14 +48,14 @@ public class MainWindow {
 	private JFrame frame;
 	private JTable table;
 	private JLabel image2;
-	private JTextField txtPesquisaMensagensPor;
 	private MainMsgList msgList;
 	private DefaultTableModel defaultTableModel;
 	private ArrayList<Message> tweets = new ArrayList<Message>();
 	private ArrayList<Message> emails = new ArrayList<Message>();
 	private Set<String> TwitterSenders = new HashSet<String>();
 	private Set<String> EmailSenders = new HashSet<String>();
-	private String ChoosenOrigin="";
+	private String ChoosenChannel="All";
+	private String ChoosenSender="All";
 
 	/**
 	 * Main
@@ -105,6 +105,22 @@ public class MainWindow {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	/**
+	 * Reconstructs the MainWindow's table
+	 * 
+	 */
+	private void ReconstructTable() {
+		defaultTableModel = new DefaultTableModel(msgList.getMsgMatrix(), msgList.getHeaders()) {
+			private static final long serialVersionUID = 1L;
+			Class[] columnTypes = new Class[] { String.class, String.class, String.class, String.class };
+
+			public Class getColumnClass(int columnIndex) {
+				return columnTypes[columnIndex];
+			}
+		};
+		table.setModel(defaultTableModel);
 	}
 	
 	
@@ -306,33 +322,23 @@ public class MainWindow {
 				msgList.setHeaders(new String[] { "Data", "Canal", "Origem", "Mensagem" });
 				String[][] temp = new String[101][4];
 				msgList.setMsgMatrix(temp);
-				if(ChoosenOrigin=="Twitter"){
+				if(ChoosenChannel=="Twitter"){
 					for (Message m : tweets) 
-						if(m.getSender().equals(choice_2.getItem(choice_2.getSelectedIndex())))
+						if(m.getSender().equals(choice_2.getItem(choice_2.getSelectedIndex()))){
 							msgList.addMessage(m);
+							ChoosenSender=m.getSender();
+							}
+							
 				}
 				else if(choice_1.getItem(choice_1.getSelectedIndex()).equals("E-mail")){
 					for (Message m : emails)
-						if(m.getSender().equals(choice_2.getItem(choice_2.getSelectedIndex())))
+						if(m.getSender().equals(choice_2.getItem(choice_2.getSelectedIndex()))) {
 							msgList.addMessage(m);
-				
+							ChoosenSender=m.getSender();
+						}
 				}
 				
-
-					defaultTableModel = new DefaultTableModel(msgList.getMsgMatrix(), msgList.getHeaders()) {
-						/**
-						 * Serializa a informação dada na linha anterior
-						 */
-						private static final long serialVersionUID = 1L;
-						Class[] columnTypes = new Class[] { String.class, String.class, String.class, String.class };
-
-						public Class getColumnClass(int columnIndex) {
-							return columnTypes[columnIndex];
-						}
-
-					};
-					
-					table.setModel(defaultTableModel);
+					ReconstructTable();
 			}});
 
 		frame.getContentPane().add(FilterSender);
@@ -349,7 +355,7 @@ public class MainWindow {
 					for (Message m : tweets)
 						msgList.addMessage(m);
 					
-					ChoosenOrigin="Twitter";
+					ChoosenChannel="Twitter";
 					choice_2.setVisible(true);
 					choice_2.removeAll();
 					for(String s:TwitterSenders)
@@ -361,7 +367,7 @@ public class MainWindow {
 					for (Message m : emails)
 						msgList.addMessage(m);
 					
-					ChoosenOrigin="E-mail";
+					ChoosenChannel="E-mail";
 					choice_2.setVisible(true);
 					choice_2.removeAll();
 					for(String s:EmailSenders)
@@ -369,7 +375,7 @@ public class MainWindow {
 					FilterSender.setEnabled(true);
 				}
 				else{
-					ChoosenOrigin="All";
+					ChoosenChannel="All";
 					for (Message m : emails)
 						msgList.addMessage(m);
 					for (Message m : tweets)
@@ -378,20 +384,9 @@ public class MainWindow {
 					FilterSender.setEnabled(false);
 				}
 
-					defaultTableModel = new DefaultTableModel(msgList.getMsgMatrix(), msgList.getHeaders()) {
-						/**
-						 * Serializa a informação dada na linha anterior
-						 */
-						private static final long serialVersionUID = 1L;
-						Class[] columnTypes = new Class[] { String.class, String.class, String.class, String.class };
-
-						public Class getColumnClass(int columnIndex) {
-							return columnTypes[columnIndex];
-						}
-
-					};
+					ReconstructTable();
 					
-					table.setModel(defaultTableModel);
+					
 			}});
 
 		frame.getContentPane().add(FilterChannel);
@@ -413,10 +408,9 @@ public class MainWindow {
 		 * Adds Button "Filtrar" to the window
 		 */
 	
-		txtPesquisaMensagensPor = new JTextField();
-		txtPesquisaMensagensPor.setBounds(390, 502, 234, 20);
+		JTextField txtPesquisaMensagensPor = new JTextField();
+		txtPesquisaMensagensPor.setBounds(344, 502, 234, 20);
 		txtPesquisaMensagensPor.setForeground(new Color(112, 128, 144));
-		txtPesquisaMensagensPor.setText("Filtrar mensagens por palavra-chave");
 		frame.getContentPane().add(txtPesquisaMensagensPor);
 		txtPesquisaMensagensPor.setColumns(10);
 
@@ -459,6 +453,57 @@ public class MainWindow {
 		});
 		btnRefresh.setBounds(44, 501, 93, 23);
 		frame.getContentPane().add(btnRefresh);
+		
+		JButton btnFiltrar = new JButton("Filtrar por palavra");
+		btnFiltrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				msgList.setHeaders(new String[] { "Data", "Canal", "Origem", "Mensagem" });
+				String[][] temp = new String[101][4];
+				msgList.setMsgMatrix(temp);
+				if(ChoosenChannel.equals("All")){
+					for (Message m : emails)
+						if(m.getMessage().contains(txtPesquisaMensagensPor.getText()))
+							msgList.addMessage(m);
+					for (Message m : tweets)
+						if(m.getMessage().contains(txtPesquisaMensagensPor.getText()))
+							msgList.addMessage(m);
+					
+				}
+				else if(ChoosenChannel.equals("Twitter")) {
+					if(ChoosenSender.equals("All")) {
+						for (Message m : tweets)
+							if(m.getMessage().contains(txtPesquisaMensagensPor.getText()))
+								msgList.addMessage(m);
+					}
+					else {
+						for (Message m : tweets)
+							if(m.getSender().equals(ChoosenSender))	
+								if(m.getMessage().contains(txtPesquisaMensagensPor.getText()))
+									msgList.addMessage(m);
+					}
+						
+						
+				}
+				else if(ChoosenChannel.equals("E-mail")) {
+					if(ChoosenSender.equals("All")) {
+						for (Message m : tweets)
+							if(m.getMessage().contains(txtPesquisaMensagensPor.getText()))
+								msgList.addMessage(m);
+					}
+					else {
+						for (Message m : tweets)
+							if(m.getSender().equals(ChoosenSender))	
+								if(m.getMessage().contains(txtPesquisaMensagensPor.getText()))
+									msgList.addMessage(m);
+					}
+						
+						
+				}
+				ReconstructTable();
+			}
+		});
+		btnFiltrar.setBounds(600, 501, 145, 23);
+		frame.getContentPane().add(btnFiltrar);
 
 	}
 }
