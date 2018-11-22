@@ -113,9 +113,17 @@ public class MessageDetailWindow {
 		frame.getContentPane().add(btOk);
 
 
+		// ScrollBars displayed
+		
 		JScrollBar scrollBar = new JScrollBar();
-		scrollBar.setBounds(655, 168, 17, 326);
+		scrollBar.setBounds(655, 168, 17, 240);
 		frame.getContentPane().add(scrollBar);
+		
+		JScrollBar scrollBarResponse = new JScrollBar();
+		scrollBarResponse.setBounds(655, 420, 17, 50);
+		frame.getContentPane().add(scrollBarResponse);
+
+		
 
 		//only title window
 
@@ -173,12 +181,33 @@ public class MessageDetailWindow {
 		textArea.setEditable(false);
 		textArea.setLineWrap(true);
 		textArea.setForeground(new Color(0, 0, 128));
-		textArea.setBounds(115, 168, 557, 326);
-
-
+		textArea.setBounds(115, 168, 557, 240);
 		frame.getContentPane().add(textArea);
+		
+		
+		
+		//here we can watch the complete message
 
-
+		JTextArea textAreaResponse = new JTextArea();
+		textAreaResponse.setText(text);
+		textAreaResponse.setEditable(true);
+		textAreaResponse.setLineWrap(true);
+		textAreaResponse.setForeground(new Color(0, 0, 128));
+		textAreaResponse.setBounds(115, 420, 557, 50);
+		frame.getContentPane().add(textAreaResponse);
+		
+		JLabel link2Response = new JLabel("<html><font color='black'>| Responder/Comentar |  </font></html>");
+		link2Response.setBounds(115, 480, 140, 14);
+	
+		frame.getContentPane().add(link2Response);
+		
+		JLabel link2MakeTweet = new JLabel("<html><font color='black'> | Retweet | </font></html>");
+		link2MakeTweet.setBounds(260, 480, 130, 14);
+		frame.getContentPane().add(link2MakeTweet);
+		
+		JLabel link2Like = new JLabel("<html><font color='black'> | Like |       </font></html>");
+		link2Like.setBounds(330, 480, 130, 14);
+		frame.getContentPane().add(link2Like);
 
 	}
 }
