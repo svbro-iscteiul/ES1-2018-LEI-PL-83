@@ -377,14 +377,16 @@ public class MainWindow {
 						ShownMessages.add(m);
 						PossibleDates.add(m.getTime());
 					}
+					ArrayList<String> tmp = new ArrayList<String>(PossibleDates);
+					Collections.sort(tmp, new StringComparator());
 					ChoosenChannel="Twitter";
 					choice_2.setVisible(true);
 					choice_2.removeAll();
 					for(String s:TwitterSenders)
 						choice_2.add(s);
-					for(String s:PossibleDates)
+					for(String s:tmp)
 						DateChoice.add(s);
-
+					
 					FilterSender.setEnabled(true);
 
 				}
@@ -394,12 +396,14 @@ public class MainWindow {
 						ShownMessages.add(m);
 						PossibleDates.add(m.getTime());
 					}
+					ArrayList<String> tmp = new ArrayList<String>(PossibleDates);
+					Collections.sort(tmp, new StringComparator());
 					ChoosenChannel="E-mail";
 					choice_2.setVisible(true);
 					choice_2.removeAll();
 					for(String s:EmailSenders)
 						choice_2.add(s);
-					for(String s:PossibleDates)
+					for(String s:tmp)
 						DateChoice.add(s);
 					FilterSender.setEnabled(true);
 				}
@@ -410,7 +414,9 @@ public class MainWindow {
 						ShownMessages.add(m);
 						PossibleDates.add(m.getTime());
 					}
-					for(String s:PossibleDates)
+					ArrayList<String> tmp = new ArrayList<String>(PossibleDates);
+					Collections.sort(tmp, new StringComparator());
+					for(String s:tmp)
 						DateChoice.add(s);
 					choice_2.setVisible(false);
 					FilterSender.setEnabled(false);
@@ -509,7 +515,9 @@ public class MainWindow {
 							ShownMessages.add(m);
 							PossibleDates.add(m.getTime());
 						}
-					for(String s:PossibleDates)
+					ArrayList<String> tmp = new ArrayList<String>(PossibleDates);
+					Collections.sort(tmp, new StringComparator());
+					for(String s:tmp)
 						DateChoice.add(s);
 				}
 				else if(ChoosenChannel.equals("Twitter")) {
@@ -520,7 +528,9 @@ public class MainWindow {
 								ShownMessages.add(m);
 								PossibleDates.add(m.getTime());
 							}
-						for(String s:PossibleDates)
+						ArrayList<String> tmp = new ArrayList<String>(PossibleDates);
+						Collections.sort(tmp, new StringComparator());
+						for(String s:tmp)
 							DateChoice.add(s);
 					}
 					else {
@@ -531,7 +541,9 @@ public class MainWindow {
 									ShownMessages.add(m);
 									PossibleDates.add(m.getTime());
 								}
-						for(String s:PossibleDates)
+						ArrayList<String> tmp = new ArrayList<String>(PossibleDates);
+						Collections.sort(tmp, new StringComparator());
+						for(String s:tmp)
 							DateChoice.add(s);
 					}
 
@@ -555,8 +567,9 @@ public class MainWindow {
 									PossibleDates.add(m.getTime());
 								}
 					}
-					
-					for(String s:PossibleDates)
+					ArrayList<String> tmp = new ArrayList<String>(PossibleDates);
+					Collections.sort(tmp, new StringComparator());
+					for(String s:tmp)
 						DateChoice.add(s);
 
 				}
