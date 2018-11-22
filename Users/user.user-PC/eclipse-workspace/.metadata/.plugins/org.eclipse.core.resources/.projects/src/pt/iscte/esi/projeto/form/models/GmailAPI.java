@@ -66,8 +66,9 @@ public class GmailAPI {
 		String temp[]=date.split(" ");
 		String day=temp[0];
 		String month=temp[2];
+		String mes =SetMonth(month);
 		String year=temp[4];
-		date=day+"/"+month+"/"+year;
+		date=day+"/"+mes+"/"+year;
 		
 		String body=original.substring(original.indexOf("Assunto: ")+9);
 		m.setSender(sender);
@@ -120,4 +121,34 @@ public class GmailAPI {
 		return result;
 	}
 
+	private String SetMonth(String mes) {
+		//System.out.println(mes);
+		String m= mes.toLowerCase();
+		//System.out.println(m);
+		if(m.equals("janeiro") || m.equals("jan"))
+			return "01";
+		else if(m.equals("fevereiro") || m.equals("fev"))
+			return "02";
+		else if(m.equals("março") || m.equals("mar"))
+			return "03";
+		else if(m.equals("abril") || m.equals("abr"))
+			return "04";
+		else if(m.equals("maio") || m.equals("mai"))
+			return "05";
+		else if(m.equals("junho") || m.equals("jun"))
+			return "06";
+		else if(m.equals("julho") || m.equals("jul"))
+			return "07";
+		else if(m.equals("agosto") || m.equals("ago"))
+			return "08";
+		else if(m.equals("setembro") || m.equals("set"))
+			return "09";
+		else if(m.equals("outobro") || m.equals("out"))
+			return "10";
+		else if(m.equals("novembro") || m.equals("nov"))
+			return "11";
+		else 
+			return "12";
+			
+	}
 }

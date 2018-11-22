@@ -13,6 +13,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -36,6 +37,7 @@ import javax.swing.table.DefaultTableModel;
 import DBA.DBAWindow;
 import pt.iscte.esi.projeto.form.models.GmailAPI;
 import pt.iscte.esi.projeto.form.models.Message;
+import pt.iscte.esi.projeto.form.models.MessageComparator;
 import pt.iscte.esi.projeto.form.models.TwitterAPI;
 import pt.iscte.esi.projeto.utils.MainMsgList;
 
@@ -52,10 +54,12 @@ public class MainWindow {
 	private DefaultTableModel defaultTableModel;
 	private ArrayList<Message> tweets = new ArrayList<Message>();
 	private ArrayList<Message> emails = new ArrayList<Message>();
+	private ArrayList<Message> AllMessage = new ArrayList<Message>();
 	private Set<String> TwitterSenders = new HashSet<String>();
 	private Set<String> EmailSenders = new HashSet<String>();
 	private String ChoosenChannel="All";
 	private String ChoosenSender="All";
+	private MessageComparator comparator= new MessageComparator();
 
 	/**
 	 * Main
@@ -63,7 +67,7 @@ public class MainWindow {
 	 */
 	public static void main(String[] args) {
 		//MessageDetailWindow window = new MessageDetailWindow(null, null, null, null);
-		
+
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -84,8 +88,8 @@ public class MainWindow {
 		initialize();
 		frame.setVisible(true);
 	}
-	
-	
+
+
 	/**
 	 * gets the tweets and adds them to the specific list
 	 */
@@ -106,7 +110,7 @@ public class MainWindow {
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
 	 * Reconstructs the MainWindow's table
 	 * 
@@ -122,8 +126,8 @@ public class MainWindow {
 		};
 		table.setModel(defaultTableModel);
 	}
-	
-	
+
+
 	/**
 	 * Updates new information in academic news frame
 	 */
@@ -141,7 +145,7 @@ public class MainWindow {
 			defaultTableModel.setDataVector(msgList.getMsgMatrix(), msgList.getHeaders());
 		}
 	}
-	
+
 	/**
 	 * Under work!! used to select an element in the list.
 	 * 
@@ -168,7 +172,7 @@ public class MainWindow {
 		});
 	}
 
-	
+
 	/**
 	 * Create and initialize Window.
 	 */
@@ -195,35 +199,30 @@ public class MainWindow {
 		String[][] temp = new String[101][4];
 		msgList.setMsgMatrix(temp);
 
-			getTweets();
-			for (Message m : tweets) {
-				msgList.addMessage(m);
-				TwitterSenders.add(m.getSender());
-			}
+		getTweets();
+		for (Message m : tweets) {
+		//	msgList.addMessage(m);
+			AllMessage.add(m);
+			TwitterSenders.add(m.getSender());
+		}
 
-			getEmails();
-			for (Message m : emails) {
-				msgList.addMessage(m);
-				EmailSenders.add(m.getSender());
-			}
-	
+		getEmails();
+		for (Message m : emails) {
+			//msgList.addMessage(m);
+			AllMessage.add(m);
+			EmailSenders.add(m.getSender());
+		}
+
+
+		Collections.sort(AllMessage, comparator);
+		for(Message m : AllMessage)
+			msgList.addMessage(m);
 
 		// for(Message f : facebook) fazer depois get messages from face
 
-		defaultTableModel = new DefaultTableModel(msgList.getMsgMatrix(), msgList.getHeaders()) {
-			/**
-			 * Serializa a informação dada na linha anterior
-			 */
-			private static final long serialVersionUID = 1L;
-			Class[] columnTypes = new Class[] { String.class, String.class, String.class, String.class };
+		ReconstructTable();
 
-			public Class getColumnClass(int columnIndex) {
-				return columnTypes[columnIndex];
-			}
 
-		};
-
-		
 		//refreshTable();
 
 		table.setModel(defaultTableModel);
@@ -233,15 +232,15 @@ public class MainWindow {
 		table.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent arg0) {
-					if (arg0.getButton() == MouseEvent.BUTTON1 || arg0.getButton() == MouseEvent.BUTTON2) {
-						int row = table.getSelectedRow();
-	
-						if(table.getModel().getValueAt(row, 0)!=null) {
+				if (arg0.getButton() == MouseEvent.BUTTON1 || arg0.getButton() == MouseEvent.BUTTON2) {
+					int row = table.getSelectedRow();
+
+					if(table.getModel().getValueAt(row, 0)!=null) {
 						new MessageDetailWindow(table.getModel().getValueAt(row, 0).toString(),table.getModel().getValueAt(row, 1).toString(),
 								table.getModel().getValueAt(row, 2).toString(),table.getModel().getValueAt(row, 3).toString());
-	
+
 						frame.dispose();
-	
+
 						if(table.getModel().getValueAt(row, 0)!="") {
 							new MessageDetailWindow(table.getModel().getValueAt(row, 0).toString(),table.getModel().getValueAt(row, 1).toString(),
 									table.getModel().getValueAt(row, 2).toString(),table.getModel().getValueAt(row, 3).toString());
@@ -303,7 +302,7 @@ public class MainWindow {
 		choice_1.add("E-mail");
 		JButton FilterChannel = new JButton("Filtrar Canal");
 		FilterChannel.setBounds(324,129,123,20);
-		
+
 		frame.getContentPane().add(choice_1);
 
 		Choice choice_2 = new Choice();
@@ -318,7 +317,7 @@ public class MainWindow {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+
 				msgList.setHeaders(new String[] { "Data", "Canal", "Origem", "Mensagem" });
 				String[][] temp = new String[101][4];
 				msgList.setMsgMatrix(temp);
@@ -327,8 +326,8 @@ public class MainWindow {
 						if(m.getSender().equals(choice_2.getItem(choice_2.getSelectedIndex()))){
 							msgList.addMessage(m);
 							ChoosenSender=m.getSender();
-							}
-							
+						}
+
 				}
 				else if(choice_1.getItem(choice_1.getSelectedIndex()).equals("E-mail")){
 					for (Message m : emails)
@@ -337,8 +336,8 @@ public class MainWindow {
 							ChoosenSender=m.getSender();
 						}
 				}
-				
-					ReconstructTable();
+
+				ReconstructTable();
 			}});
 
 		frame.getContentPane().add(FilterSender);
@@ -347,26 +346,26 @@ public class MainWindow {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+
 				msgList.setHeaders(new String[] { "Data", "Canal", "Origem", "Mensagem" });
 				String[][] temp = new String[101][4];
 				msgList.setMsgMatrix(temp);
 				if(choice_1.getItem(choice_1.getSelectedIndex()).equals("Twitter")){
 					for (Message m : tweets)
 						msgList.addMessage(m);
-					
+
 					ChoosenChannel="Twitter";
 					choice_2.setVisible(true);
 					choice_2.removeAll();
 					for(String s:TwitterSenders)
 						choice_2.add(s);
 					FilterSender.setEnabled(true);
-					
+
 				}
 				else if(choice_1.getItem(choice_1.getSelectedIndex()).equals("E-mail")){
 					for (Message m : emails)
 						msgList.addMessage(m);
-					
+
 					ChoosenChannel="E-mail";
 					choice_2.setVisible(true);
 					choice_2.removeAll();
@@ -384,9 +383,9 @@ public class MainWindow {
 					FilterSender.setEnabled(false);
 				}
 
-					ReconstructTable();
-					
-					
+				ReconstructTable();
+
+
 			}});
 
 		frame.getContentPane().add(FilterChannel);
@@ -407,7 +406,7 @@ public class MainWindow {
 		/*
 		 * Adds Button "Filtrar" to the window
 		 */
-	
+
 		JTextField txtPesquisaMensagensPor = new JTextField();
 		txtPesquisaMensagensPor.setBounds(344, 502, 234, 20);
 		txtPesquisaMensagensPor.setForeground(new Color(112, 128, 144));
@@ -453,7 +452,7 @@ public class MainWindow {
 		});
 		btnRefresh.setBounds(44, 501, 93, 23);
 		frame.getContentPane().add(btnRefresh);
-		
+
 		JButton btnFiltrar = new JButton("Filtrar por palavra");
 		btnFiltrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -467,7 +466,7 @@ public class MainWindow {
 					for (Message m : tweets)
 						if(m.getMessage().contains(txtPesquisaMensagensPor.getText()))
 							msgList.addMessage(m);
-					
+
 				}
 				else if(ChoosenChannel.equals("Twitter")) {
 					if(ChoosenSender.equals("All")) {
@@ -481,8 +480,8 @@ public class MainWindow {
 								if(m.getMessage().contains(txtPesquisaMensagensPor.getText()))
 									msgList.addMessage(m);
 					}
-						
-						
+
+
 				}
 				else if(ChoosenChannel.equals("E-mail")) {
 					if(ChoosenSender.equals("All")) {
@@ -496,8 +495,8 @@ public class MainWindow {
 								if(m.getMessage().contains(txtPesquisaMensagensPor.getText()))
 									msgList.addMessage(m);
 					}
-						
-						
+
+
 				}
 				ReconstructTable();
 			}
