@@ -14,6 +14,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -38,6 +39,7 @@ import DBA.DBAWindow;
 import pt.iscte.esi.projeto.form.models.GmailAPI;
 import pt.iscte.esi.projeto.form.models.Message;
 import pt.iscte.esi.projeto.form.models.MessageComparator;
+import pt.iscte.esi.projeto.form.models.StringComparator;
 import pt.iscte.esi.projeto.form.models.TwitterAPI;
 import pt.iscte.esi.projeto.utils.MainMsgList;
 
@@ -54,12 +56,15 @@ public class MainWindow {
 	private DefaultTableModel defaultTableModel;
 	private ArrayList<Message> tweets = new ArrayList<Message>();
 	private ArrayList<Message> emails = new ArrayList<Message>();
-	private ArrayList<Message> AllMessage = new ArrayList<Message>();
+	private ArrayList<Message> AllMessages = new ArrayList<Message>();
+	private ArrayList<Message> ShownMessages= new ArrayList<Message>();
 	private Set<String> TwitterSenders = new HashSet<String>();
 	private Set<String> EmailSenders = new HashSet<String>();
+	private ArrayList<String> Dates = new ArrayList<String>();
 	private String ChoosenChannel="All";
 	private String ChoosenSender="All";
-	private MessageComparator comparator= new MessageComparator();
+	private Set<String> PossibleDates = new HashSet<String>();
+
 
 	/**
 	 * Main
@@ -105,6 +110,7 @@ public class MainWindow {
 		GmailAPI g = new GmailAPI();
 		try {
 			emails = g.getMails();
+			Collections.sort(emails,new MessageComparator());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -201,23 +207,30 @@ public class MainWindow {
 
 		getTweets();
 		for (Message m : tweets) {
-		//	msgList.addMessage(m);
-			AllMessage.add(m);
+			//	msgList.addMessage(m);
+			AllMessages.add(m);
 			TwitterSenders.add(m.getSender());
 		}
 
 		getEmails();
 		for (Message m : emails) {
 			//msgList.addMessage(m);
-			AllMessage.add(m);
+			AllMessages.add(m);
 			EmailSenders.add(m.getSender());
 		}
 
 
-		Collections.sort(AllMessage, comparator);
-		for(Message m : AllMessage)
+		Collections.sort(AllMessages, new MessageComparator());
+		Set<String> tmp = new HashSet<String>();
+		ShownMessages = new ArrayList<Message>(AllMessages);
+		for(Message m : ShownMessages) {
 			msgList.addMessage(m);
-
+			tmp.add(m.getTime());
+		}
+		tmp.addAll(Dates);
+		Dates.clear();
+		Dates.addAll(tmp);
+		Collections.sort(Dates, new StringComparator());
 		// for(Message f : facebook) fazer depois get messages from face
 
 		ReconstructTable();
@@ -289,30 +302,34 @@ public class MainWindow {
 		/*
 		 * Adds filter boxes to the window
 		 */
-		Choice choice = new Choice();
-		choice.setBounds(35, 129, 95, 20);
-		choice.add("filtrar data");
-		frame.getContentPane().add(choice);
+		Choice DateChoice = new Choice();
+		DateChoice.setBounds(554, 129, 95, 20);
+		DateChoice.add("All Dates");
+		for(String m:Dates)
+			DateChoice.add(m);
+
+
+		frame.getContentPane().add(DateChoice);
 
 		Choice choice_1 = new Choice();
-		choice_1.setBounds(132, 129, 92, 20);
+		choice_1.setBounds(44, 129, 92, 20);
 		choice_1.add("All Channels");
 		choice_1.add("Twitter");
 		choice_1.add("Facebook");
 		choice_1.add("E-mail");
 		JButton FilterChannel = new JButton("Filtrar Canal");
-		FilterChannel.setBounds(324,129,123,20);
+		FilterChannel.setBounds(240,129,123,20);
 
 		frame.getContentPane().add(choice_1);
 
 		Choice choice_2 = new Choice();
-		choice_2.setBounds(226, 129, 92, 20);
+		choice_2.setBounds(142, 129, 92, 20);
 		choice_2.add("filtrar origem");
 		choice_2.setVisible(false);
 		frame.getContentPane().add(choice_2);
 		JButton FilterSender = new JButton("Filtrar Origem");
 		FilterSender.setEnabled(false);
-		FilterSender.setBounds(454, 129, 123, 20);
+		FilterSender.setBounds(373, 129, 123, 20);
 		FilterSender.addActionListener(new ActionListener() {
 
 			@Override
@@ -350,35 +367,51 @@ public class MainWindow {
 				msgList.setHeaders(new String[] { "Data", "Canal", "Origem", "Mensagem" });
 				String[][] temp = new String[101][4];
 				msgList.setMsgMatrix(temp);
+				ShownMessages.clear();
+				PossibleDates.clear();
+				DateChoice.removeAll();
+				DateChoice.add("All Dates");
 				if(choice_1.getItem(choice_1.getSelectedIndex()).equals("Twitter")){
-					for (Message m : tweets)
+					for (Message m : tweets) {
 						msgList.addMessage(m);
-
+						ShownMessages.add(m);
+						PossibleDates.add(m.getTime());
+					}
 					ChoosenChannel="Twitter";
 					choice_2.setVisible(true);
 					choice_2.removeAll();
 					for(String s:TwitterSenders)
 						choice_2.add(s);
+					for(String s:PossibleDates)
+						DateChoice.add(s);
+
 					FilterSender.setEnabled(true);
 
 				}
 				else if(choice_1.getItem(choice_1.getSelectedIndex()).equals("E-mail")){
-					for (Message m : emails)
+					for (Message m : emails) {
 						msgList.addMessage(m);
-
+						ShownMessages.add(m);
+						PossibleDates.add(m.getTime());
+					}
 					ChoosenChannel="E-mail";
 					choice_2.setVisible(true);
 					choice_2.removeAll();
 					for(String s:EmailSenders)
 						choice_2.add(s);
+					for(String s:PossibleDates)
+						DateChoice.add(s);
 					FilterSender.setEnabled(true);
 				}
 				else{
 					ChoosenChannel="All";
-					for (Message m : emails)
+					for (Message m : AllMessages) {
 						msgList.addMessage(m);
-					for (Message m : tweets)
-						msgList.addMessage(m);
+						ShownMessages.add(m);
+						PossibleDates.add(m.getTime());
+					}
+					for(String s:PossibleDates)
+						DateChoice.add(s);
 					choice_2.setVisible(false);
 					FilterSender.setEnabled(false);
 				}
@@ -459,26 +492,47 @@ public class MainWindow {
 				msgList.setHeaders(new String[] { "Data", "Canal", "Origem", "Mensagem" });
 				String[][] temp = new String[101][4];
 				msgList.setMsgMatrix(temp);
+				ShownMessages.clear();
+				DateChoice.removeAll();
+				DateChoice.add("All Dates");
 				if(ChoosenChannel.equals("All")){
 					for (Message m : emails)
-						if(m.getMessage().contains(txtPesquisaMensagensPor.getText()))
+						if(m.getMessage().contains(txtPesquisaMensagensPor.getText())) {
 							msgList.addMessage(m);
-					for (Message m : tweets)
-						if(m.getMessage().contains(txtPesquisaMensagensPor.getText()))
-							msgList.addMessage(m);
+							ShownMessages.add(m);
+							PossibleDates.add(m.getTime());
 
+						}
+					for (Message m : tweets)
+						if(m.getMessage().contains(txtPesquisaMensagensPor.getText())) {
+							msgList.addMessage(m);
+							ShownMessages.add(m);
+							PossibleDates.add(m.getTime());
+						}
+					for(String s:PossibleDates)
+						DateChoice.add(s);
 				}
 				else if(ChoosenChannel.equals("Twitter")) {
 					if(ChoosenSender.equals("All")) {
 						for (Message m : tweets)
-							if(m.getMessage().contains(txtPesquisaMensagensPor.getText()))
+							if(m.getMessage().contains(txtPesquisaMensagensPor.getText())) {
 								msgList.addMessage(m);
+								ShownMessages.add(m);
+								PossibleDates.add(m.getTime());
+							}
+						for(String s:PossibleDates)
+							DateChoice.add(s);
 					}
 					else {
 						for (Message m : tweets)
 							if(m.getSender().equals(ChoosenSender))	
-								if(m.getMessage().contains(txtPesquisaMensagensPor.getText()))
+								if(m.getMessage().contains(txtPesquisaMensagensPor.getText())) {
 									msgList.addMessage(m);
+									ShownMessages.add(m);
+									PossibleDates.add(m.getTime());
+								}
+						for(String s:PossibleDates)
+							DateChoice.add(s);
 					}
 
 
@@ -486,16 +540,24 @@ public class MainWindow {
 				else if(ChoosenChannel.equals("E-mail")) {
 					if(ChoosenSender.equals("All")) {
 						for (Message m : tweets)
-							if(m.getMessage().contains(txtPesquisaMensagensPor.getText()))
+							if(m.getMessage().contains(txtPesquisaMensagensPor.getText())) {
 								msgList.addMessage(m);
+								ShownMessages.add(m);
+								PossibleDates.add(m.getTime());
+							}
 					}
 					else {
 						for (Message m : tweets)
 							if(m.getSender().equals(ChoosenSender))	
-								if(m.getMessage().contains(txtPesquisaMensagensPor.getText()))
+								if(m.getMessage().contains(txtPesquisaMensagensPor.getText())) {
 									msgList.addMessage(m);
+									ShownMessages.add(m);
+									PossibleDates.add(m.getTime());
+								}
 					}
-
+					
+					for(String s:PossibleDates)
+						DateChoice.add(s);
 
 				}
 				ReconstructTable();
@@ -503,6 +565,25 @@ public class MainWindow {
 		});
 		btnFiltrar.setBounds(600, 501, 145, 23);
 		frame.getContentPane().add(btnFiltrar);
+
+		JButton BtnFiltrarData = new JButton("Filtrar Data");
+		BtnFiltrarData.setBounds(655, 129, 123, 20);
+		BtnFiltrarData.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				msgList.setHeaders(new String[] { "Data", "Canal", "Origem", "Mensagem" });
+				String[][] temp = new String[101][4];
+				msgList.setMsgMatrix(temp);
+				if(DateChoice.getItem(DateChoice.getSelectedIndex()).equals("All Dates"))
+					for(Message m:ShownMessages)
+						msgList.addMessage(m);
+				else
+					for(Message m:ShownMessages)
+						if(m.getTime().equals(DateChoice.getItem(DateChoice.getSelectedIndex())))
+							msgList.addMessage(m);
+				ReconstructTable();
+			}
+		});
+		frame.getContentPane().add(BtnFiltrarData);
 
 	}
 }

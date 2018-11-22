@@ -15,7 +15,7 @@ public class GmailAPITest {
 		try {
 			ArrayList<pt.iscte.esi.projeto.form.models.Message> emails = p.getMails();
 			for(Message m: emails)
-				System.out.println("Sender: "+m.getSender()+"\n"+"Time: "+m.getTime() + "\nMessage:" +m.getMessage()+ "\n");
+				System.out.println("Time: "+m.getTime() );
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
