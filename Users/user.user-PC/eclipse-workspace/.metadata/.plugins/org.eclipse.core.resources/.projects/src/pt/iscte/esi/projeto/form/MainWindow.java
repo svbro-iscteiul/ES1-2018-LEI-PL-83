@@ -269,17 +269,9 @@ public class MainWindow {
 				if (arg0.getButton() == MouseEvent.BUTTON1 || arg0.getButton() == MouseEvent.BUTTON2) {
 					int row = table.getSelectedRow();
 
-					if(table.getModel().getValueAt(row, 0)!=null) {
+					if(table.getModel().getValueAt(row, 0)!=null || table.getModel().getValueAt(row, 0)!="") {
 						new MessageDetailWindow(table.getModel().getValueAt(row, 0).toString(),table.getModel().getValueAt(row, 1).toString(),
 								table.getModel().getValueAt(row, 2).toString(),table.getModel().getValueAt(row, 3).toString());
-
-						frame.dispose();
-
-						if(table.getModel().getValueAt(row, 0)!="") {
-							new MessageDetailWindow(table.getModel().getValueAt(row, 0).toString(),table.getModel().getValueAt(row, 1).toString(),
-									table.getModel().getValueAt(row, 2).toString(),table.getModel().getValueAt(row, 3).toString());
-							frame.dispose();
-						}
 					}
 				}
 			}

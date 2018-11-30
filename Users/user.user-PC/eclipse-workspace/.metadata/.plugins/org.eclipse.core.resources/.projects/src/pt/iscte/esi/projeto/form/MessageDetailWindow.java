@@ -10,8 +10,12 @@ import javax.swing.JFrame;
 import javax.swing.JTextArea;
 import javax.swing.JLabel;
 import javax.swing.JTextPane;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.SoftBevelBorder;
 import javax.swing.JButton;
 import javax.swing.JScrollBar;
+import javax.swing.JScrollPane;
+
 import com.jgoodies.forms.factories.DefaultComponentFactory;
 
 import pt.iscte.esi.projeto.form.models.TwitterAPI;
@@ -20,6 +24,8 @@ import java.awt.Font;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Cursor;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.CompoundBorder;
 
 /**
  * Window UI for message details
@@ -80,8 +86,8 @@ public class MessageDetailWindow {
 	private void initialize() {
 
 		frame = new JFrame();
-		frame.setBounds(100, 100, 800, 605);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setBounds(200, 150, 800, 605);
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 
 		ImageIcon image = new ImageIcon(
@@ -90,7 +96,7 @@ public class MessageDetailWindow {
 
 		// Adding photo to the frame "MainFrameMessageView"
 		JLabel fotoDois = new JLabel("");
-		fotoDois.setBounds(541, -40, 282, 276);
+		fotoDois.setBounds(608, -23, 194, 205);
 		Image img = image.getImage().getScaledInstance(fotoDois.getWidth(), fotoDois.getHeight(), Image.SCALE_SMOOTH);
 
 		fotoDois.setIcon(new ImageIcon(img));
@@ -111,17 +117,6 @@ public class MessageDetailWindow {
 		});
 		btOk.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		frame.getContentPane().add(btOk);
-
-
-		// ScrollBars displayed
-		
-		JScrollBar scrollBar = new JScrollBar();
-		scrollBar.setBounds(655, 168, 17, 240);
-		frame.getContentPane().add(scrollBar);
-		
-		JScrollBar scrollBarResponse = new JScrollBar();
-		scrollBarResponse.setBounds(655, 420, 17, 50);
-		frame.getContentPane().add(scrollBarResponse);
 
 		
 
@@ -175,6 +170,8 @@ public class MessageDetailWindow {
 
 
 		//here we can watch the complete message
+		
+		
 
 		JTextArea textArea = new JTextArea();
 		textArea.setText(text);
@@ -182,9 +179,12 @@ public class MessageDetailWindow {
 		textArea.setLineWrap(true);
 		textArea.setForeground(new Color(0, 0, 128));
 		textArea.setBounds(115, 168, 557, 240);
-		frame.getContentPane().add(textArea);
 		
 		
+		JScrollPane panel = new JScrollPane(textArea);
+		panel.setBorder(new CompoundBorder());
+		panel.setBounds(110, 168, 562, 179);
+		frame.getContentPane().add(panel);
 		
 		//here we can watch the complete message
 
@@ -195,6 +195,11 @@ public class MessageDetailWindow {
 		textAreaResponse.setForeground(new Color(0, 0, 128));
 		textAreaResponse.setBounds(115, 420, 557, 50);
 		frame.getContentPane().add(textAreaResponse);
+		
+		JScrollPane panel2 = new JScrollPane(textAreaResponse);
+		panel2.setBorder(new CompoundBorder());
+		panel2.setBounds(110, 358, 562, 112);
+		frame.getContentPane().add(panel2);
 		
 		JLabel link2Response = new JLabel("<html><font color='black'>| Responder/Comentar |  </font></html>");
 		link2Response.setBounds(115, 480, 140, 14);
