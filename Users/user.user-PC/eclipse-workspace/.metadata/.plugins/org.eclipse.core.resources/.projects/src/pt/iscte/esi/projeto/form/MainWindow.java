@@ -37,10 +37,12 @@ import javax.swing.table.DefaultTableModel;
 
 import DBA.DBAWindow;
 import pt.iscte.esi.projeto.form.models.GmailAPI;
+import pt.iscte.esi.projeto.form.models.GmailThread;
 import pt.iscte.esi.projeto.form.models.Message;
 import pt.iscte.esi.projeto.form.models.MessageComparator;
 import pt.iscte.esi.projeto.form.models.StringComparator;
 import pt.iscte.esi.projeto.form.models.TwitterAPI;
+import pt.iscte.esi.projeto.form.models.TwitterThread;
 import pt.iscte.esi.projeto.utils.MainMsgList;
 
 /**
@@ -90,6 +92,7 @@ public class MainWindow {
 	 * Class constructor.
 	 */
 	public MainWindow() {
+		
 		initialize();
 		frame.setVisible(true);
 	}
@@ -98,7 +101,7 @@ public class MainWindow {
 	/**
 	 * gets the tweets and adds them to the specific list
 	 */
-	private void getTweets() {
+	/*private void getTweets() {
 		TwitterAPI t = new TwitterAPI();
 		tweets = t.getTweets();
 	}
@@ -106,7 +109,7 @@ public class MainWindow {
 	/**
 	 * gets the emails and adds them to the specific list
 	 */
-	private void getEmails() {
+	/*private void getEmails() {
 		GmailAPI g = new GmailAPI();
 		try {
 			emails = g.getMails();
@@ -183,6 +186,8 @@ public class MainWindow {
 	 * Create and initialize Window.
 	 */
 	private void initialize() {
+		TwitterThread t= new TwitterThread();
+		GmailThread g = new GmailThread();
 		frame = new JFrame();
 		frame.getContentPane().setBackground(new Color(255, 255, 255));
 		frame.setBounds(100, 100, 800, 605);
@@ -205,19 +210,35 @@ public class MainWindow {
 		String[][] temp = new String[101][4];
 		msgList.setMsgMatrix(temp);
 
-		getTweets();
-		for (Message m : tweets) {
+		try {
+			t.join();
+			tweets=t.getTweets();
+			for (Message m : tweets) {
 			//	msgList.addMessage(m);
 			AllMessages.add(m);
 			TwitterSenders.add(m.getSender());
 		}
-
-		getEmails();
-		for (Message m : emails) {
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		//getTweets();
+		
+		
+		//getEmails();
+		try {
+			g.join();
+			emails=g.getMails();
+			for (Message m : emails) {
 			//msgList.addMessage(m);
 			AllMessages.add(m);
 			EmailSenders.add(m.getSender());
 		}
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
 
 
 		Collections.sort(AllMessages, new MessageComparator());
