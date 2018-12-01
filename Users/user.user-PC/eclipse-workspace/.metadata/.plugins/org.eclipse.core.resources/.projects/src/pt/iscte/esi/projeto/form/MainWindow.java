@@ -714,51 +714,49 @@ public class MainWindow {
 	private void getMatrixElements() {
 
 		try {
-			GmailThread g = new GmailThread();
-			g.join();
-			emails=g.getMails();
-			if(emails.size()==0) {
+			GmailThread f = new GmailThread();
+			f.join();
+			emails=f.getMails();
+			if(posts.size()==0) {
 				this.getEmail=false;
-				emails=ApiDB.ReadEmail();
-				for (Message m : emails) {
+				posts=ApiDB.ReadEmail();
+				for (Message m : posts) {
 					//msgList.addMessage(m);
 					AllMessages.add(m);
 					EmailSenders.add(m.getSender());
-
 				}
 			}
 			else {
-				for (Message m : emails) {
+				for (Message m : posts) {
 					//msgList.addMessage(m);
 					AllMessages.add(m);
 					EmailSenders.add(m.getSender());
 				}
-				ApiDB.WriteEmail(emails);
+				ApiDB.WriteEmail(posts);
 			}
 		}catch(Exception e1){
 			e1.printStackTrace();	
 		}
 		try {
-			TwitterThread t = new TwitterThread();
-			t.join();
-			tweets=t.getTweets();
-			if(tweets.size()==0) {
+			TwitterThread f = new TwitterThread();
+			f.join();
+			posts=f.getTweets();
+			if(posts.size()==0) {
 				this.getTwitter=false;
-				tweets=ApiDB.ReadTwitter();
-				for (Message m : tweets) {
+				posts=ApiDB.ReadTwitter();
+				for (Message m : posts) {
 					//msgList.addMessage(m);
 					AllMessages.add(m);
 					TwitterSenders.add(m.getSender());
-
 				}
 			}
 			else {
-				for (Message m : tweets) {
+				for (Message m : posts) {
 					//msgList.addMessage(m);
 					AllMessages.add(m);
 					TwitterSenders.add(m.getSender());
 				}
-				ApiDB.WriteTwitter(tweets);
+				ApiDB.WriteTwitter(posts);
 			}
 		}catch(Exception e1){
 			e1.printStackTrace();	

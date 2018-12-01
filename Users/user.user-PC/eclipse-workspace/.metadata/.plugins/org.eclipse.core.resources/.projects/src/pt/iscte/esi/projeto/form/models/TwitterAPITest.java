@@ -22,22 +22,19 @@ public class TwitterAPITest {
 			t.join();
 		
 			 t.getTweets();
-			List<Message> message = p.getTweets();
+			List<Message> message = t.getTweets();
 			a.WriteTwitter(message);
 			
-				/*List<Message> message =a.ReadTwitter();
-			for(Message m: message)
-				System.out.println("Sender: "+m.getSender()+" Time: "+m.getTime() + " Message:" +m.getMessage()+ "\n");*/
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+				List<Message> message1 =a.ReadTwitter();
+			for(Message m: message1)
+				System.out.println("Sender: "+m.getSender()+" Time: "+m.getTime() + " Message:" +m.getMessage()+ "\n");
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} catch (TwitterException e) {
+		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} 
