@@ -51,6 +51,12 @@ import pt.iscte.esi.projeto.utils.MainMsgList;
  */
 public class MainWindow {
 
+	private boolean twitterOff = true;
+	private boolean facebookOff = true;
+	private boolean emailOff = true;
+	
+	
+	private MainWindow mainWindow;
 	private JFrame frame;
 	private JTable table;
 	private JLabel image2;
@@ -92,6 +98,7 @@ public class MainWindow {
 	 * Class constructor.
 	 */
 	public MainWindow() {
+		mainWindow = this;
 		
 		initialize();
 		frame.setVisible(true);
@@ -119,6 +126,8 @@ public class MainWindow {
 			e.printStackTrace();
 		}
 	}
+	
+	
 
 	/**
 	 * Reconstructs the MainWindow's table
@@ -134,6 +143,36 @@ public class MainWindow {
 			}
 		};
 		table.setModel(defaultTableModel);
+	}
+
+
+	public boolean isTwitterOff() {
+		return twitterOff;
+	}
+
+
+	public void setTwitterOff(boolean twitterOff) {
+		this.twitterOff = twitterOff;
+	}
+
+
+	public boolean isFacebookOff() {
+		return facebookOff;
+	}
+
+
+	public void setFacebookOff(boolean facebookOff) {
+		this.facebookOff = facebookOff;
+	}
+
+
+	public boolean isEmailOff() {
+		return emailOff;
+	}
+
+
+	public void setEmailOff(boolean emailOff) {
+		this.emailOff = emailOff;
 	}
 
 
@@ -302,7 +341,7 @@ public class MainWindow {
 		lblAdd_tokens.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg1) {
-				new AccountManageWindow();
+				new AccountManageWindow(mainWindow);
 				//frame.dispose();
 			}
 		});

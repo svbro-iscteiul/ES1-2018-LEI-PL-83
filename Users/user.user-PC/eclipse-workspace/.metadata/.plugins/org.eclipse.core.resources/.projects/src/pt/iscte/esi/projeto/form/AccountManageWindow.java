@@ -22,6 +22,9 @@ import javax.swing.border.EmptyBorder;
 import com.jgoodies.forms.factories.DefaultComponentFactory;
 
 import pt.iscte.esi.projeto.utils.XMLFileEditor;
+import java.awt.SystemColor;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 
 
@@ -33,6 +36,7 @@ public class AccountManageWindow extends JFrame {
 
 	private JFrame frame;
 	private JPanel contentPane;
+	private MainWindow mainWindow;
 
 	private JTextField textField;
 	private JTextField extendedAccessTokenFace1;
@@ -59,6 +63,15 @@ public class AccountManageWindow extends JFrame {
 	 * Class constructor.
 	 */
 	public AccountManageWindow() {
+		initialize();
+		frame.setVisible(true);
+	}
+	
+	/**
+	 * Class constructor.
+	 */
+	public AccountManageWindow(MainWindow mainWindow) {
+		this.mainWindow = mainWindow;
 		initialize();
 		frame.setVisible(true);
 	}
@@ -288,16 +301,29 @@ public class AccountManageWindow extends JFrame {
 		 * Adds Ok button to the frame and his action
 		 */
 		JButton btnOk = new JButton("OK");
+	
 		btnOk.setBounds(690, 527, 69, 29);
-		btnOk.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				new MainWindow();
-				frame.dispose();
-			}
-		});
+		
 		btnOk.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		contentPane.add(btnOk);
+		
+		JRadioButton rdbtnDesactivarContaFacebbok = new JRadioButton("Desactivar conta Facebook");
+		rdbtnDesactivarContaFacebbok.setBackground(SystemColor.text);
+		rdbtnDesactivarContaFacebbok.setForeground(Color.BLACK);
+		rdbtnDesactivarContaFacebbok.setBounds(517, 171, 226, 23);
+		contentPane.add(rdbtnDesactivarContaFacebbok);
+		
+		JRadioButton rdbtnDesactivarContaTwitter = new JRadioButton("Desactivar conta Twitter");
+		rdbtnDesactivarContaTwitter.setForeground(Color.BLACK);
+		rdbtnDesactivarContaTwitter.setBackground(Color.WHITE);
+		rdbtnDesactivarContaTwitter.setBounds(517, 360, 226, 23);
+		contentPane.add(rdbtnDesactivarContaTwitter);
+		
+		JRadioButton rdbtnDesactivarContaMail = new JRadioButton("Desactivar conta Mail");
+		rdbtnDesactivarContaMail.setForeground(Color.BLACK);
+		rdbtnDesactivarContaMail.setBackground(Color.WHITE);
+		rdbtnDesactivarContaMail.setBounds(517, 489, 226, 23);
+		contentPane.add(rdbtnDesactivarContaMail);
 
 		// (18_11_18 - elsa)
 		// Configuration of the frame, to receive tokens of Twitter from user
@@ -373,13 +399,33 @@ public class AccountManageWindow extends JFrame {
 			}
 			}
 		});
+		
+		btnOk.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				//new MainWindow();
+				
+				if(rdbtnDesactivarContaFacebbok.isEnabled()) {
+					mainWindow.setFacebookOff(false);
+				}
+				if(rdbtnDesactivarContaTwitter.isEnabled()) {
+					mainWindow.setTwitterOff(false);
+				}
+				if(rdbtnDesactivarContaMail.isEnabled()) {
+					mainWindow.setEmailOff(false);
+				}
+				
+				frame.dispose();
+				
+			}
+		});
 	}
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					new MessageDetailWindow();
+					new AccountManageWindow();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

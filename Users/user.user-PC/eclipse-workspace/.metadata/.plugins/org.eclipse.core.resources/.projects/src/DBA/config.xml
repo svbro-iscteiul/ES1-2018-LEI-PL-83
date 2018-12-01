@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><Config>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Config>
 	<Login>
 		<User_Login>
 			<Username>username</Username>
@@ -45,10 +46,16 @@
 			<Password>elsa</Password>
 			<Email>elsa@gmail.com</Email>
 		</User_Login>
-	<User_Login><Username>NewTest</Username><Password>NewTest</Password><Email>NewTest@ms.com</Email></User_Login></Login>
+		<User_Login>
+			<Username>NewTest</Username>
+			<Password>NewTest</Password>
+			<Email>NewTest@ms.com</Email>
+		</User_Login>
+	</Login>
 	<Facebook>
 	</Facebook>
-	<Twitter><User_Twitter>
+	<Twitter>
+		<User_Twitter>
 			<ConsumerKey>Consumer</ConsumerKey>
 			<ConsumerSecret>ConsumerS</ConsumerSecret>
 			<AccessToken>Access</AccessToken>
@@ -60,14 +67,31 @@
 			<AuthAccessToken>ConsumerT</AuthAccessToken>
 			<AuthAccesTokenSecret>ConsumerT</AuthAccesTokenSecret>
 		</User_Twitter_Token>
-	<User_Twitter_Token><AuthConsumerSecret>NewTest</AuthConsumerSecret><AuthConsumerKey>NewTest</AuthConsumerKey><AuthAccessToken>NewTest</AuthAccessToken><AuthAccesTokenSecret>NewTest</AuthAccesTokenSecret></User_Twitter_Token><User_Twitter><ConsumerKey>NewTest</ConsumerKey><ConsumerSecret>NewTest</ConsumerSecret><AccessToken>NewTest</AccessToken><AccessTokenSecret>NewTest</AccessTokenSecret></User_Twitter></Twitter>
-	<Gmail><User_Email>
+		<User_Twitter_Token>
+			<AuthConsumerSecret>NewTest</AuthConsumerSecret>
+			<AuthConsumerKey>NewTest</AuthConsumerKey>
+			<AuthAccessToken>NewTest</AuthAccessToken>
+			<AuthAccesTokenSecret>NewTest</AuthAccesTokenSecret>
+		</User_Twitter_Token>
+		<User_Twitter>
+			<ConsumerKey>NewTest</ConsumerKey>
+			<ConsumerSecret>NewTest</ConsumerSecret>
+			<AccessToken>NewTest</AccessToken>
+			<AccessTokenSecret>NewTest</AccessTokenSecret>
+		</User_Twitter>
+	</Twitter>
+	<Gmail>
+		<User_Email>
 			<Mail>user</Mail>
 			<Password>pass</Password>
 		</User_Email>
-	<User_Email>
-      <Mail>klldfsldvxjjlskldfj111111</Mail>
-      <Password>assdfsdfd</Password>
-    </User_Email>
-  <User_Email><Mail>NewTest</Mail><Password>NewTest</Password></User_Email></Gmail>
+		<User_Email>
+			<Mail>klldfsldvxjjlskldfj111111</Mail>
+			<Password>assdfsdfd</Password>
+		</User_Email>
+		<User_Email>
+			<Mail>NewTest</Mail>
+			<Password>NewTest</Password>
+		</User_Email>
+	</Gmail>
 </Config>
