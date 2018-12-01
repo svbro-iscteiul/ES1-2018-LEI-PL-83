@@ -13,6 +13,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
@@ -33,6 +34,7 @@ import javax.swing.SwingUtilities;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 
+import DBA.APIDataBase;
 import DBA.DBAWindow;
 import pt.iscte.esi.projeto.form.models.FacebookThread;
 import pt.iscte.esi.projeto.form.models.GmailThread;
@@ -51,18 +53,22 @@ public class MainWindow {
 	private boolean twitterOff = false;
 	private boolean facebookOff = false;
 	private boolean emailOff = false;
-	
-	
+
+	private boolean getEmail=true;
+	private boolean getFacebook=true;
+	private boolean getTwitter=true;
+
+	private APIDataBase ApiDB= new APIDataBase();
 	private MainWindow mainWindow;
 	private JFrame frame;
 	private JTable table;
 	private MainMsgList msgList;
 	private DefaultTableModel defaultTableModel;
-	private ArrayList<Message> tweets = new ArrayList<Message>();
-	private ArrayList<Message> emails = new ArrayList<Message>();
-	private ArrayList<Message> posts = new ArrayList<Message>();
-	private ArrayList<Message> AllMessages = new ArrayList<Message>();
-	private ArrayList<Message> ShownMessages= new ArrayList<Message>();
+	private List<Message> tweets = new ArrayList<Message>();
+	private List<Message> emails = new ArrayList<Message>();
+	private List<Message> posts = new ArrayList<Message>();
+	private List<Message> AllMessages = new ArrayList<Message>();
+	private List<Message> ShownMessages= new ArrayList<Message>();
 	private Set<String> TwitterSenders = new HashSet<String>();
 	private Set<String> EmailSenders = new HashSet<String>();
 	private Set<String> FacebookSenders = new HashSet<String>();
@@ -97,7 +103,7 @@ public class MainWindow {
 	 */
 	public MainWindow() {
 		mainWindow = this;
-		
+
 		initialize();
 		frame.setVisible(true);
 	}
@@ -124,8 +130,8 @@ public class MainWindow {
 			e.printStackTrace();
 		}
 	}*/
-	
-	
+
+
 
 
 
@@ -158,14 +164,14 @@ public class MainWindow {
 		this.emailOff = emailOff;
 	}
 
-	
+
 	public void refreshAllTable() {
 		refreshTable();
 		reconstructTable();
-		
-		
+
+
 	}
-	
+
 
 	/**
 	 * Updates new information in academic news frame
@@ -184,7 +190,7 @@ public class MainWindow {
 			defaultTableModel.setDataVector(msgList.getMsgMatrix(), msgList.getHeaders());
 		}
 	}
-	
+
 
 	/**
 	 * Reconstructs the MainWindow's table
@@ -234,7 +240,7 @@ public class MainWindow {
 	 * Create and initialize Window.
 	 */
 	private void initialize() {
-		
+
 		frame = new JFrame();
 		frame.getContentPane().setBackground(new Color(255, 255, 255));
 		frame.setBounds(100, 100, 800, 605);
@@ -257,15 +263,17 @@ public class MainWindow {
 		String[][] temp = new String[101][4];
 		msgList.setMsgMatrix(temp);
 
-		
-		getMatrixElements(); // adicionar thread do Facebook
-		
+
+		getMatrixElements(); 
+
 
 		Collections.sort(AllMessages, new MessageComparator());
-		
+
 		ShownMessages = new ArrayList<Message>(AllMessages);
-		
+
 		showMessages();
+
+
 
 		Collections.sort(Dates, new StringComparator());
 
@@ -422,7 +430,7 @@ public class MainWindow {
 						choice_2.add(s);
 					for(String s:tmp)
 						DateChoice.add(s);
-					
+
 					FilterSender.setEnabled(true);
 
 				}
@@ -495,6 +503,23 @@ public class MainWindow {
 		foto.setIcon(new ImageIcon(img));
 		frame.getContentPane().add(foto);
 
+		JLabel ErrorMessage = new JLabel("");
+		ErrorMessage.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		ErrorMessage.setBounds(44, 465, 500, 25);
+
+		String error="";
+		if(!getEmail || !getFacebook || !getTwitter)
+			error+="Unable to get from:";
+		if(!getEmail)
+			error+="email,";
+		if(!getTwitter)
+			error+="twitter,";
+		if(!getFacebook)
+			error+="facebook,";
+
+		if(!error.equals(""))
+			ErrorMessage.setText("<html><font color='red'>Error:"+error+"</font></html>");
+		frame.getContentPane().add(ErrorMessage);
 		JTextField txtPesquisaMensagensPor = new JTextField();
 		txtPesquisaMensagensPor.setBounds(344, 502, 234, 20);
 		txtPesquisaMensagensPor.setForeground(new Color(112, 128, 144));
@@ -687,59 +712,90 @@ public class MainWindow {
 
 
 	private void getMatrixElements() {
-		
-		TwitterThread t = new TwitterThread();
-		GmailThread g = new GmailThread();
-		FacebookThread f = new FacebookThread();
-		
+
 		try {
-			t.join();
-			tweets=t.getTweets();
-			for (Message m : tweets) {
-			//	msgList.addMessage(m);
-			AllMessages.add(m);
-			TwitterSenders.add(m.getSender());
-		}
-		} catch (InterruptedException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		//getTweets();
-		
-		
-		//getEmails();
-		try {
+			GmailThread g = new GmailThread();
 			g.join();
 			emails=g.getMails();
-			for (Message m : emails) {
-			//msgList.addMessage(m);
-			AllMessages.add(m);
-			EmailSenders.add(m.getSender());
+			if(emails.size()==0) {
+				this.getEmail=false;
+				emails=ApiDB.ReadEmail();
+				for (Message m : emails) {
+					//msgList.addMessage(m);
+					AllMessages.add(m);
+					EmailSenders.add(m.getSender());
+
+				}
+			}
+			else {
+				for (Message m : emails) {
+					//msgList.addMessage(m);
+					AllMessages.add(m);
+					EmailSenders.add(m.getSender());
+				}
+				ApiDB.WriteEmail(emails);
+			}
+		}catch(Exception e1){
+			e1.printStackTrace();	
 		}
-		} catch (InterruptedException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}	
 		try {
+			TwitterThread t = new TwitterThread();
+			t.join();
+			tweets=t.getTweets();
+			if(tweets.size()==0) {
+				this.getTwitter=false;
+				tweets=ApiDB.ReadTwitter();
+				for (Message m : tweets) {
+					//msgList.addMessage(m);
+					AllMessages.add(m);
+					TwitterSenders.add(m.getSender());
+
+				}
+			}
+			else {
+				for (Message m : tweets) {
+					//msgList.addMessage(m);
+					AllMessages.add(m);
+					TwitterSenders.add(m.getSender());
+				}
+				ApiDB.WriteTwitter(tweets);
+			}
+		}catch(Exception e1){
+			e1.printStackTrace();	
+		}
+		try {
+			FacebookThread f = new FacebookThread();
 			f.join();
 			posts=f.getPosts();
-			for (Message m : posts) {
-			//msgList.addMessage(m);
-			AllMessages.add(m);
-			FacebookSenders.add(m.getSender());
+			if(posts.size()==0) {
+				this.getFacebook=false;
+				posts=ApiDB.ReadFacebook();
+				for (Message m : posts) {
+					//msgList.addMessage(m);
+					AllMessages.add(m);
+					FacebookSenders.add(m.getSender());
+				}
+			}
+			else {
+				for (Message m : posts) {
+					//msgList.addMessage(m);
+					AllMessages.add(m);
+					FacebookSenders.add(m.getSender());
+				}
+				ApiDB.WriteFacebook(posts);
+			}
+		}catch(Exception e1){
+			e1.printStackTrace();	
 		}
-		} catch (InterruptedException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}	
+
 	}
 
 
 	private void showMessages() {
 		Set<String> tmp = new HashSet<String>();
-		
+
 		for(Message m : ShownMessages) {
-			
+
 			if(m.getChannel().equals("Twitter") && !twitterOff) {
 				msgList.addMessage(m);
 				tmp.add(m.getTime());
@@ -753,10 +809,10 @@ public class MainWindow {
 				tmp.add(m.getTime());
 			}			
 		}
-		
+
 		tmp.addAll(Dates);
 		Dates.clear();
 		Dates.addAll(tmp);
-		
+
 	}
 }

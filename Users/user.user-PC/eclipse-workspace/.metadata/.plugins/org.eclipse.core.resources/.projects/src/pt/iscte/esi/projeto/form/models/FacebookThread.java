@@ -12,8 +12,12 @@ public class FacebookThread extends Thread{
 	@Override
 	public void run(){
 		
-		posts=Facebook.getPosts();
-	
+		try {
+			posts=Facebook.getPosts();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	public ArrayList<Message> getPosts() {
 		return posts;

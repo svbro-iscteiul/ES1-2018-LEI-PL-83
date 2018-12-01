@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import twitter4j.Status;
 import twitter4j.Twitter;
+import twitter4j.TwitterException;
 import twitter4j.TwitterFactory;
 import twitter4j.conf.ConfigurationBuilder;
 
@@ -22,9 +23,10 @@ public class TwitterAPI {
 	 * and creates a object message with the text, time of the tweet 
 	 * 
 	 * @return message as ArrayList<Message>
+	 * @throws TwitterException 
 	 */
-	public ArrayList<Message> getTweets() {
-        try {
+	public ArrayList<Message> getTweets() throws TwitterException {
+
         	ConfigurationBuilder cb = new ConfigurationBuilder();
         	cb.setDebugEnabled(true)
           .setOAuthConsumerKey("lssQlInMSR48WEhVnhhEpLKlU")
@@ -46,7 +48,6 @@ public class TwitterAPI {
 				}
             }     
             return message;
-        } catch (Exception e) { System.out.println(e.getMessage()); return null;}
      }
 	
 	/**
