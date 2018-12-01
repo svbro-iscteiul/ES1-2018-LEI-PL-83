@@ -57,23 +57,43 @@ public class AccountManageWindow extends JFrame {
 	private JTextField usernameMail;
 
 	private XMLFileEditor editor = new XMLFileEditor();
+	
+	private boolean twitterOff = false;
+	private boolean facebookOff = false;
+	private boolean emailOff = false;
 
 
 	/**
 	 * Class constructor.
 	 */
 	public AccountManageWindow() {
+		updateBoolStatus();
 		initialize();
 		frame.setVisible(true);
 	}
 	
+
+
 	/**
 	 * Class constructor.
 	 */
 	public AccountManageWindow(MainWindow mainWindow) {
 		this.mainWindow = mainWindow;
+		updateBoolStatus();
 		initialize();
 		frame.setVisible(true);
+	}
+	
+	/**
+	 * Updates boolean status from mainwindow
+	 */
+	private void updateBoolStatus() {
+		if(mainWindow != null) {
+			twitterOff = mainWindow.isTwitterOff();
+			facebookOff = mainWindow.isFacebookOff();
+			emailOff = mainWindow.isEmailOff();
+		}
+		
 	}
 
 	
@@ -324,6 +344,13 @@ public class AccountManageWindow extends JFrame {
 		rdbtnDesactivarContaMail.setBackground(Color.WHITE);
 		rdbtnDesactivarContaMail.setBounds(517, 489, 226, 23);
 		contentPane.add(rdbtnDesactivarContaMail);
+		
+		if(twitterOff)
+			rdbtnDesactivarContaTwitter.setSelected(true);
+		if(facebookOff)
+			rdbtnDesactivarContaFacebbok.setSelected(true);
+		if(emailOff)
+			rdbtnDesactivarContaMail.setSelected(true);
 
 		// (18_11_18 - elsa)
 		// Configuration of the frame, to receive tokens of Twitter from user
@@ -404,21 +431,31 @@ public class AccountManageWindow extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				//new MainWindow();
+				if(mainWindow != null) {
+					if(rdbtnDesactivarContaFacebbok.isSelected()) {
+						mainWindow.setFacebookOff(true);
+					}
+					if(rdbtnDesactivarContaTwitter.isSelected()) {
+						mainWindow.setTwitterOff(true);
+					}
+					if(rdbtnDesactivarContaMail.isSelected()) {
+						mainWindow.setEmailOff(true);
+					}
+				}
+
+				Thread thread = new Thread() {
+					@Override
+					public void run() {
+						mainWindow.refreshAllTable();
+					}
+				};
 				
-				if(rdbtnDesactivarContaFacebbok.isEnabled()) {
-					mainWindow.setFacebookOff(true);
-				}
-				if(rdbtnDesactivarContaTwitter.isEnabled()) {
-					mainWindow.setTwitterOff(true);
-				}
-				if(rdbtnDesactivarContaMail.isEnabled()) {
-					mainWindow.setEmailOff(true);
-				}
-				
+				thread.start();
 				frame.dispose();
 				
 			}
 		});
+		
 	}
 
 	public static void main(String[] args) {

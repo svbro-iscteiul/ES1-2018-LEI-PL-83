@@ -14,7 +14,6 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -32,16 +31,13 @@ import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingUtilities;
 import javax.swing.border.LineBorder;
-import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
 import DBA.DBAWindow;
-import pt.iscte.esi.projeto.form.models.GmailAPI;
 import pt.iscte.esi.projeto.form.models.GmailThread;
 import pt.iscte.esi.projeto.form.models.Message;
 import pt.iscte.esi.projeto.form.models.MessageComparator;
 import pt.iscte.esi.projeto.form.models.StringComparator;
-import pt.iscte.esi.projeto.form.models.TwitterAPI;
 import pt.iscte.esi.projeto.form.models.TwitterThread;
 import pt.iscte.esi.projeto.utils.MainMsgList;
 
@@ -59,7 +55,6 @@ public class MainWindow {
 	private MainWindow mainWindow;
 	private JFrame frame;
 	private JTable table;
-	private JLabel image2;
 	private MainMsgList msgList;
 	private DefaultTableModel defaultTableModel;
 	private ArrayList<Message> tweets = new ArrayList<Message>();
@@ -125,25 +120,10 @@ public class MainWindow {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	}
+	}*/
 	
 	
 
-	/**
-	 * Reconstructs the MainWindow's table
-	 * 
-	 */
-	private void ReconstructTable() {
-		defaultTableModel = new DefaultTableModel(msgList.getMsgMatrix(), msgList.getHeaders()) {
-			private static final long serialVersionUID = 1L;
-			Class[] columnTypes = new Class[] { String.class, String.class, String.class, String.class };
-
-			public Class getColumnClass(int columnIndex) {
-				return columnTypes[columnIndex];
-			}
-		};
-		table.setModel(defaultTableModel);
-	}
 
 
 	public boolean isTwitterOff() {
@@ -175,6 +155,14 @@ public class MainWindow {
 		this.emailOff = emailOff;
 	}
 
+	
+	public void refreshAllTable() {
+		refreshTable();
+		reconstructTable();
+		
+		
+	}
+	
 
 	/**
 	 * Updates new information in academic news frame
@@ -193,6 +181,23 @@ public class MainWindow {
 			defaultTableModel.setDataVector(msgList.getMsgMatrix(), msgList.getHeaders());
 		}
 	}
+	
+
+	/**
+	 * Reconstructs the MainWindow's table
+	 * 
+	 */
+	private void reconstructTable() {
+		defaultTableModel = new DefaultTableModel(msgList.getMsgMatrix(), msgList.getHeaders()) {
+			private static final long serialVersionUID = 1L;
+			Class[] columnTypes = new Class[] { String.class, String.class, String.class, String.class };
+
+			public Class getColumnClass(int columnIndex) {
+				return columnTypes[columnIndex];
+			}
+		};
+		table.setModel(defaultTableModel);
+	}
 
 	/**
 	 * Under work!! used to select an element in the list.
@@ -200,6 +205,7 @@ public class MainWindow {
 	 * @param component
 	 * @param popup
 	 */
+	@SuppressWarnings("unused")
 	private static void addPopup(Component component, final JPopupMenu popup) {
 		component.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent e) {
@@ -225,8 +231,7 @@ public class MainWindow {
 	 * Create and initialize Window.
 	 */
 	private void initialize() {
-		TwitterThread t= new TwitterThread();
-		GmailThread g = new GmailThread();
+		
 		frame = new JFrame();
 		frame.getContentPane().setBackground(new Color(255, 255, 255));
 		frame.setBounds(100, 100, 800, 605);
@@ -249,60 +254,19 @@ public class MainWindow {
 		String[][] temp = new String[101][4];
 		msgList.setMsgMatrix(temp);
 
-		try {
-			t.join();
-			tweets=t.getTweets();
-			for (Message m : tweets) {
-			//	msgList.addMessage(m);
-			AllMessages.add(m);
-			TwitterSenders.add(m.getSender());
-		}
-		} catch (InterruptedException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		//getTweets();
 		
+		getMatrixElements(); // adicionar thread do Facebook
 		
-		//getEmails();
-		try {
-			g.join();
-			emails=g.getMails();
-			for (Message m : emails) {
-			//msgList.addMessage(m);
-			AllMessages.add(m);
-			EmailSenders.add(m.getSender());
-		}
-		} catch (InterruptedException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		
-
 
 		Collections.sort(AllMessages, new MessageComparator());
-		Set<String> tmp = new HashSet<String>();
+		
 		ShownMessages = new ArrayList<Message>(AllMessages);
-		for(Message m : ShownMessages) {
-			//msgList.addMessage(m);
-			
-			if(m.getChannel().equals("Twitter") && !twitterOff) {
-				tmp.add(m.getTime());
-			}
-			else if(m.getChannel().equals("Facebbok") && !facebookOff) {
-				tmp.add(m.getTime());
-			}
-			else if(m.getChannel().equals("Mail") && !emailOff) {
-				tmp.add(m.getTime());
-			}			
-		}
-		tmp.addAll(Dates);
-		Dates.clear();
-		Dates.addAll(tmp);
-		Collections.sort(Dates, new StringComparator());
-		// for(Message f : facebook) fazer depois get messages from face
+		
+		showMessages();
 
-		ReconstructTable();
+		Collections.sort(Dates, new StringComparator());
+
+		reconstructTable();
 
 
 		//refreshTable();
@@ -415,7 +379,7 @@ public class MainWindow {
 						}
 				}
 
-				ReconstructTable();
+				reconstructTable();
 			}});
 
 		frame.getContentPane().add(FilterSender);
@@ -483,7 +447,7 @@ public class MainWindow {
 					FilterSender.setEnabled(false);
 				}
 
-				ReconstructTable();
+				reconstructTable();
 
 
 			}});
@@ -502,10 +466,6 @@ public class MainWindow {
 
 		foto.setIcon(new ImageIcon(img));
 		frame.getContentPane().add(foto);
-
-		/*
-		 * Adds Button "Filtrar" to the window
-		 */
 
 		JTextField txtPesquisaMensagensPor = new JTextField();
 		txtPesquisaMensagensPor.setBounds(344, 502, 234, 20);
@@ -547,7 +507,7 @@ public class MainWindow {
 		btnRefresh.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				refreshTable();
+				refreshAllTable();
 			}
 		});
 		btnRefresh.setBounds(44, 501, 93, 23);
@@ -634,7 +594,7 @@ public class MainWindow {
 						DateChoice.add(s);
 
 				}
-				ReconstructTable();
+				reconstructTable();
 			}
 		});
 		btnFiltrar.setBounds(600, 501, 145, 23);
@@ -654,10 +614,72 @@ public class MainWindow {
 					for(Message m:ShownMessages)
 						if(m.getTime().equals(DateChoice.getItem(DateChoice.getSelectedIndex())))
 							msgList.addMessage(m);
-				ReconstructTable();
+				reconstructTable();
 			}
 		});
 		frame.getContentPane().add(BtnFiltrarData);
 
+	}
+
+
+	private void getMatrixElements() {
+		
+		TwitterThread t = new TwitterThread();
+		GmailThread g = new GmailThread();
+		
+		try {
+			t.join();
+			tweets=t.getTweets();
+			for (Message m : tweets) {
+			//	msgList.addMessage(m);
+			AllMessages.add(m);
+			TwitterSenders.add(m.getSender());
+		}
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		//getTweets();
+		
+		
+		//getEmails();
+		try {
+			g.join();
+			emails=g.getMails();
+			for (Message m : emails) {
+			//msgList.addMessage(m);
+			AllMessages.add(m);
+			EmailSenders.add(m.getSender());
+		}
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}	
+	}
+
+
+	private void showMessages() {
+		Set<String> tmp = new HashSet<String>();
+		
+		for(Message m : ShownMessages) {
+			
+			if(m.getChannel().equals("Twitter") && !twitterOff) {
+				msgList.addMessage(m);
+				tmp.add(m.getTime());
+			}
+			else if(m.getChannel().equals("Facebbok") && !facebookOff) {
+				msgList.addMessage(m);
+				tmp.add(m.getTime());
+			}
+			else if(m.getChannel().equals("Email") && !emailOff) {
+				msgList.addMessage(m);
+				tmp.add(m.getTime());
+			}			
+		}
+		
+		tmp.addAll(Dates);
+		Dates.clear();
+		Dates.addAll(tmp);
+		
 	}
 }
