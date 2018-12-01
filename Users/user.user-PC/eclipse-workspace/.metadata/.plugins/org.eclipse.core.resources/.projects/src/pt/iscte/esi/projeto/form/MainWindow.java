@@ -51,9 +51,9 @@ import pt.iscte.esi.projeto.utils.MainMsgList;
  */
 public class MainWindow {
 
-	private boolean twitterOff = true;
-	private boolean facebookOff = true;
-	private boolean emailOff = true;
+	private boolean twitterOff = false;
+	private boolean facebookOff = false;
+	private boolean emailOff = false;
 	
 	
 	private MainWindow mainWindow;
@@ -284,8 +284,17 @@ public class MainWindow {
 		Set<String> tmp = new HashSet<String>();
 		ShownMessages = new ArrayList<Message>(AllMessages);
 		for(Message m : ShownMessages) {
-			msgList.addMessage(m);
-			tmp.add(m.getTime());
+			//msgList.addMessage(m);
+			
+			if(m.getChannel().equals("Twitter") && !twitterOff) {
+				tmp.add(m.getTime());
+			}
+			else if(m.getChannel().equals("Facebbok") && !facebookOff) {
+				tmp.add(m.getTime());
+			}
+			else if(m.getChannel().equals("Mail") && !emailOff) {
+				tmp.add(m.getTime());
+			}			
 		}
 		tmp.addAll(Dates);
 		Dates.clear();

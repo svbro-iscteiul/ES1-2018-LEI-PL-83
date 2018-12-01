@@ -406,13 +406,13 @@ public class AccountManageWindow extends JFrame {
 				//new MainWindow();
 				
 				if(rdbtnDesactivarContaFacebbok.isEnabled()) {
-					mainWindow.setFacebookOff(false);
+					mainWindow.setFacebookOff(true);
 				}
 				if(rdbtnDesactivarContaTwitter.isEnabled()) {
-					mainWindow.setTwitterOff(false);
+					mainWindow.setTwitterOff(true);
 				}
 				if(rdbtnDesactivarContaMail.isEnabled()) {
-					mainWindow.setEmailOff(false);
+					mainWindow.setEmailOff(true);
 				}
 				
 				frame.dispose();
