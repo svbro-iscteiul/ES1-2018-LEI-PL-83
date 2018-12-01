@@ -34,6 +34,7 @@ import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 
 import DBA.DBAWindow;
+import pt.iscte.esi.projeto.form.models.FacebookThread;
 import pt.iscte.esi.projeto.form.models.GmailThread;
 import pt.iscte.esi.projeto.form.models.Message;
 import pt.iscte.esi.projeto.form.models.MessageComparator;
@@ -59,10 +60,12 @@ public class MainWindow {
 	private DefaultTableModel defaultTableModel;
 	private ArrayList<Message> tweets = new ArrayList<Message>();
 	private ArrayList<Message> emails = new ArrayList<Message>();
+	private ArrayList<Message> posts = new ArrayList<Message>();
 	private ArrayList<Message> AllMessages = new ArrayList<Message>();
 	private ArrayList<Message> ShownMessages= new ArrayList<Message>();
 	private Set<String> TwitterSenders = new HashSet<String>();
 	private Set<String> EmailSenders = new HashSet<String>();
+	private Set<String> FacebookSenders = new HashSet<String>();
 	private ArrayList<String> Dates = new ArrayList<String>();
 	private String ChoosenChannel="All";
 	private String ChoosenSender="All";
@@ -378,6 +381,14 @@ public class MainWindow {
 							ChoosenSender=m.getSender();
 						}
 				}
+				else if(ChoosenChannel=="Facebook"){
+					for (Message m : posts) 
+						if(m.getSender().equals(choice_2.getItem(choice_2.getSelectedIndex()))){
+							msgList.addMessage(m);
+							ChoosenSender=m.getSender();
+						}
+
+				}
 
 				reconstructTable();
 			}});
@@ -427,6 +438,23 @@ public class MainWindow {
 					choice_2.setVisible(true);
 					choice_2.removeAll();
 					for(String s:EmailSenders)
+						choice_2.add(s);
+					for(String s:tmp)
+						DateChoice.add(s);
+					FilterSender.setEnabled(true);
+				}
+				else if(choice_1.getItem(choice_1.getSelectedIndex()).equals("Facebook")){
+					for (Message m : posts) {
+						msgList.addMessage(m);
+						ShownMessages.add(m);
+						PossibleDates.add(m.getTime());
+					}
+					ArrayList<String> tmp = new ArrayList<String>(PossibleDates);
+					Collections.sort(tmp, new StringComparator());
+					ChoosenChannel="Facebook";
+					choice_2.setVisible(true);
+					choice_2.removeAll();
+					for(String s:FacebookSenders)
 						choice_2.add(s);
 					for(String s:tmp)
 						DateChoice.add(s);
@@ -536,6 +564,13 @@ public class MainWindow {
 							ShownMessages.add(m);
 							PossibleDates.add(m.getTime());
 						}
+					for (Message m : posts)
+						if(m.getMessage().contains(txtPesquisaMensagensPor.getText())) {
+							msgList.addMessage(m);
+							ShownMessages.add(m);
+							PossibleDates.add(m.getTime());
+
+						}
 					ArrayList<String> tmp = new ArrayList<String>(PossibleDates);
 					Collections.sort(tmp, new StringComparator());
 					for(String s:tmp)
@@ -594,6 +629,35 @@ public class MainWindow {
 						DateChoice.add(s);
 
 				}
+				else if(ChoosenChannel.equals("Facebook")) {
+					if(ChoosenSender.equals("All")) {
+						for (Message m : posts)
+							if(m.getMessage().contains(txtPesquisaMensagensPor.getText())) {
+								msgList.addMessage(m);
+								ShownMessages.add(m);
+								PossibleDates.add(m.getTime());
+							}
+						ArrayList<String> tmp = new ArrayList<String>(PossibleDates);
+						Collections.sort(tmp, new StringComparator());
+						for(String s:tmp)
+							DateChoice.add(s);
+					}
+					else {
+						for (Message m : posts)
+							if(m.getSender().equals(ChoosenSender))	
+								if(m.getMessage().contains(txtPesquisaMensagensPor.getText())) {
+									msgList.addMessage(m);
+									ShownMessages.add(m);
+									PossibleDates.add(m.getTime());
+								}
+						ArrayList<String> tmp = new ArrayList<String>(PossibleDates);
+						Collections.sort(tmp, new StringComparator());
+						for(String s:tmp)
+							DateChoice.add(s);
+					}
+
+
+				}
 				reconstructTable();
 			}
 		});
@@ -626,6 +690,7 @@ public class MainWindow {
 		
 		TwitterThread t = new TwitterThread();
 		GmailThread g = new GmailThread();
+		FacebookThread f = new FacebookThread();
 		
 		try {
 			t.join();
@@ -655,6 +720,18 @@ public class MainWindow {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}	
+		try {
+			f.join();
+			posts=f.getPosts();
+			for (Message m : posts) {
+			//msgList.addMessage(m);
+			AllMessages.add(m);
+			FacebookSenders.add(m.getSender());
+		}
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}	
 	}
 
 
@@ -667,7 +744,7 @@ public class MainWindow {
 				msgList.addMessage(m);
 				tmp.add(m.getTime());
 			}
-			else if(m.getChannel().equals("Facebbok") && !facebookOff) {
+			else if(m.getChannel().equals("Facebook") && !facebookOff) {
 				msgList.addMessage(m);
 				tmp.add(m.getTime());
 			}
