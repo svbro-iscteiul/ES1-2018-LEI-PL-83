@@ -14,27 +14,22 @@ public class TwitterAPITest {
 	 * This is just to see if the Twitter api is working, it will be deleted later
 	 * */
 	public static void main(String[] args)  {
-		TwitterAPI p = new TwitterAPI();
 		TwitterThread t= new TwitterThread();
-		APIDataBase a = new APIDataBase();
+		TwitterAPI a= new TwitterAPI();
 		t.start();
 		try {
 			t.join();
-		
-			 t.getTweets();
 			List<Message> message = t.getTweets();
-			a.WriteTwitter(message);
-			
-				List<Message> message1 =a.ReadTwitter();
-			for(Message m: message1)
+			for(Message m: message) {
 				System.out.println("Sender: "+m.getSender()+" Time: "+m.getTime() + " Message:" +m.getMessage()+ "\n");
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+				break;
+			}
+			a.ReplyToTweet(message.get(0).getMessage(), "This is a reply");
 		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+		catch (TwitterException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} 

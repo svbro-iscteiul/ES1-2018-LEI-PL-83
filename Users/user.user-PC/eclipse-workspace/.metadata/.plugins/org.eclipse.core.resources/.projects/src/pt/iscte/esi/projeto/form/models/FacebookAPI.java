@@ -1,6 +1,7 @@
 package pt.iscte.esi.projeto.form.models;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import com.restfb.Connection;
 import com.restfb.DefaultFacebookClient;
@@ -16,16 +17,49 @@ import com.restfb.types.User;
  */
 public class FacebookAPI {
 	private ArrayList<Message> posts = new ArrayList<Message>();
-	private static String Token="EAAD0JjeESBwBAJFqEUE3BZC8AqgE5UwIRM5HiWRH6TtWiDGeins0LlXNAZB7Rb22VglN6Nmd9YNBf8H95YmU2BgElasjC5NhhRtqqGS8FfKb3Lc4mKncaeZBz26qFmAGHS2pqZCmVSS2ofPV0OuPuPz0qmXKx5wZCtKAlenkiwJZA1Xev0a5cYfvA3lG49qYWyG0woXJfcpwZDZD";
+	private static String Token="EAAD0JjeESBwBAJwZAcoDFJLlTP71u2BgLkFtO9J6n9lqz5ZBs2XGHSmP6bt4vb7y4I1WPopvx6da1MZCuKtVCtAZCbdPp92228tQ6GQAjspUSd71iqvxaNWsXnHXXK7yMSAW13pyC8ZANYHoppBTKgPGDzkaZCmP9N2WVAZA1t6Kl4l0Tylih4mUvXkYQoARMYySxhVEV5xmwZDZD";
 	private static String AppId="268444977350684";
 	private static String AppSecret="75a7638dfa1a64929a408b3955681d0a";
+
+	public void postComment(){
+		String accessToken =Token;
+		FacebookClient fbClient = new DefaultFacebookClient(accessToken);
+		AccessToken extendedAccessToken4 = fbClient.obtainExtendedAccessToken(AppId,AppSecret);
+		Connection<Post> result = fbClient.fetchConnection("me/posts",Post.class);
+		for (List<Post> page : result) {
+			for (Post aPost : page) {
+				if(aPost.getId().equals("115022832835236_125235715147281")) {
+					
+				}
+			}
+		}
+
+	}
+	/*public void FacebookPostData(Post FBpost) {
+		String UserName = FBpost.getFrom().getName();
+		String UserID = FBpost.getFrom().getId();
+		String Message = FBpost.getMessage();
+		Date CreationDate = FBpost.getCreatedTime();
+		Long Likes = FBpost.getLikesCount();
+		String Source = "Facebook";
+		if (FBpost.getPlace() != null) {
+			String LocationName = FBpost.getPlace().getLocation().getCity();
+			Double GeoLatitude = FBpost.getPlace().getLocation().getLatitude();
+			Double GeoLongitude = FBpost.getPlace().getLocation().getLatitude();
+		}
+		if (FBpost.getComments() != null) {
+			for (int i = 0; i < FBpost.getComments().getTotalCount(); i++)
+				Comments.add(new FacebookPostData(FBpost.getComments()
+						.getData().get(i)));
+		}
+	}*/
 	public ArrayList<Message> getPosts() {
 
 		String accessToken =Token;
 		FacebookClient fbClient = new DefaultFacebookClient(accessToken);
 		AccessToken extendedAccessToken4 = fbClient.obtainExtendedAccessToken(AppId,AppSecret);
 
-		
+
 
 
 		Connection<Post> result = fbClient.fetchConnection("me/posts",Post.class);
@@ -42,11 +76,11 @@ public class FacebookAPI {
 					posts.add(m);
 
 				}
-				
+
 			}
 		}
 		return posts;
-	
+
 	}
 
 	private static String setDate(String date) {
@@ -58,8 +92,8 @@ public class FacebookAPI {
 		String a=day+"/"+month+"/"+year;
 		return a;
 	}
-	
-	
+
+
 	private static String SetMonth(String mes) {
 		//System.out.println(mes);
 		String m= mes.toLowerCase();
@@ -88,12 +122,12 @@ public class FacebookAPI {
 			return "11";
 		else 
 			return "12";
-			
+
 	}
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
 }

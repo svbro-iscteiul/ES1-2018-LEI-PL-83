@@ -19,6 +19,7 @@ import javax.swing.JScrollPane;
 import com.jgoodies.forms.factories.DefaultComponentFactory;
 
 import pt.iscte.esi.projeto.form.models.TwitterAPI;
+import twitter4j.TwitterException;
 
 import java.awt.Font;
 import java.awt.Color;
@@ -105,21 +106,6 @@ public class MessageDetailWindow {
 
 
 
-		JButton btOk = new JButton("OK");
-		btOk.setBounds(578, 514, 89, 23);
-		btOk.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				new MainWindow();
-				frame.dispose();
-
-			}
-		});
-		btOk.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		frame.getContentPane().add(btOk);
-
-		
-
 		//only title window
 
 		JLabel lblDetalhesDaMensagem = DefaultComponentFactory.getInstance().createTitle("Detalhes da mensagem");
@@ -140,7 +126,7 @@ public class MessageDetailWindow {
 		textPane_2.setEditable(false);
 		frame.getContentPane().add(textPane_2);
 
-		
+
 		//here we can see the channel of the message
 
 		JLabel lblCanal = DefaultComponentFactory.getInstance().createLabel("Canal:");
@@ -170,8 +156,8 @@ public class MessageDetailWindow {
 
 
 		//here we can watch the complete message
-		
-		
+
+
 
 		JTextArea textArea = new JTextArea();
 		textArea.setText(text);
@@ -179,40 +165,58 @@ public class MessageDetailWindow {
 		textArea.setLineWrap(true);
 		textArea.setForeground(new Color(0, 0, 128));
 		textArea.setBounds(115, 168, 557, 240);
-		
-		
+
+
 		JScrollPane panel = new JScrollPane(textArea);
 		panel.setBorder(new CompoundBorder());
 		panel.setBounds(110, 168, 562, 179);
 		frame.getContentPane().add(panel);
-		
+
 		//here we can watch the complete message
 
 		JTextArea textAreaResponse = new JTextArea();
-		textAreaResponse.setText(text);
 		textAreaResponse.setEditable(true);
 		textAreaResponse.setLineWrap(true);
 		textAreaResponse.setForeground(new Color(0, 0, 128));
 		textAreaResponse.setBounds(115, 420, 557, 50);
 		frame.getContentPane().add(textAreaResponse);
 		
+		JLabel ErrorMessage = new JLabel("");
+		ErrorMessage.setBounds(120, 481, 311, 14);
+		frame.getContentPane().add(ErrorMessage);
+
 		JScrollPane panel2 = new JScrollPane(textAreaResponse);
 		panel2.setBorder(new CompoundBorder());
 		panel2.setBounds(110, 358, 562, 112);
 		frame.getContentPane().add(panel2);
+		JButton btOk = new JButton("Responder");
+		btOk.setBounds(578, 514, 100, 23);
+		btOk.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				if(!textAreaResponse.getText().equals("")) {
+					if(channel.equals("Twitter") || channel.equals("twitter"))
+					{
+						try {
+							new TwitterAPI().ReplyToTweet(text, textAreaResponse.getText());
+							ErrorMessage.setText("<html><font color='green'>Sucesso</font></html>");
+						} catch (TwitterException e) {
+							ErrorMessage.setText("<html><font color='red'>Falha ao responder, tente mais tarde</font></html>");
+							e.printStackTrace();
+						}
+					}
+				}
+				else
+					ErrorMessage.setText("<html><font color='red'>Texto da mensagem por preencher</font></html>");
+
+
+			}
+		});
+		btOk.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		frame.getContentPane().add(btOk);
 		
-		JLabel link2Response = new JLabel("<html><font color='black'>| Responder/Comentar |  </font></html>");
-		link2Response.setBounds(115, 480, 140, 14);
-	
-		frame.getContentPane().add(link2Response);
 		
-		JLabel link2MakeTweet = new JLabel("<html><font color='black'> | Retweet | </font></html>");
-		link2MakeTweet.setBounds(260, 480, 130, 14);
-		frame.getContentPane().add(link2MakeTweet);
-		
-		JLabel link2Like = new JLabel("<html><font color='black'> | Like |       </font></html>");
-		link2Like.setBounds(330, 480, 130, 14);
-		frame.getContentPane().add(link2Like);
+
 
 	}
 }

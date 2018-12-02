@@ -2,7 +2,10 @@ package pt.iscte.esi.projeto.form.models;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
+
 import twitter4j.Status;
+import twitter4j.StatusUpdate;
 import twitter4j.Twitter;
 import twitter4j.TwitterException;
 import twitter4j.TwitterFactory;
@@ -13,11 +16,11 @@ import twitter4j.conf.ConfigurationBuilder;
  *
  */
 public class TwitterAPI {
-	
+
 	private ArrayList<Message> message = new ArrayList<Message>();
 	private final static String user= "ISCTE";
-	
-	
+
+
 	/**
 	 * This class uses the API twitter4j to get the tweets of the user 
 	 * and creates a object message with the text, time of the tweet 
@@ -27,29 +30,29 @@ public class TwitterAPI {
 	 */
 	public ArrayList<Message> getTweets() throws TwitterException {
 
-        	ConfigurationBuilder cb = new ConfigurationBuilder();
-        	cb.setDebugEnabled(true)
-          .setOAuthConsumerKey("lssQlInMSR48WEhVnhhEpLKlU")
-       	  .setOAuthConsumerSecret("HJoUp0olU7wGYFFSbB6gEMRtfxJBUunM2ZirdOznPRoGpcBBy9")
-       	  .setOAuthAccessToken("1056204591581290497-qChkQRfvnqCsNq5fTlJ6kFiaDdOfos")
-       	  .setOAuthAccessTokenSecret("Ikwu8aWLHnm7GduV5SCX1rwfOck5FlEyItvEIzYpRkhsd");
-        	TwitterFactory tf = new TwitterFactory(cb.build());
-        	Twitter twitter = tf.getInstance();        		
-            List<Status> statuses = twitter.getHomeTimeline();
-            for (Status status : statuses) {
-				if (status.getUser().getName() != null && status.getUser().getName().contains(user)) {
-					Message m = new Message();
-					m.setSender(status.getUser().getName());
-					m.setMessage(status.getText());
-					String date=SetDateFormat(status.getCreatedAt().toString());
-					m.setChannel("Twitter");
-					m.setTime(date);
-					message.add(m);
-				}
-            }     
-            return message;
-     }
-	
+		ConfigurationBuilder cb = new ConfigurationBuilder();
+		cb.setDebugEnabled(true)
+		.setOAuthConsumerKey("lssQlInMSR48WEhVnhhEpLKlU")
+		.setOAuthConsumerSecret("HJoUp0olU7wGYFFSbB6gEMRtfxJBUunM2ZirdOznPRoGpcBBy9")
+		.setOAuthAccessToken("1056204591581290497-qChkQRfvnqCsNq5fTlJ6kFiaDdOfos")
+		.setOAuthAccessTokenSecret("Ikwu8aWLHnm7GduV5SCX1rwfOck5FlEyItvEIzYpRkhsd");
+		TwitterFactory tf = new TwitterFactory(cb.build());
+		Twitter twitter = tf.getInstance();        		
+		List<Status> statuses = twitter.getHomeTimeline();
+		for (Status status : statuses) {
+			if (status.getUser().getName() != null && status.getUser().getName().contains(user)) {
+				Message m = new Message();
+				m.setSender(status.getUser().getName());
+				m.setMessage(status.getText());
+				String date=SetDateFormat(status.getCreatedAt().toString());
+				m.setChannel("Twitter");
+				m.setTime(date);
+				message.add(m);
+			}
+		}     
+		return message;
+	}
+
 	/**
 	 * This method receives the date of the Tweet, for example:Fri Oct 26 15:59:50 BST 2018
 	 * and return 26/Oct/2018
@@ -63,7 +66,7 @@ public class TwitterAPI {
 		String mes = SetMonth(backup[1]);
 		String date = backup[2] + "/" + mes + "/" + backup[5];
 		return date;
-		
+
 	}
 	private String SetMonth(String mes) {
 		//System.out.println(mes);
@@ -93,8 +96,39 @@ public class TwitterAPI {
 			return "11";
 		else 
 			return "12";
-			
+
 	}
-	
+
+	public void ReplyToTweet(String text,String Reply) throws TwitterException{
+		List<Status> tweets= new ArrayList<Status>();
+		ConfigurationBuilder cb = new ConfigurationBuilder();
+		cb.setDebugEnabled(true)
+		.setOAuthConsumerKey("lssQlInMSR48WEhVnhhEpLKlU")
+		.setOAuthConsumerSecret("HJoUp0olU7wGYFFSbB6gEMRtfxJBUunM2ZirdOznPRoGpcBBy9")
+		.setOAuthAccessToken("1056204591581290497-qChkQRfvnqCsNq5fTlJ6kFiaDdOfos")
+		.setOAuthAccessTokenSecret("Ikwu8aWLHnm7GduV5SCX1rwfOck5FlEyItvEIzYpRkhsd");
+		TwitterFactory tf = new TwitterFactory(cb.build());
+		Twitter twitter = tf.getInstance();        		
+		List<Status> statuses = twitter.getHomeTimeline();
+		for (Status status : statuses) {
+			if (status.getText().equals(text)) {
+				tweets.add(status);
+				
+				break;
+			}
+		}
+		 Status reply = null;
+	        for (Status tweet : tweets) {
+	            try {
+	                reply = twitter.updateStatus(new StatusUpdate("@" + tweet.getUser().getScreenName() + " " + Reply).inReplyToStatusId(tweet.getId()));
+	                
+	                //System.out.println("Posted reply " + reply.getId() + " in response to tweet " + reply.getInReplyToStatusId());
+	            } catch (TwitterException e) {
+	                // TODO Auto-generated catch block
+	                e.printStackTrace();
+	            } 
+	        }
+
+	}
 
 }
