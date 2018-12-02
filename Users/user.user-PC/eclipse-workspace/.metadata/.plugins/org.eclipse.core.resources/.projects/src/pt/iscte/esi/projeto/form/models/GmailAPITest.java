@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Used for testing, delete after
+ * Gmail API class, used only for testing
  *
  */
 public class GmailAPITest {

@@ -1,7 +1,11 @@
 package pt.iscte.esi.projeto.form.models;
 
 import java.util.ArrayList;
-
+/**
+ * 
+ *  @author svbro-iscteiul
+ *	This thread fetchs the emails from the GmailAPI
+ */
 public class GmailThread extends Thread{
 	
 	private GmailAPI gmail= new GmailAPI();

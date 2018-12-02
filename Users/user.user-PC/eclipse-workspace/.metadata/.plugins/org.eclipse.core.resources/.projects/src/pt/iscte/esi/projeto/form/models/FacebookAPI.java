@@ -16,7 +16,8 @@ import com.restfb.types.Post;
 import com.restfb.types.User;
 
 /**
- * Facebook Main
+ * FacebookAPI class
+ *
  *
  */
 public class FacebookAPI {
@@ -26,26 +27,34 @@ public class FacebookAPI {
 	private static String AppId="268444977350684";
 	private static String AppSecret="75a7638dfa1a64929a408b3955681d0a";
 
+
+	/**
+	 * @author svbro-iscteiul
+	 * @param fbmessage
+	 * @throws Exception
+	 * Posts fbmessage has a comment on facebook 
+	 */
 	public void postMessage(String fbmessage) throws Exception{
 
 		String pageID = "305848090029032";
 
 		FacebookClient fbClient = new DefaultFacebookClient(Token);
 
-	    FacebookType publishMessageResponse = fbClient.publish(pageID +"/feed", FacebookType.class, Parameter.with("message", fbmessage));
-					
-		
+		FacebookType publishMessageResponse = fbClient.publish(pageID +"/feed", FacebookType.class, Parameter.with("message", fbmessage));
+
+
 	}
-	
-	
+
+	/**
+	 * @author svbro-iscteiul
+	 * @return
+	 * Gets the post from facebook and adds them to the posts arraylist
+	 */
 	public ArrayList<Message> getPosts() {
 
 		String accessToken =Token;
 		FacebookClient fbClient = new DefaultFacebookClient(accessToken);
 		AccessToken extendedAccessToken4 = fbClient.obtainExtendedAccessToken(AppId,AppSecret);
-
-
-
 
 		Connection<Post> result = fbClient.fetchConnection("me/posts",Post.class);
 		//me/posts/?fields=comments
@@ -68,9 +77,14 @@ public class FacebookAPI {
 		return posts;
 
 	}
-
-	private static String setDate(String date) {
-		//Thu Nov 08 16:06:15 GMT 2018
+	/**
+	 * @author svbro-iscteiul
+	 * @param date
+	 * @return
+	 * modifies the string to create a date, e.g Thu Nov 08 16:06:15 GMT 2018 becomes 08/11/2018
+	 */
+	private String setDate(String date) {
+		
 		String[] tmp = date.split(" ");
 		String month=SetMonth(tmp[1]);
 		String day=tmp[2];
@@ -79,8 +93,13 @@ public class FacebookAPI {
 		return a;
 	}
 
-
-	private static String SetMonth(String mes) {
+	/**
+	 * @author svbro
+	 * @param string 
+	 * @return string
+	 * Returns the number of the mouth
+	 * */
+	private String SetMonth(String mes) {
 		//System.out.println(mes);
 		String m= mes.toLowerCase();
 		//System.out.println(m);
@@ -102,7 +121,7 @@ public class FacebookAPI {
 			return "08";
 		else if(m.equals("setembro") || m.equals("set"))
 			return "09";
-		else if(m.equals("outobro") || m.equals("out"))
+		else if(m.equals("outubro") || m.equals("out"))
 			return "10";
 		else if(m.equals("novembro") || m.equals("nov"))
 			return "11";

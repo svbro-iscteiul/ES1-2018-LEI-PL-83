@@ -19,7 +19,6 @@ import javax.mail.search.FlagTerm;
 
 /**
  * Gmail API class
- *
  */
 public class GmailAPI {
 	
@@ -28,6 +27,7 @@ public class GmailAPI {
 	
 	/**
 	 * Get a list of emails.
+	 * @author svbro-iscteiul
 	 * @return ArrayList<Message> 
 	 * @throws Exception
 	 */
@@ -37,9 +37,6 @@ public class GmailAPI {
 		store.connect("imap.googlemail.com", "happyc0d3rtwo@gmail.com", "happy.two");
 		Folder inbox = store.getFolder("INBOX");
 		inbox.open(Folder.READ_ONLY);
-
-		// Convert to MimeMessage after search 
-		int i=1;
 		Message[] messages = (Message[]) inbox.search(new FlagTerm(new Flags(Flags.Flag.SEEN), false));
 		for ( Message message : messages ) {
 			if(InternetAddress.toString(message.getFrom()).equals(user)) {
@@ -53,6 +50,7 @@ public class GmailAPI {
 
 	/**
 	 * creates a Message
+	 * @author svbro-iscteiul
 	 * @param original as String
 	 * @return
 	 */
@@ -80,6 +78,7 @@ public class GmailAPI {
 	
 	/**
 	 * Returns text from message 
+	 * @author svbro-iscteiul
 	 * @param message Message
 	 * @return text as String
 	 * @throws MessagingException
@@ -98,6 +97,7 @@ public class GmailAPI {
 	
 	/**
 	 * Returns TextFromMimeMultipart
+	 * @author svbro-iscteiul
 	 * @param mimeMultipart
 	 * @return String
 	 * @throws MessagingException
@@ -121,10 +121,15 @@ public class GmailAPI {
 		return result;
 	}
 
+	
+	/**
+	 * @author svbro-iscteiul
+	 * @param string 
+	 * @return string
+	 * Returns the number of the mouth
+	 * */
 	private String SetMonth(String mes) {
-		//System.out.println(mes);
 		String m= mes.toLowerCase();
-		//System.out.println(m);
 		if(m.equals("janeiro") || m.equals("jan"))
 			return "01";
 		else if(m.equals("fevereiro") || m.equals("fev"))
@@ -143,7 +148,7 @@ public class GmailAPI {
 			return "08";
 		else if(m.equals("setembro") || m.equals("set"))
 			return "09";
-		else if(m.equals("outobro") || m.equals("out"))
+		else if(m.equals("outubro") || m.equals("out"))
 			return "10";
 		else if(m.equals("novembro") || m.equals("nov"))
 			return "11";

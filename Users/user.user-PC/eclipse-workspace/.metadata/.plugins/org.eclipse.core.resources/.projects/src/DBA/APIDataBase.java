@@ -9,9 +9,19 @@ import java.util.List;
 import java.util.Scanner;
 
 import pt.iscte.esi.projeto.form.models.Message;
-
+/**
+ * 
+ * @author svbro-iscteiul
+ *This class manages the txt files found in /files
+ */
 public class APIDataBase {
 
+	/**
+	 *  @author svbro-iscteiul
+	 * @param list
+	 * @throws FileNotFoundException
+	 * This method writes the messages from the list on to /files/Facebook.txt 
+	 */
 	public void WriteFacebook(List<Message> list) throws FileNotFoundException{
 
 		File file = new File("files/Facebook.txt"); 
@@ -28,6 +38,12 @@ public class APIDataBase {
 
 	}
 
+	/**
+	 *  @author svbro-iscteiul
+	 * @return
+	 * @throws IOException
+	 * This method reads the /files/facebook and returns a list with the messages
+	 */
 	public List<Message> ReadFacebook() throws IOException {
 
 		File file = new File("files/Facebook.txt"); 
@@ -53,6 +69,13 @@ public class APIDataBase {
 
 		return list;
 	}
+	
+	/**
+	 *  @author svbro-iscteiul
+	 * @param list
+	 * @throws FileNotFoundException
+	 * This method writes the messages on list to the /files/Gmail.txt
+	 */
 	public void WriteEmail(List<Message> list) throws FileNotFoundException{
 
 		File file = new File("files/Gmail.txt"); 
@@ -69,6 +92,12 @@ public class APIDataBase {
 
 	}
 
+	/**
+	 *  @author svbro-iscteiul
+	 * @return
+	 * @throws IOException
+	 * This method read the /files/Gmail.txt and returns a list with the messages
+	 */
 	public List<Message> ReadEmail() throws IOException {
 
 		File file = new File("files/Gmail.txt"); 
@@ -94,6 +123,13 @@ public class APIDataBase {
 
 		return list;
 	}
+	
+	/**
+	 *  @author svbro-iscteiul
+	 * @param list
+	 * @throws FileNotFoundException
+	 * This method writes the messages from the list on to /files/Twitter.txt
+	 */
 	public void WriteTwitter(List<Message> list) throws FileNotFoundException{
 
 		File file = new File("files/Twitter.txt"); 
@@ -110,6 +146,12 @@ public class APIDataBase {
 
 	}
 
+	/**
+	 *  @author svbro-iscteiul
+	 * @return
+	 * @throws IOException
+	 * This method reads /files/Twitter.txt and returns a list with the messages
+	 */
 	public List<Message> ReadTwitter() throws IOException {
 
 		File file = new File("files/Twitter.txt"); 

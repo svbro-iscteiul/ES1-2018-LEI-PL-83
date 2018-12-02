@@ -2,6 +2,11 @@ package pt.iscte.esi.projeto.form.models;
 
 import java.util.Comparator;
 
+/**
+ * 
+ * @author svbro-iscteiul
+ * A comparator used to organize Messages by their Time field
+ */
 public class StringComparator implements Comparator<String>{
 
 	@Override

@@ -90,7 +90,7 @@ public class TwitterAPI {
 			return "08";
 		else if(m.equals("setembro") || m.equals("set"))
 			return "09";
-		else if(m.equals("outobro") || m.equals("out"))
+		else if(m.equals("outubro") || m.equals("out"))
 			return "10";
 		else if(m.equals("novembro") || m.equals("nov"))
 			return "11";
@@ -99,6 +99,10 @@ public class TwitterAPI {
 
 	}
 
+	
+	/**
+	 *  
+	 * */
 	public void ReplyToTweet(String text,String Reply) throws TwitterException{
 		List<Status> tweets= new ArrayList<Status>();
 		ConfigurationBuilder cb = new ConfigurationBuilder();

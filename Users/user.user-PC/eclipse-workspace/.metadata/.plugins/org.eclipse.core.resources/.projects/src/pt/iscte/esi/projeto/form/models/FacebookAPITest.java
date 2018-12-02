@@ -5,13 +5,19 @@ import java.io.IOException;
 import java.util.List;
 
 import DBA.APIDataBase;
-
+/**
+ * 
+ * Facebook API class, used only for testing
+ *
+ */
 public class FacebookAPITest {
 	public static void main(String[] args)  {
 
 		FacebookAPI f = new FacebookAPI();
 		try {
-			f.postMessage("asdasd");
+			for(Message m:f.getPosts())
+				System.out.println(m.getMessage());
+			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
