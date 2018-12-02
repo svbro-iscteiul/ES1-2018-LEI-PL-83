@@ -16,7 +16,7 @@ import com.restfb.types.User;
  */
 public class FacebookAPI {
 	private ArrayList<Message> posts = new ArrayList<Message>();
-	private static String Token="EAAD0JjeESBwBADSZAdwxUZAT3gDKZB82oqjuHzJ40Ge7TTD5dGDTC16iCQNqX08KSJHJytThaog4ZC7zIscZCT0zmoZCZA7JB8QMoFulmsv4YwzWwdsZAuV3hU4VHNUjo6QqYUi98TdaSc64ZCT8ZCTJ1hCVlu9GZAitjxeLl1LNxZBRPcK4dBnyvwwD2wOGnhinL8JSAUSIg8NDQwZDZD";
+	private static String Token="EAAD0JjeESBwBAKIm1s4KH3rC3iNQALAmS6esTf3IEGq88JLKWKY6MTopbjkXibecSUPpSRVYQPQ8VZCobzA3UAJ4ZCV89JCS0bgSyT9mk7gj4jBpsm3FYqhcqQUQnTZAYAiS16E4OS6pezvKsjAvlawhZBRKZC6FFjWyak79ecFzz8frbaXdJmn4PRkXy7wwC4UkDkzqMZBgZDZD";
 	private static String AppId="268444977350684";
 	private static String AppSecret="75a7638dfa1a64929a408b3955681d0a";
 	public ArrayList<Message> getPosts() {
