@@ -266,11 +266,9 @@ public class MainWindow {
 
 		getMatrixElements(); 
 
-
 		Collections.sort(AllMessages, new MessageComparator());
 
 		ShownMessages = new ArrayList<Message>(AllMessages);
-
 		showMessages();
 
 
@@ -352,7 +350,7 @@ public class MainWindow {
 		choice_1.add("All Channels");
 		choice_1.add("Twitter");
 		choice_1.add("Facebook");
-		choice_1.add("E-mail");
+		choice_1.add("Email");
 		JButton FilterChannel = new JButton("Filtrar Canal");
 		FilterChannel.setBounds(240,129,123,20);
 
@@ -382,7 +380,7 @@ public class MainWindow {
 						}
 
 				}
-				else if(choice_1.getItem(choice_1.getSelectedIndex()).equals("E-mail")){
+				else if(choice_1.getItem(choice_1.getSelectedIndex()).equals("Email")){
 					for (Message m : emails)
 						if(m.getSender().equals(choice_2.getItem(choice_2.getSelectedIndex()))) {
 							msgList.addMessage(m);
@@ -434,7 +432,7 @@ public class MainWindow {
 					FilterSender.setEnabled(true);
 
 				}
-				else if(choice_1.getItem(choice_1.getSelectedIndex()).equals("E-mail")){
+				else if(choice_1.getItem(choice_1.getSelectedIndex()).equals("Email")){
 					for (Message m : emails) {
 						msgList.addMessage(m);
 						ShownMessages.add(m);
@@ -442,7 +440,7 @@ public class MainWindow {
 					}
 					ArrayList<String> tmp = new ArrayList<String>(PossibleDates);
 					Collections.sort(tmp, new StringComparator());
-					ChoosenChannel="E-mail";
+					ChoosenChannel="Email";
 					choice_2.setVisible(true);
 					choice_2.removeAll();
 					for(String s:EmailSenders)
@@ -630,7 +628,7 @@ public class MainWindow {
 
 
 				}
-				else if(ChoosenChannel.equals("E-mail")) {
+				else if(ChoosenChannel.equals("Email")) {
 					if(ChoosenSender.equals("All")) {
 						for (Message m : tweets)
 							if(m.getMessage().contains(txtPesquisaMensagensPor.getText())) {
@@ -712,27 +710,26 @@ public class MainWindow {
 
 
 	private void getMatrixElements() {
-
 		try {
 			GmailThread f = new GmailThread();
 			f.join();
 			emails=f.getMails();
-			if(posts.size()==0) {
+			if(emails.size()==0) {
 				this.getEmail=false;
-				posts=ApiDB.ReadEmail();
-				for (Message m : posts) {
-					//msgList.addMessage(m);
-					AllMessages.add(m);
+				emails=ApiDB.ReadEmail();
+				for (Message m : emails) {
+				
+					
 					EmailSenders.add(m.getSender());
 				}
 			}
 			else {
-				for (Message m : posts) {
-					//msgList.addMessage(m);
-					AllMessages.add(m);
+				for (Message m : emails) {
+					
 					EmailSenders.add(m.getSender());
 				}
-				ApiDB.WriteEmail(posts);
+				ApiDB.WriteEmail(emails);
+				
 			}
 		}catch(Exception e1){
 			e1.printStackTrace();	
@@ -740,23 +737,22 @@ public class MainWindow {
 		try {
 			TwitterThread f = new TwitterThread();
 			f.join();
-			posts=f.getTweets();
-			if(posts.size()==0) {
+			tweets=f.getTweets();
+			if(tweets.size()==0) {
 				this.getTwitter=false;
-				posts=ApiDB.ReadTwitter();
-				for (Message m : posts) {
-					//msgList.addMessage(m);
-					AllMessages.add(m);
+				tweets=ApiDB.ReadTwitter();
+				for (Message m : tweets) {
+					
+
 					TwitterSenders.add(m.getSender());
 				}
 			}
 			else {
-				for (Message m : posts) {
-					//msgList.addMessage(m);
-					AllMessages.add(m);
+				for (Message m : tweets) {
+			
 					TwitterSenders.add(m.getSender());
 				}
-				ApiDB.WriteTwitter(posts);
+				ApiDB.WriteTwitter(tweets);
 			}
 		}catch(Exception e1){
 			e1.printStackTrace();	
@@ -769,15 +765,15 @@ public class MainWindow {
 				this.getFacebook=false;
 				posts=ApiDB.ReadFacebook();
 				for (Message m : posts) {
-					//msgList.addMessage(m);
-					AllMessages.add(m);
+				
+
 					FacebookSenders.add(m.getSender());
 				}
 			}
 			else {
 				for (Message m : posts) {
-					//msgList.addMessage(m);
-					AllMessages.add(m);
+				
+
 					FacebookSenders.add(m.getSender());
 				}
 				ApiDB.WriteFacebook(posts);
@@ -785,6 +781,12 @@ public class MainWindow {
 		}catch(Exception e1){
 			e1.printStackTrace();	
 		}
+		for(Message m:posts)
+			AllMessages.add(m);
+		for(Message m:emails)
+			AllMessages.add(m);
+		for(Message m:tweets)
+			AllMessages.add(m);
 
 	}
 
