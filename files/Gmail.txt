@@ -1,5 +1,5 @@
-Email&&&&&Secretariado ISTA ISCTE-IUL
-&&&&&13/11/2018&&&&&Programa de Trainees Santander
+EmailBREAKHERESecretariado ISTA ISCTE-IUL
+BREAKHERE13/11/2018BREAKHEREPrograma de Trainees Santander
 
 
  Olá,
@@ -45,9 +45,9 @@ trainees.pt/santander/<http://trainees.pt/santander/>
 [https://trainees.pt/santander/wp-content/uploads/2018/11/santander_signature-01-01.jpg]
 
 
-
-Email&&&&&Biblioteca ISCTE-IUL
-&&&&&8/11/2018&&&&&Convite apresentação do livro "Donald Trump - O Método no Caos" no âmbito da 5ª sessão de Leituras do Mundo - dia 12 de novembro - às 18h00 - sala B.602 (Biblioteca)
+ENDMESSAGE
+EmailBREAKHEREBiblioteca ISCTE-IUL
+BREAKHERE8/11/2018BREAKHEREConvite apresentação do livro "Donald Trump - O Método no Caos" no âmbito da 5ª sessão de Leituras do Mundo - dia 12 de novembro - às 18h00 - sala B.602 (Biblioteca)
 
 
 À Comunidade,
@@ -82,9 +82,9 @@ Página Web da Biblioteca<http://www.iscte-iul.pt/biblioteca.aspx> | Repositório 
 
 
 
-
-Email&&&&&SAS ISCTE-IUL
-&&&&&12/11/2018&&&&&FW: SESSÃO DE ESCLARECIMENTO PROJETO SPIRIT 2019 | 12 NOVEMBRO 2018 - SALA C302 Edifício II - 17H30 – 18H30
+ENDMESSAGE
+EmailBREAKHERESAS ISCTE-IUL
+BREAKHERE12/11/2018BREAKHEREFW: SESSÃO DE ESCLARECIMENTO PROJETO SPIRIT 2019 | 12 NOVEMBRO 2018 - SALA C302 Edifício II - 17H30 – 18H30
 
 
 
@@ -162,9 +162,9 @@ P Antes de imprimir este e-mail pense bem se tem mesmo de o fazer.
      Before printing this e-mail, assess if it is really needed.
 
 
-
-Email&&&&&GPSQ ISCTE-IUL
-&&&&&22/11/2018&&&&&Inquérito de Monitorização Pedagógica 1º, 2º, 3º ciclos (1º semestre 2018/2019) / Pedagogical Monitoring Survey 1st, 2nd, 3rd cycles (1st semester 2017/2018)
+ENDMESSAGE
+EmailBREAKHEREGPSQ ISCTE-IUL
+BREAKHERE22/11/2018BREAKHEREInquérito de Monitorização Pedagógica 1º, 2º, 3º ciclos (1º semestre 2018/2019) / Pedagogical Monitoring Survey 1st, 2nd, 3rd cycles (1st semester 2017/2018)
 
 
 English version below)
@@ -247,3 +247,4 @@ www.iscte-iul.pt<http://www.iscte-iul.pt/home.aspx> | Facebook<https://www.faceb
 
 
 
+ENDMESSAGE
