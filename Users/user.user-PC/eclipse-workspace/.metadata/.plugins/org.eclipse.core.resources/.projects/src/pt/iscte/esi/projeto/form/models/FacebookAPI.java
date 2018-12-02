@@ -8,6 +8,10 @@ import com.restfb.DefaultFacebookClient;
 import com.restfb.FacebookClient;
 import com.restfb.FacebookClient.AccessToken;
 import com.restfb.Parameter;
+import com.restfb.types.Comment;
+import com.restfb.types.Comments;
+import com.restfb.types.FacebookType;
+import com.restfb.types.MessageTag;
 import com.restfb.types.Post;
 import com.restfb.types.User;
 
@@ -17,42 +21,23 @@ import com.restfb.types.User;
  */
 public class FacebookAPI {
 	private ArrayList<Message> posts = new ArrayList<Message>();
-	private static String Token="EAAD0JjeESBwBAJwZAcoDFJLlTP71u2BgLkFtO9J6n9lqz5ZBs2XGHSmP6bt4vb7y4I1WPopvx6da1MZCuKtVCtAZCbdPp92228tQ6GQAjspUSd71iqvxaNWsXnHXXK7yMSAW13pyC8ZANYHoppBTKgPGDzkaZCmP9N2WVAZA1t6Kl4l0Tylih4mUvXkYQoARMYySxhVEV5xmwZDZD";
+	private static String Token=
+			"EAAD0JjeESBwBADc45Ai73TqZCQi00REggSntendJSgk7jGdZCaT7jYLKqG9Q6NoVMTIze0Ss6bf9ID5XFaDDCEZBYFOpJyTKBlzMCirznZCXlgQ8qL2DZCuVA3R6G49SYio5fE7vZBuQqXDZAP71L0PzY7EC7t1ANVP2cu1xj9wr80vQc0JLFlfFxz7wVEmi7lt9Y51FTymRAZDZD";
 	private static String AppId="268444977350684";
 	private static String AppSecret="75a7638dfa1a64929a408b3955681d0a";
 
-	public void postComment(){
-		String accessToken =Token;
-		FacebookClient fbClient = new DefaultFacebookClient(accessToken);
-		AccessToken extendedAccessToken4 = fbClient.obtainExtendedAccessToken(AppId,AppSecret);
-		Connection<Post> result = fbClient.fetchConnection("me/posts",Post.class);
-		for (List<Post> page : result) {
-			for (Post aPost : page) {
-				if(aPost.getId().equals("115022832835236_125235715147281")) {
-					
-				}
-			}
-		}
+	public void postMessage(String fbmessage) throws Exception{
 
+		String pageID = "305848090029032";
+
+		FacebookClient fbClient = new DefaultFacebookClient(Token);
+
+	    FacebookType publishMessageResponse = fbClient.publish(pageID +"/feed", FacebookType.class, Parameter.with("message", fbmessage));
+					
+		
 	}
-	/*public void FacebookPostData(Post FBpost) {
-		String UserName = FBpost.getFrom().getName();
-		String UserID = FBpost.getFrom().getId();
-		String Message = FBpost.getMessage();
-		Date CreationDate = FBpost.getCreatedTime();
-		Long Likes = FBpost.getLikesCount();
-		String Source = "Facebook";
-		if (FBpost.getPlace() != null) {
-			String LocationName = FBpost.getPlace().getLocation().getCity();
-			Double GeoLatitude = FBpost.getPlace().getLocation().getLatitude();
-			Double GeoLongitude = FBpost.getPlace().getLocation().getLatitude();
-		}
-		if (FBpost.getComments() != null) {
-			for (int i = 0; i < FBpost.getComments().getTotalCount(); i++)
-				Comments.add(new FacebookPostData(FBpost.getComments()
-						.getData().get(i)));
-		}
-	}*/
+	
+	
 	public ArrayList<Message> getPosts() {
 
 		String accessToken =Token;
@@ -63,6 +48,7 @@ public class FacebookAPI {
 
 
 		Connection<Post> result = fbClient.fetchConnection("me/posts",Post.class);
+		//me/posts/?fields=comments
 		for (List<Post> page : result) {
 			for (Post aPost : page) {
 				// Filters only posts that contain the word "Inform"

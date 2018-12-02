@@ -18,6 +18,7 @@ import javax.swing.JScrollPane;
 
 import com.jgoodies.forms.factories.DefaultComponentFactory;
 
+import pt.iscte.esi.projeto.form.models.FacebookAPI;
 import pt.iscte.esi.projeto.form.models.TwitterAPI;
 import twitter4j.TwitterException;
 
@@ -201,6 +202,16 @@ public class MessageDetailWindow {
 							new TwitterAPI().ReplyToTweet(text, textAreaResponse.getText());
 							ErrorMessage.setText("<html><font color='green'>Sucesso</font></html>");
 						} catch (TwitterException e) {
+							ErrorMessage.setText("<html><font color='red'>Falha ao responder, tente mais tarde</font></html>");
+							e.printStackTrace();
+						}
+					}
+					else if (channel.equals("Facebook") || channel.equals("facebook"))
+					{
+						try {
+							new FacebookAPI().postMessage(textAreaResponse.getText());
+							ErrorMessage.setText("<html><font color='green'>Sucesso</font></html>");
+						} catch (Exception e) {
 							ErrorMessage.setText("<html><font color='red'>Falha ao responder, tente mais tarde</font></html>");
 							e.printStackTrace();
 						}
