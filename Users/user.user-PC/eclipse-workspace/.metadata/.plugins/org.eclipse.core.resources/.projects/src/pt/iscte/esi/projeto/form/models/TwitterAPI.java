@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import pt.iscte.esi.projeto.utils.XMLFileEditor;
 import twitter4j.Status;
 import twitter4j.StatusUpdate;
 import twitter4j.Twitter;
@@ -19,7 +20,24 @@ public class TwitterAPI {
 
 	private ArrayList<Message> message = new ArrayList<Message>();
 	private final static String user= "ISCTE";
-
+	private XMLFileEditor editor = new XMLFileEditor();
+	private String ConsumerKey="lssQlInMSR48WEhVnhhEpLKlU";
+	private String ConsumerSecret="HJoUp0olU7wGYFFSbB6gEMRtfxJBUunM2ZirdOznPRoGpcBBy9";
+	private String AccessToken="1056204591581290497-qChkQRfvnqCsNq5fTlJ6kFiaDdOfos";
+	private String AccessTokenSecret="Ikwu8aWLHnm7GduV5SCX1rwfOck5FlEyItvEIzYpRkhsd";
+	
+	
+	private void getTokenFromXML() {
+		String tmp=editor.getTwitterTokens();
+		if(!tmp.equals(null)){
+			String[] tmp1=tmp.split("BREAKHERE");
+			ConsumerKey=tmp1[0];
+			ConsumerSecret=tmp1[1];
+			AccessToken=tmp1[2];
+			AccessTokenSecret=tmp1[3];
+		}
+		
+	}
 
 	/**
 	 * This class uses the API twitter4j to get the tweets of the user 
@@ -29,13 +47,14 @@ public class TwitterAPI {
 	 * @throws TwitterException 
 	 */
 	public ArrayList<Message> getTweets() throws TwitterException {
-
+		
+		getTokenFromXML();
 		ConfigurationBuilder cb = new ConfigurationBuilder();
 		cb.setDebugEnabled(true)
-		.setOAuthConsumerKey("lssQlInMSR48WEhVnhhEpLKlU")
-		.setOAuthConsumerSecret("HJoUp0olU7wGYFFSbB6gEMRtfxJBUunM2ZirdOznPRoGpcBBy9")
-		.setOAuthAccessToken("1056204591581290497-qChkQRfvnqCsNq5fTlJ6kFiaDdOfos")
-		.setOAuthAccessTokenSecret("Ikwu8aWLHnm7GduV5SCX1rwfOck5FlEyItvEIzYpRkhsd");
+		.setOAuthConsumerKey(ConsumerKey)
+		.setOAuthConsumerSecret(ConsumerSecret)
+		.setOAuthAccessToken(AccessToken)
+		.setOAuthAccessTokenSecret(AccessTokenSecret);
 		TwitterFactory tf = new TwitterFactory(cb.build());
 		Twitter twitter = tf.getInstance();        		
 		List<Status> statuses = twitter.getHomeTimeline();

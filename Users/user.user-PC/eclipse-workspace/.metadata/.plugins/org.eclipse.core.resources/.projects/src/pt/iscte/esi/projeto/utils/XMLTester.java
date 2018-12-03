@@ -14,7 +14,8 @@ public class XMLTester {
 	public static void main(String[] args) {
 		XMLFileEditor x = new XMLFileEditor();
 		//x.AddAcountsForTwitter("as111111", "assdfsdfd", "asdasdadasdaa", "adssdfsdsdfsfsd");
-		x.AddAcountsForEmail("klldfsldvxjjlskldfj111111", "assdfsdfd");
+		//x.AddAcountsForEmail("happyc0d3rtwo@gmail.com", "happy.two");
+		System.out.println(x.getEmailTokens());
 	}
 
 }

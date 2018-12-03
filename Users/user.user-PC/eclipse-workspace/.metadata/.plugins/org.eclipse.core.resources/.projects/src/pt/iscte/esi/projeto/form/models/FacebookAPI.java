@@ -15,6 +15,8 @@ import com.restfb.types.MessageTag;
 import com.restfb.types.Post;
 import com.restfb.types.User;
 
+import pt.iscte.esi.projeto.utils.XMLFileEditor;
+
 /**
  * FacebookAPI class
  *
@@ -22,12 +24,25 @@ import com.restfb.types.User;
  */
 public class FacebookAPI {
 	private ArrayList<Message> posts = new ArrayList<Message>();
-	private static String Token=
-			"EAAD0JjeESBwBADc45Ai73TqZCQi00REggSntendJSgk7jGdZCaT7jYLKqG9Q6NoVMTIze0Ss6bf9ID5XFaDDCEZBYFOpJyTKBlzMCirznZCXlgQ8qL2DZCuVA3R6G49SYio5fE7vZBuQqXDZAP71L0PzY7EC7t1ANVP2cu1xj9wr80vQc0JLFlfFxz7wVEmi7lt9Y51FTymRAZDZD";
-	private static String AppId="268444977350684";
-	private static String AppSecret="75a7638dfa1a64929a408b3955681d0a";
-
-
+	private String Token=
+			"EAAD0JjeESBwBAET05tGhHzL7O7VqXAFfjw0NF7LsP4R68GbSydJ8Ro6xkNM9Qq9bx9XqIYHKNkVFrgBDErEgLU0EO6euuz4SlZAXJZAIkCCyEfmv1YbvcpPS4DoYFTpF95aZCBZCZCkYSDtSYmNeLGWCq1dIqLkhQo4efZAx1Rvk1Yh3SGYYydyrG5uc3OiulRXbDO3Ya54QZDZD";
+	private String AppId="268444977350684";
+	private String AppSecret="75a7638dfa1a64929a408b3955681d0a";
+	private XMLFileEditor editor = new XMLFileEditor();
+	
+	
+	private void getTokenFromXML() {
+		String tmp=editor.getFacebookTokens();
+		if(!tmp.equals(null)){
+			String[] tmp1=tmp.split("BREAKHERE");
+			Token=tmp1[0];
+			AppId=tmp1[1];
+			AppSecret=tmp1[2];
+			
+		}
+		
+	}
+	
 	/**
 	 * @author svbro-iscteiul
 	 * @param fbmessage
@@ -35,7 +50,7 @@ public class FacebookAPI {
 	 * Posts fbmessage has a comment on facebook 
 	 */
 	public void postMessage(String fbmessage) throws Exception{
-
+		getTokenFromXML();
 		String pageID = "305848090029032";
 
 		FacebookClient fbClient = new DefaultFacebookClient(Token);
@@ -51,7 +66,7 @@ public class FacebookAPI {
 	 * Gets the post from facebook and adds them to the posts arraylist
 	 */
 	public ArrayList<Message> getPosts() {
-
+		getTokenFromXML();
 		String accessToken =Token;
 		FacebookClient fbClient = new DefaultFacebookClient(accessToken);
 		AccessToken extendedAccessToken4 = fbClient.obtainExtendedAccessToken(AppId,AppSecret);

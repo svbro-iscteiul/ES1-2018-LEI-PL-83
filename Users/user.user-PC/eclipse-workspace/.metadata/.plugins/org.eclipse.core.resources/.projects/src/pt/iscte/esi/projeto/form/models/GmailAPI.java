@@ -17,6 +17,8 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMultipart;
 import javax.mail.search.FlagTerm;
 
+import pt.iscte.esi.projeto.utils.XMLFileEditor;
+
 /**
  * Gmail API class
  */
@@ -24,6 +26,21 @@ public class GmailAPI {
 	
 	private ArrayList<pt.iscte.esi.projeto.form.models.Message> emails = new ArrayList<pt.iscte.esi.projeto.form.models.Message>();
 	private final static String user= "=?UTF-8?Q?S=C3=A9rgio_Ribeiro?= <Sergio_Vaz@iscte-iul.pt>";
+	private XMLFileEditor editor = new XMLFileEditor();
+	private String email="happyc0d3rtwo@gmail.com";
+	private String password="happy.two";
+	
+	private void getTokenFromXML() {
+		String tmp=editor.getEmailTokens();
+		if(!tmp.equals(null)){
+			String[] tmp1=tmp.split("BREAKHERE");
+			email=tmp1[0];
+			password=tmp1[1];
+			
+		}
+		
+	}
+	
 	
 	/**
 	 * Get a list of emails.
@@ -32,9 +49,10 @@ public class GmailAPI {
 	 * @throws Exception
 	 */
 	public ArrayList<pt.iscte.esi.projeto.form.models.Message> getMails() throws Exception {
+		getTokenFromXML();
 		Session sesion = Session.getInstance(System.getProperties());
 		Store store = sesion.getStore("imaps");
-		store.connect("imap.googlemail.com", "happyc0d3rtwo@gmail.com", "happy.two");
+		store.connect("imap.googlemail.com", email, password);
 		Folder inbox = store.getFolder("INBOX");
 		inbox.open(Folder.READ_ONLY);
 		Message[] messages = (Message[]) inbox.search(new FlagTerm(new Flags(Flags.Flag.SEEN), false));

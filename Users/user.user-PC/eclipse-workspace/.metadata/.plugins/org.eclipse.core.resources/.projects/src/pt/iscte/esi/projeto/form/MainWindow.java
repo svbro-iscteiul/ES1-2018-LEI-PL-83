@@ -168,6 +168,7 @@ public class MainWindow {
 	public void refreshAllTable() {
 		refreshTable();
 		reconstructTable();
+		getMatrixElements();
 
 
 	}
