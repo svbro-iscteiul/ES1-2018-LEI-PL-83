@@ -1,8 +1,10 @@
 package pt.iscte.esi.projeto.form.models;
 
 import java.io.IOException;
+import java.security.Security;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.Properties;
 
 import javax.mail.BodyPart;
@@ -13,9 +15,14 @@ import javax.mail.MessagingException;
 import javax.mail.Multipart;
 import javax.mail.Session;
 import javax.mail.Store;
+import javax.mail.Transport;
+import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 import javax.mail.search.FlagTerm;
+
+import com.sun.mail.smtp.SMTPTransport;
 
 import pt.iscte.esi.projeto.utils.XMLFileEditor;
 
@@ -52,9 +59,9 @@ public class GmailAPI {
 		getTokenFromXML();
 		Session sesion = Session.getInstance(System.getProperties());
 		Store store = sesion.getStore("imaps");
-		store.connect("imap.googlemail.com", email, password);
-		Folder inbox = store.getFolder("INBOX");
-		inbox.open(Folder.READ_ONLY);
+		store.connect("pop.googlemail.com", email, password);
+		Folder inbox = store.getFolder("Inbox");
+		inbox.open(Folder.READ_WRITE);
 		Message[] messages = (Message[]) inbox.search(new FlagTerm(new Flags(Flags.Flag.SEEN), false));
 		for ( Message message : messages ) {
 			if(InternetAddress.toString(message.getFrom()).equals(user)) {
@@ -174,4 +181,45 @@ public class GmailAPI {
 			return "12";
 			
 	}
+	/**
+	 * @author svbro-iscteiul
+	 * @param title
+	 * @param message
+	 * @throws AddressException
+	 * @throws MessagingException
+	 * Respondes to an email
+	 */
+	public void SendEmail(String title, String message) throws AddressException, MessagingException {
+		getTokenFromXML();
+        Security.addProvider(new com.sun.net.ssl.internal.ssl.Provider());
+        final String SSL_FACTORY = "javax.net.ssl.SSLSocketFactory";
+
+        Properties props = System.getProperties();
+        props.setProperty("mail.smtps.host", "smtp.gmail.com");
+        props.setProperty("mail.smtp.socketFactory.class", SSL_FACTORY);
+        props.setProperty("mail.smtp.socketFactory.fallback", "false");
+        props.setProperty("mail.smtp.port", "465");
+        props.setProperty("mail.smtp.socketFactory.port", "465");
+        props.setProperty("mail.smtps.auth", "true");
+        props.put("mail.smtps.quitwait", "false");
+
+        Session session = Session.getInstance(props, null);
+        final MimeMessage msg = new MimeMessage(session);
+
+        msg.setFrom(new InternetAddress(email));
+        msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(email, false));
+
+       
+
+        msg.setSubject(title);
+        msg.setText(message, "utf-8");
+        msg.setSentDate(new Date());
+
+        SMTPTransport t = (SMTPTransport)session.getTransport("smtps");
+
+        t.connect("smtp.gmail.com", email, password);
+        t.sendMessage(msg, msg.getAllRecipients());      
+        System.out.println("sucess");
+        t.close();
+    }
 }

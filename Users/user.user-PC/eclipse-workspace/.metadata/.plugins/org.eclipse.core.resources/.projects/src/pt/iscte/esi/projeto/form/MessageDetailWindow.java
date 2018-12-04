@@ -19,6 +19,7 @@ import javax.swing.JScrollPane;
 import com.jgoodies.forms.factories.DefaultComponentFactory;
 
 import pt.iscte.esi.projeto.form.models.FacebookAPI;
+import pt.iscte.esi.projeto.form.models.GmailAPI;
 import pt.iscte.esi.projeto.form.models.TwitterAPI;
 import twitter4j.TwitterException;
 
@@ -216,6 +217,17 @@ public class MessageDetailWindow {
 							e.printStackTrace();
 						}
 					}
+					else if(channel.equals("Email") || channel.equals("email")) {
+						try {
+							
+							new GmailAPI().SendEmail("Response to Email",textAreaResponse.getText());
+							ErrorMessage.setText("<html><font color='green'>Sucesso</font></html>");
+						} catch (Exception e) {
+							ErrorMessage.setText("<html><font color='red'>Falha ao responder, tente mais tarde</font></html>");
+							e.printStackTrace();
+						}
+					}
+						
 				}
 				else
 					ErrorMessage.setText("<html><font color='red'>Texto da mensagem por preencher</font></html>");

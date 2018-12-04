@@ -25,7 +25,7 @@ import pt.iscte.esi.projeto.utils.XMLFileEditor;
 public class FacebookAPI {
 	private ArrayList<Message> posts = new ArrayList<Message>();
 	private String Token=
-			"EAAD0JjeESBwBAET05tGhHzL7O7VqXAFfjw0NF7LsP4R68GbSydJ8Ro6xkNM9Qq9bx9XqIYHKNkVFrgBDErEgLU0EO6euuz4SlZAXJZAIkCCyEfmv1YbvcpPS4DoYFTpF95aZCBZCZCkYSDtSYmNeLGWCq1dIqLkhQo4efZAx1Rvk1Yh3SGYYydyrG5uc3OiulRXbDO3Ya54QZDZD";
+			"EAAD0JjeESBwBAEefLCdOyO6ZB3rcoNuwxfZAy08BicgAL0474QZBNcO0zhxPRsVTbkiZCs43sPqsWHtFdK6ZAZCn1amTrziJpXgAqZCB5NQtIihsZCi4QZAJDP6EDJ0VG5Jg1A7KyZCXZAlpSfpLzQ0i8FANZAYO2BqKkUl3IZCtZAuzTtQCFRRxnCLsXwzREzZAOXSyVTvqZBWgNmcUwQZDZD";
 	private String AppId="268444977350684";
 	private String AppSecret="75a7638dfa1a64929a408b3955681d0a";
 	private XMLFileEditor editor = new XMLFileEditor();

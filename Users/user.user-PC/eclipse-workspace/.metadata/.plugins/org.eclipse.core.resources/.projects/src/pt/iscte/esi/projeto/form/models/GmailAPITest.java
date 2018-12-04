@@ -3,6 +3,8 @@ package pt.iscte.esi.projeto.form.models;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.mail.MessagingException;
+
 /**
  * Gmail API class, used only for testing
  *
@@ -11,11 +13,13 @@ public class GmailAPITest {
 	/*Test class, its going to be deleted*/
 	public static void main(String[] args) {
 		GmailAPI p = new GmailAPI();
-		List<Message> message;
 		try {
-			ArrayList<pt.iscte.esi.projeto.form.models.Message> emails = p.getMails();
-			for(Message m: emails)
-				System.out.println("Time: "+m.getTime() );
+			for(Message m :p.getMails())
+				System.out.println(m.getChannel());
+			
+		} catch (MessagingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
