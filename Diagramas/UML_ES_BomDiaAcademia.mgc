@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ClassDiagram>
+    <Class name="pt.iscte.esi.projeto.form.models.GmailAPI" x="885" y="518">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Association
+            destinationClassName="pt.iscte.esi.projeto.form.models.Message"
+            endpointName="emails" kind="Simple"/>
+        <Association
+            destinationClassName="pt.iscte.esi.projeto.utils.XMLFileEditor"
+            endpointName="editor" kind="Simple"/>
+        <Communication destinationClassName="pt.iscte.esi.projeto.form.models.Message"/>
+        <Communication destinationClassName="pt.iscte.esi.projeto.utils.XMLFileEditor"/>
+    </Class>
+    <Class name="pt.iscte.esi.projeto.form.models.Message" x="544" y="100">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+    </Class>
+    <Class name="pt.iscte.esi.projeto.form.models.TwitterThread" x="948" y="383">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Association
+            destinationClassName="pt.iscte.esi.projeto.form.models.TwitterAPI"
+            endpointName="twitter" kind="Simple"/>
+        <Association
+            destinationClassName="pt.iscte.esi.projeto.form.models.Message"
+            endpointName="tweets" kind="Simple"/>
+        <Communication destinationClassName="pt.iscte.esi.projeto.form.models.TwitterAPI"/>
+    </Class>
+    <Class name="pt.iscte.esi.projeto.form.AccountManageWindow" x="1043" y="736">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Association
+            destinationClassName="pt.iscte.esi.projeto.utils.XMLFileEditor"
+            endpointName="editor" kind="Simple"/>
+        <Association
+            destinationClassName="pt.iscte.esi.projeto.form.MainWindow"
+            endpointName="mainWindow" kind="Simple"/>
+        <Communication destinationClassName="pt.iscte.esi.projeto.form.MainWindow"/>
+    </Class>
+    <Class name="pt.iscte.esi.projeto.form.models.GmailThread" x="696" y="390">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Association
+            destinationClassName="pt.iscte.esi.projeto.form.models.GmailAPI"
+            endpointName="gmail" kind="Simple"/>
+        <Association
+            destinationClassName="pt.iscte.esi.projeto.form.models.Message"
+            endpointName="emails" kind="Simple"/>
+        <Communication destinationClassName="pt.iscte.esi.projeto.form.models.GmailAPI"/>
+    </Class>
+    <Class name="pt.iscte.esi.projeto.form.models.StringComparator"
+        x="547" y="913">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+    </Class>
+    <Class name="pt.iscte.esi.projeto.form.models.MessageComparator"
+        x="326" y="913">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Communication destinationClassName="pt.iscte.esi.projeto.form.models.Message"/>
+    </Class>
+    <Class name="DBA.APIDataBase" x="93" y="566">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Communication destinationClassName="pt.iscte.esi.projeto.form.models.Message"/>
+    </Class>
+    <Class name="pt.iscte.esi.projeto.form.MessageDetailWindow" x="627" y="775">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+    </Class>
+    <Class name="pt.iscte.esi.projeto.form.models.TwitterAPI" x="1152" y="335">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Association
+            destinationClassName="pt.iscte.esi.projeto.utils.XMLFileEditor"
+            endpointName="editor" kind="Simple"/>
+        <Association
+            destinationClassName="pt.iscte.esi.projeto.form.models.Message"
+            endpointName="message" kind="Simple"/>
+        <Communication destinationClassName="pt.iscte.esi.projeto.form.models.Message"/>
+        <Communication destinationClassName="pt.iscte.esi.projeto.utils.XMLFileEditor"/>
+    </Class>
+    <Class name="pt.iscte.esi.projeto.form.models.FacebookAPI" x="1298" y="166">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Association
+            destinationClassName="pt.iscte.esi.projeto.utils.XMLFileEditor"
+            endpointName="editor" kind="Simple"/>
+        <Association
+            destinationClassName="pt.iscte.esi.projeto.form.models.Message"
+            endpointName="posts" kind="Simple"/>
+        <Communication destinationClassName="pt.iscte.esi.projeto.form.models.Message"/>
+        <Communication destinationClassName="pt.iscte.esi.projeto.utils.XMLFileEditor"/>
+    </Class>
+    <Class name="pt.iscte.esi.projeto.form.MainWindow" x="415" y="426">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Association destinationClassName="DBA.APIDataBase"
+            endpointName="ApiDB" kind="Simple"/>
+        <Association
+            destinationClassName="pt.iscte.esi.projeto.form.models.Message"
+            endpointName="emails" kind="Simple"/>
+        <Association
+            destinationClassName="pt.iscte.esi.projeto.form.MainWindow"
+            endpointName="mainWindow" kind="Simple"/>
+        <Association
+            destinationClassName="pt.iscte.esi.projeto.form.models.Message"
+            endpointName="AllMessages" kind="Simple"/>
+        <Association
+            destinationClassName="pt.iscte.esi.projeto.form.models.Message"
+            endpointName="ShownMessages" kind="Simple"/>
+        <Association
+            destinationClassName="pt.iscte.esi.projeto.utils.MainMsgList"
+            endpointName="msgList" kind="Simple"/>
+        <Association
+            destinationClassName="pt.iscte.esi.projeto.form.models.Message"
+            endpointName="tweets" kind="Simple"/>
+        <Association
+            destinationClassName="pt.iscte.esi.projeto.form.models.Message"
+            endpointName="posts" kind="Simple"/>
+        <Communication destinationClassName="pt.iscte.esi.projeto.form.models.TwitterThread"/>
+        <Communication destinationClassName="pt.iscte.esi.projeto.form.models.GmailThread"/>
+        <Communication destinationClassName="pt.iscte.esi.projeto.form.models.FacebookThread"/>
+        <Communication destinationClassName="DBA.APIDataBase"/>
+        <Communication destinationClassName="pt.iscte.esi.projeto.utils.MainMsgList"/>
+    </Class>
+    <Class name="pt.iscte.esi.projeto.form.RegisterWindow" x="325" y="767">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+    </Class>
+    <Class name="pt.iscte.esi.projeto.form.models.FacebookThread"
+        x="883" y="84">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Association
+            destinationClassName="pt.iscte.esi.projeto.form.models.FacebookAPI"
+            endpointName="Facebook" kind="Simple"/>
+        <Association
+            destinationClassName="pt.iscte.esi.projeto.form.models.Message"
+            endpointName="posts" kind="Simple"/>
+        <Communication destinationClassName="pt.iscte.esi.projeto.form.models.FacebookAPI"/>
+    </Class>
+    <Class name="pt.iscte.esi.projeto.utils.XMLFileEditor" x="1518" y="541">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+    </Class>
+    <Class name="DBA.DBAWindow" x="166" y="831">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Communication destinationClassName="pt.iscte.esi.projeto.utils.XMLFileEditor"/>
+    </Class>
+    <Class name="pt.iscte.esi.projeto.form.LoginWindow" x="461" y="781">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+    </Class>
+    <Class name="pt.iscte.esi.projeto.utils.MainMsgList" x="174" y="336">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Communication destinationClassName="pt.iscte.esi.projeto.form.models.Message"/>
+    </Class>
+</ClassDiagram>

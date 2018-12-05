@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PackageAnalysis>
+    <Package name="DBA" x="491" y="346">
+        <DependencyLink destination="pt.iscte.esi.projeto.form.models"/>
+        <DependencyLink destination="pt.iscte.esi.projeto.utils"/>
+    </Package>
+    <Package name="jUnitTests" x="675" y="403">
+        <DependencyLink destination="DBA"/>
+        <DependencyLink destination="pt.iscte.esi.projeto.form.models"/>
+        <DependencyLink destination="pt.iscte.esi.projeto.form"/>
+        <DependencyLink destination="pt.iscte.esi.projeto.utils"/>
+    </Package>
+    <Package name="pt.iscte.esi.projeto.form" x="487" y="107">
+        <DependencyLink destination="DBA"/>
+        <DependencyLink destination="pt.iscte.esi.projeto.form.models"/>
+        <DependencyLink destination="pt.iscte.esi.projeto.utils"/>
+    </Package>
+    <Package name="pt.iscte.esi.projeto.form.models" x="699" y="196">
+        <DependencyLink destination="DBA"/>
+        <DependencyLink destination="pt.iscte.esi.projeto.utils"/>
+    </Package>
+    <Package name="pt.iscte.esi.projeto.utils" x="190" y="401">
+        <DependencyLink destination="pt.iscte.esi.projeto.form.models"/>
+    </Package>
+    <Package name="pt.iscte.esi.projeto.form.images" x="126" y="234"/>
+    <Package name="imgGuiPrototype" x="245" y="156"/>
+</PackageAnalysis>
