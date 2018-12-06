@@ -17,7 +17,7 @@
         <Communication destinationClassName="pt.iscte.esi.projeto.form.models.Message"/>
         <Communication destinationClassName="pt.iscte.esi.projeto.utils.XMLFileEditor"/>
     </Class>
-    <Class name="pt.iscte.esi.projeto.form.models.Message" x="544" y="100">
+    <Class name="pt.iscte.esi.projeto.form.models.Message" x="550" y="89">
         <AttributesDisplayFilter public-accepted="true"
             private-accepted="true" protected-accepted="true"
             default-accepted="true" static-accepted="false"/>
@@ -74,27 +74,6 @@
             endpointName="emails" kind="Simple"/>
         <Communication destinationClassName="pt.iscte.esi.projeto.form.models.GmailAPI"/>
     </Class>
-    <Class name="pt.iscte.esi.projeto.form.models.StringComparator"
-        x="547" y="913">
-        <AttributesDisplayFilter public-accepted="true"
-            private-accepted="true" protected-accepted="true"
-            default-accepted="true" static-accepted="false"/>
-        <MethodDisplayFilter public-accepted="true"
-            private-accepted="false" protected-accepted="false"
-            default-accepted="false" static-accepted="false"
-            accessors-accepted="false" constructors-accepted="false"/>
-    </Class>
-    <Class name="pt.iscte.esi.projeto.form.models.MessageComparator"
-        x="326" y="913">
-        <AttributesDisplayFilter public-accepted="true"
-            private-accepted="true" protected-accepted="true"
-            default-accepted="true" static-accepted="false"/>
-        <MethodDisplayFilter public-accepted="true"
-            private-accepted="false" protected-accepted="false"
-            default-accepted="false" static-accepted="false"
-            accessors-accepted="false" constructors-accepted="false"/>
-        <Communication destinationClassName="pt.iscte.esi.projeto.form.models.Message"/>
-    </Class>
     <Class name="DBA.APIDataBase" x="93" y="566">
         <AttributesDisplayFilter public-accepted="true"
             private-accepted="true" protected-accepted="true"
@@ -105,7 +84,7 @@
             accessors-accepted="false" constructors-accepted="false"/>
         <Communication destinationClassName="pt.iscte.esi.projeto.form.models.Message"/>
     </Class>
-    <Class name="pt.iscte.esi.projeto.form.MessageDetailWindow" x="627" y="775">
+    <Class name="pt.iscte.esi.projeto.form.MessageDetailWindow" x="848" y="783">
         <AttributesDisplayFilter public-accepted="true"
             private-accepted="true" protected-accepted="true"
             default-accepted="true" static-accepted="false"/>
@@ -185,7 +164,7 @@
         <Communication destinationClassName="DBA.APIDataBase"/>
         <Communication destinationClassName="pt.iscte.esi.projeto.utils.MainMsgList"/>
     </Class>
-    <Class name="pt.iscte.esi.projeto.form.RegisterWindow" x="325" y="767">
+    <Class name="pt.iscte.esi.projeto.form.RegisterWindow" x="1225" y="834">
         <AttributesDisplayFilter public-accepted="true"
             private-accepted="true" protected-accepted="true"
             default-accepted="true" static-accepted="false"/>
@@ -220,17 +199,7 @@
             default-accepted="false" static-accepted="false"
             accessors-accepted="false" constructors-accepted="false"/>
     </Class>
-    <Class name="DBA.DBAWindow" x="166" y="831">
-        <AttributesDisplayFilter public-accepted="true"
-            private-accepted="true" protected-accepted="true"
-            default-accepted="true" static-accepted="false"/>
-        <MethodDisplayFilter public-accepted="true"
-            private-accepted="false" protected-accepted="false"
-            default-accepted="false" static-accepted="false"
-            accessors-accepted="false" constructors-accepted="false"/>
-        <Communication destinationClassName="pt.iscte.esi.projeto.utils.XMLFileEditor"/>
-    </Class>
-    <Class name="pt.iscte.esi.projeto.form.LoginWindow" x="461" y="781">
+    <Class name="pt.iscte.esi.projeto.form.LoginWindow" x="1038" y="895">
         <AttributesDisplayFilter public-accepted="true"
             private-accepted="true" protected-accepted="true"
             default-accepted="true" static-accepted="false"/>

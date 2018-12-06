@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <PackageAnalysis>
-    <Package name="DBA" x="491" y="346">
+    <Package name="DBA" x="544" y="104">
         <DependencyLink destination="pt.iscte.esi.projeto.form.models"/>
         <DependencyLink destination="pt.iscte.esi.projeto.utils"/>
     </Package>
-    <Package name="jUnitTests" x="675" y="403">
+    <Package name="jUnitTests" x="489" y="425">
         <DependencyLink destination="DBA"/>
         <DependencyLink destination="pt.iscte.esi.projeto.form.models"/>
         <DependencyLink destination="pt.iscte.esi.projeto.form"/>
         <DependencyLink destination="pt.iscte.esi.projeto.utils"/>
     </Package>
-    <Package name="pt.iscte.esi.projeto.form" x="487" y="107">
+    <Package name="pt.iscte.esi.projeto.form" x="261" y="30">
         <DependencyLink destination="DBA"/>
         <DependencyLink destination="pt.iscte.esi.projeto.form.models"/>
         <DependencyLink destination="pt.iscte.esi.projeto.utils"/>
     </Package>
-    <Package name="pt.iscte.esi.projeto.form.models" x="699" y="196">
+    <Package name="pt.iscte.esi.projeto.form.models" x="481" y="243">
         <DependencyLink destination="DBA"/>
         <DependencyLink destination="pt.iscte.esi.projeto.utils"/>
     </Package>
-    <Package name="pt.iscte.esi.projeto.utils" x="190" y="401">
+    <Package name="pt.iscte.esi.projeto.utils" x="827" y="59">
         <DependencyLink destination="pt.iscte.esi.projeto.form.models"/>
     </Package>
-    <Package name="pt.iscte.esi.projeto.form.images" x="126" y="234"/>
-    <Package name="imgGuiPrototype" x="245" y="156"/>
+    <Package name="pt.iscte.esi.projeto.form.images" x="134" y="167"/>
+    <Package name="imgGuiPrototype" x="226" y="230"/>
 </PackageAnalysis>
