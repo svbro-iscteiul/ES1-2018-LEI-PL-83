@@ -74,6 +74,27 @@
             endpointName="emails" kind="Simple"/>
         <Communication destinationClassName="pt.iscte.esi.projeto.form.models.GmailAPI"/>
     </Class>
+    <Class name="pt.iscte.esi.projeto.form.models.StringComparator"
+        x="329" y="747">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+    </Class>
+    <Class name="pt.iscte.esi.projeto.form.models.MessageComparator"
+        x="522" y="745">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Communication destinationClassName="pt.iscte.esi.projeto.form.models.Message"/>
+    </Class>
     <Class name="DBA.APIDataBase" x="93" y="566">
         <AttributesDisplayFilter public-accepted="true"
             private-accepted="true" protected-accepted="true"
