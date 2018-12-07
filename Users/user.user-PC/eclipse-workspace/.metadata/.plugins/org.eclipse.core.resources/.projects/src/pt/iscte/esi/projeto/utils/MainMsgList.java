@@ -23,8 +23,8 @@ public class MainMsgList {
 
 	/**
 	 * Constructor 
-	 * @param headers
-	 * @param msgMatrix
+	 * @param headers String[][]
+	 * @param msgMatrix String[][]
 	 */
 	public MainMsgList(String[] headers,String[][] msgMatrix) {
 		this.headers = headers;
@@ -45,7 +45,7 @@ public class MainMsgList {
 	/**
 	 * get method for msgMatrix
 	 * 
-	 * @return Object[][]
+	 * @return Object[][] msgMatrix
 	 */
 	public String[][] getMsgMatrix() {
 		return msgMatrix;
@@ -83,7 +83,7 @@ public class MainMsgList {
 	/**
 	 * get method for headers
 	 * 
-	 * @return String[]
+	 * @return String[] headers
 	 */
 	public String[] getHeaders() {
 		return headers;

@@ -197,10 +197,10 @@ public class XMLFileEditor {
 	
 	/**
 	 * Add account information in XML
-	 * @param ConsumerKey
-	 * @param ConsumerSecret
-	 * @param AccessToken
-	 * @param AccessTokenSecret
+	 * @param ConsumerKey String
+	 * @param ConsumerSecret String
+	 * @param AccessToken String
+	 * @param AccessTokenSecret String
 	 */
 	public void AddAcountsForTwitter(String ConsumerKey,String ConsumerSecret,String AccessToken, String AccessTokenSecret)
 	{
@@ -246,7 +246,11 @@ public class XMLFileEditor {
 	}
 	
 	/**
+	 * add acount for facebook in XML
 	 * 
+	 * @param token String
+	 * @param AppId String
+	 * @param AppSecret String
 	 */
 	public void AddAcountsForFacebook(String token,String AppId, String AppSecret)
 	{
@@ -288,8 +292,8 @@ public class XMLFileEditor {
 	
 	/**
 	 * Add Email account information 
-	 * @param usermail
-	 * @param password
+	 * @param usermail String
+	 * @param password String
 	 */
 	public void AddAcountsForEmail(String usermail,String password)
 	{
@@ -328,6 +332,11 @@ public class XMLFileEditor {
 		
 	}
 	
+	/**
+	 * Get Twitter tokens in XML
+	 * 
+	 * @return String
+	 */
 	public String getTwitterTokens(){
 		try {
 			File fXmlFile = new File(
@@ -355,7 +364,11 @@ public class XMLFileEditor {
 		}
 	}
 	
-	
+	/**
+	 * get Facebook tokens in XML
+	 * 
+	 * @return String
+	 */
 	public String getFacebookTokens(){
 		try {
 			File fXmlFile = new File(
@@ -418,11 +431,11 @@ public class XMLFileEditor {
 	// (elsa) 18_11_18 - equivalente ao read file, mas para os tokens do twitter (repete codigo - alterar dps)
 	/**
 	 * Read File Tokens from Twitter
-	 * @param AuthConsumerSecret
-	 * @param AuthConsumerKey
-	 * @param AuthAccessToken
-	 * @param AuthAccesTokenSecret
-	 * @return
+	 * @param AuthConsumerSecret String
+	 * @param AuthConsumerKey String
+	 * @param AuthAccessToken String
+	 * @param AuthAccesTokenSecret String
+	 * @return String
 	 */
 	public String readFileTokTwiter(String AuthConsumerSecret, String AuthConsumerKey, String AuthAccessToken,
 			String AuthAccesTokenSecret) {
@@ -466,11 +479,11 @@ public class XMLFileEditor {
 	// (Elsa)  18_11_18 metodo semelhante ao SignIn para os token do twitter (melhorar dps para evitar codigo repetido)
 	/**
 	 * Add twitter tokens 
-	 * @param AuthConsumerSecret
-	 * @param AuthConsumerKey
-	 * @param AuthAccessToken
-	 * @param AuthAccesTokenSecret
-	 * @return
+	 * @param AuthConsumerSecret String
+	 * @param AuthConsumerKey String
+	 * @param AuthAccessToken String
+	 * @param AuthAccesTokenSecret String
+	 * @return String
 	 */
 	public String addTwittwerTokens(String AuthConsumerSecret, String AuthConsumerKey, String AuthAccessToken,
 			String AuthAccesTokenSecret) {

@@ -47,6 +47,7 @@ import pt.iscte.esi.projeto.utils.MainMsgList;
 /**
  * Window UI with list of tweets, emails and facebook posts
  *
+ *  @author José F Santos, Elsa Teixeira, Sérgio Vaz
  */
 public class MainWindow {
 
@@ -80,7 +81,7 @@ public class MainWindow {
 
 	/**
 	 * Main
-	 * @param args
+	 * @param args Inputs
 	 */
 	public static void main(String[] args) {
 		//MessageDetailWindow window = new MessageDetailWindow(null, null, null, null);
@@ -134,37 +135,63 @@ public class MainWindow {
 
 
 
-
+	/**
+	 * Twitter boolean status
+	 * 
+	 * @return true if Twitter is Off
+	 */
 	public boolean isTwitterOff() {
 		return twitterOff;
 	}
 
-
+	/**
+	 * Sets Off or ON for Twitter
+	 * 
+	 * @param twitterOff true if twitter is Off
+	 */
 	public void setTwitterOff(boolean twitterOff) {
 		this.twitterOff = twitterOff;
 	}
 
-
+	/**
+	 * Facebook boolean status
+	 * 
+	 * @return true if Facebook is Off
+	 */
 	public boolean isFacebookOff() {
 		return facebookOff;
 	}
 
-
+	/**
+	 * Sets Off or ON for Facebook
+	 * 
+	 * @param facebookOff true if Facebook is Off
+	 */
 	public void setFacebookOff(boolean facebookOff) {
 		this.facebookOff = facebookOff;
 	}
 
-
+	/**
+	 * Email boolean status
+	 * 
+	 * @return true if Email is Off
+	 */
 	public boolean isEmailOff() {
 		return emailOff;
 	}
 
-
+	/**
+	 * Sets Off or ON for Email
+	 * 
+	 * @param emailOff true if Email is Off
+	 */
 	public void setEmailOff(boolean emailOff) {
 		this.emailOff = emailOff;
 	}
 
-
+	/**
+	 *  Refresh all data from main table
+	 */
 	public void refreshAllTable() {
 		refreshTable();
 		reconstructTable();
@@ -710,7 +737,9 @@ public class MainWindow {
 
 	}
 
-
+	/**
+	 * get Elements for Matrix
+	 */
 	private void getMatrixElements() {
 		try {
 			GmailThread f = new GmailThread();
@@ -785,7 +814,9 @@ public class MainWindow {
 
 	}
 
-
+	/**
+	 *  show messages from all APIs
+	 */
 	private void showMessages() {
 		Set<String> tmp = new HashSet<String>();
 

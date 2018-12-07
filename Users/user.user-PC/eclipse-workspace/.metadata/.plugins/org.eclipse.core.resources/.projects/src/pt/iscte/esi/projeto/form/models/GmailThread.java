@@ -2,9 +2,9 @@ package pt.iscte.esi.projeto.form.models;
 
 import java.util.ArrayList;
 /**
- * 
- *  @author svbro-iscteiul
  *	This thread fetchs the emails from the GmailAPI
+ *
+ * @author Sérgio Vaz
  */
 public class GmailThread extends Thread{
 	

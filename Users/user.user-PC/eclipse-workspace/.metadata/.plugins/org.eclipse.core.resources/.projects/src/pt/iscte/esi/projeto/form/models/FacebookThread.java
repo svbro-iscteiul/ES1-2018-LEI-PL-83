@@ -2,9 +2,9 @@ package pt.iscte.esi.projeto.form.models;
 
 import java.util.ArrayList;
 /**
- * 
- *  @author svbro-iscteiul
  * This Thread fetchs the posts from the FacebookAPI
+ * 
+ * @author Sérgio Vaz
  */
 public class FacebookThread extends Thread{
 	

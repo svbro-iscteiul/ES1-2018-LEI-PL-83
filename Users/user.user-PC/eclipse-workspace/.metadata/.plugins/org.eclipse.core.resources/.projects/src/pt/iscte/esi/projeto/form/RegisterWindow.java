@@ -19,6 +19,7 @@ import pt.iscte.esi.projeto.utils.XMLFileEditor;
 /**
  * Window UI for Registering in Application
  * 
+ * @author José F Santos, Elsa Teixeira, Sérgio Vaz
  */
 public class RegisterWindow {
 

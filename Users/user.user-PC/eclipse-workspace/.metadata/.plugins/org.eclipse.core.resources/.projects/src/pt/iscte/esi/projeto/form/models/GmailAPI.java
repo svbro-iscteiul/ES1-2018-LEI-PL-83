@@ -28,6 +28,8 @@ import pt.iscte.esi.projeto.utils.XMLFileEditor;
 
 /**
  * Gmail API class
+ * 
+ * @author Sérgio Vaz
  */
 public class GmailAPI {
 	
@@ -52,8 +54,8 @@ public class GmailAPI {
 	/**
 	 * Get a list of emails.
 	 * @author svbro-iscteiul
-	 * @return ArrayList<Message> 
-	 * @throws Exception
+	 * @return ArrayList as list of messages
+	 * @throws Exception in getting emails
 	 */
 	public ArrayList<pt.iscte.esi.projeto.form.models.Message> getMails() throws Exception {
 		getTokenFromXML();
@@ -77,7 +79,7 @@ public class GmailAPI {
 	 * creates a Message
 	 * @author svbro-iscteiul
 	 * @param original as String
-	 * @return
+	 * @return Message 
 	 */
 	private pt.iscte.esi.projeto.form.models.Message createMessage(String original){
 		pt.iscte.esi.projeto.form.models.Message m = new pt.iscte.esi.projeto.form.models.Message();
@@ -103,11 +105,12 @@ public class GmailAPI {
 	
 	/**
 	 * Returns text from message 
+	 * 
 	 * @author svbro-iscteiul
 	 * @param message Message
 	 * @return text as String
-	 * @throws MessagingException
-	 * @throws IOException
+	 * @throws MessagingException error in the message
+	 * @throws IOException error accessing file
 	 */
 	private String getTextFromMessage(Message message) throws MessagingException, IOException {
 		String result = "";
@@ -122,11 +125,12 @@ public class GmailAPI {
 	
 	/**
 	 * Returns TextFromMimeMultipart
+	 * 
 	 * @author svbro-iscteiul
-	 * @param mimeMultipart
-	 * @return String
-	 * @throws MessagingException
-	 * @throws IOException
+	 * @param mimeMultipart for input
+	 * @return String as result from message
+	 * @throws MessagingException error in the message
+	 * @throws IOException error accessing file
 	 */
 	private String getTextFromMimeMultipart( MimeMultipart mimeMultipart)  throws MessagingException, IOException{
 		String result = "";
@@ -148,10 +152,11 @@ public class GmailAPI {
 
 	
 	/**
-	 * @author svbro-iscteiul
-	 * @param string 
-	 * @return string
 	 * Returns the number of the mouth
+	 * 
+	 * @author svbro-iscteiul
+	 * @param mes as String  
+	 * @return numerical form of month as a String
 	 * */
 	private String SetMonth(String mes) {
 		String m= mes.toLowerCase();
@@ -182,12 +187,13 @@ public class GmailAPI {
 			
 	}
 	/**
+	 * Responds to Email
+	 * 
 	 * @author svbro-iscteiul
-	 * @param title
-	 * @param message
-	 * @throws AddressException
-	 * @throws MessagingException
-	 * Respondes to an email
+	 * @param title message title
+	 * @param message message text
+	 * @throws AddressException for error in the message address
+	 * @throws MessagingException for error in the message
 	 */
 	public void SendEmail(String title, String message) throws AddressException, MessagingException {
 		getTokenFromXML();

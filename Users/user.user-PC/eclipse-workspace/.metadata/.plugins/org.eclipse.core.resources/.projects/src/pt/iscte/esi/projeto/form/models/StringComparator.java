@@ -3,12 +3,15 @@ package pt.iscte.esi.projeto.form.models;
 import java.util.Comparator;
 
 /**
- * 
- * @author svbro-iscteiul
  * A comparator used to organize Messages by their Time field
+ * 
+ * @author Sérgio Vaz
  */
 public class StringComparator implements Comparator<String>{
 
+	/**
+	 * A comparator used to organize Messages by their Time field
+	 */
 	@Override
 	public int compare(String temp1, String temp2) {
 	    String[] date1=temp1.split("/");

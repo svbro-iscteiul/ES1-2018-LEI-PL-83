@@ -20,7 +20,7 @@ import pt.iscte.esi.projeto.utils.XMLFileEditor;
 /**
  * FacebookAPI class
  *
- *
+ * @author Sérgio Vaz
  */
 public class FacebookAPI {
 	private ArrayList<Message> posts = new ArrayList<Message>();
@@ -45,8 +45,8 @@ public class FacebookAPI {
 	
 	/**
 	 * @author svbro-iscteiul
-	 * @param fbmessage
-	 * @throws Exception
+	 * @param fbmessage as message to post in facebook
+	 * @throws Exception as error got by facebook
 	 * Posts fbmessage has a comment on facebook 
 	 */
 	public void postMessage(String fbmessage) throws Exception{
@@ -62,7 +62,7 @@ public class FacebookAPI {
 
 	/**
 	 * @author svbro-iscteiul
-	 * @return
+	 * @return posts as an Arraylist
 	 * Gets the post from facebook and adds them to the posts arraylist
 	 */
 	public ArrayList<Message> getPosts() {
@@ -94,8 +94,8 @@ public class FacebookAPI {
 	}
 	/**
 	 * @author svbro-iscteiul
-	 * @param date
-	 * @return
+	 * @param date as a String
+	 * @return a String
 	 * modifies the string to create a date, e.g Thu Nov 08 16:06:15 GMT 2018 becomes 08/11/2018
 	 */
 	private String setDate(String date) {
@@ -109,9 +109,9 @@ public class FacebookAPI {
 	}
 
 	/**
-	 * @author svbro
-	 * @param string 
-	 * @return string
+	 * @author svbro-iscteiul
+	 * @param string month
+	 * @return string as a date in format as number
 	 * Returns the number of the mouth
 	 * */
 	private String SetMonth(String mes) {

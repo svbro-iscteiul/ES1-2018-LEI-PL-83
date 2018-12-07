@@ -33,6 +33,7 @@ import javax.swing.border.CompoundBorder;
 /**
  * Window UI for message details
  *
+ * @author José F Santos, Elsa Teixeira, Sérgio Vaz
  */
 public class MessageDetailWindow {
 
@@ -44,9 +45,9 @@ public class MessageDetailWindow {
 
 
 	/**
-	 * Launch the application.
+	 * Main
+	 * @param args inputs
 	 */
-
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -60,10 +61,15 @@ public class MessageDetailWindow {
 	}
 
 
-	/**
-	 * Create the application.
-	 */
 
+	/**
+	 * Constructor
+	 * 
+	 * @param date String
+	 * @param channel String
+	 * @param origin String
+	 * @param text String
+	 */
 	public MessageDetailWindow(String date, String channel, String origin, String text) {
 		this.date=date;
 		this.channel=channel;
@@ -75,6 +81,9 @@ public class MessageDetailWindow {
 	}
 
 
+	/**
+	 * Constructor
+	 */
 	public MessageDetailWindow() {
 		// TODO Auto-generated constructor stub
 		initialize();

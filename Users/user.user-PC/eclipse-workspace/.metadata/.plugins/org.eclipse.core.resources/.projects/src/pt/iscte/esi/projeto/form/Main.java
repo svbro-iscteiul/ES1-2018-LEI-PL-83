@@ -7,12 +7,13 @@ import java.awt.EventQueue;
 /**
  * Main class
  *
+ *  @author José F Santos
  */
 public class Main {
 
 	/**
-	 * Main method for the Main class.
-	 * Launches application by starting Login Window.
+	 * Main
+	 * @param args Inputs
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {

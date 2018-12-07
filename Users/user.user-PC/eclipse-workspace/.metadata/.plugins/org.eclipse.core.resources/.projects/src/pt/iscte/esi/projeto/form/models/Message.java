@@ -3,6 +3,7 @@ package pt.iscte.esi.projeto.form.models;
 /**
  * Message model class
  *
+ * @author José F Santos
  */
 public class Message {
 	

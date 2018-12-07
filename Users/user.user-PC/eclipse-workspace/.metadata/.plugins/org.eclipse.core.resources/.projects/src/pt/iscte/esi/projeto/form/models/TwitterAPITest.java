@@ -8,8 +8,11 @@ import twitter4j.TwitterException;
 
 /**
  * Twitter API class, used only for testing
+ * 
+ * @author Sérgio Vaz
  */
 public class TwitterAPITest {
+	
 	/*
 	 * This is just to see if the Twitter api is working, it will be deleted later
 	 * */

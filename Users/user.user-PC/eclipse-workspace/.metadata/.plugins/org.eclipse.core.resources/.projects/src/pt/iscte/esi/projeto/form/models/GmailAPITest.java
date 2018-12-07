@@ -8,6 +8,7 @@ import javax.mail.MessagingException;
 /**
  * Gmail API class, used only for testing
  *
+ * @author Sérgio Vaz
  */
 public class GmailAPITest {
 	/*Test class, its going to be deleted*/

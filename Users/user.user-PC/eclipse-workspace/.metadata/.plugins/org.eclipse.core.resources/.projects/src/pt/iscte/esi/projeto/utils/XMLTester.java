@@ -9,7 +9,7 @@ public class XMLTester {
 	
 	/**
 	 * Main
-	 * @param args
+	 * @param args input
 	 */
 	public static void main(String[] args) {
 		XMLFileEditor x = new XMLFileEditor();

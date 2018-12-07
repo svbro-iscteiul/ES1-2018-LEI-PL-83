@@ -26,6 +26,7 @@ import java.awt.event.KeyEvent;
 /**
  * Window UI for Application Login
  *
+ *  @author José F Santos
  */
 public class LoginWindow {
 

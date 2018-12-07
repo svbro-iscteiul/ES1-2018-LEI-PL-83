@@ -18,7 +18,7 @@ public class APIDataBase {
 
 	/**
 	 *  @author svbro-iscteiul
-	 * @param list
+	 * @param list as a list of messages
 	 * @throws FileNotFoundException
 	 * This method writes the messages from the list on to /files/Facebook.txt 
 	 */
@@ -40,7 +40,7 @@ public class APIDataBase {
 
 	/**
 	 *  @author svbro-iscteiul
-	 * @return
+	 * @return a list of messages
 	 * @throws IOException
 	 * This method reads the /files/facebook and returns a list with the messages
 	 */
@@ -72,7 +72,7 @@ public class APIDataBase {
 	
 	/**
 	 *  @author svbro-iscteiul
-	 * @param list
+	 * @param list as a list of messages
 	 * @throws FileNotFoundException
 	 * This method writes the messages on list to the /files/Gmail.txt
 	 */
@@ -94,7 +94,7 @@ public class APIDataBase {
 
 	/**
 	 *  @author svbro-iscteiul
-	 * @return
+	 * @return a list of messages
 	 * @throws IOException
 	 * This method read the /files/Gmail.txt and returns a list with the messages
 	 */
@@ -125,8 +125,8 @@ public class APIDataBase {
 	}
 	
 	/**
-	 *  @author svbro-iscteiul
-	 * @param list
+	 * @author svbro-iscteiul
+	 * @param list as LIst of messages
 	 * @throws FileNotFoundException
 	 * This method writes the messages from the list on to /files/Twitter.txt
 	 */
@@ -147,8 +147,8 @@ public class APIDataBase {
 	}
 
 	/**
-	 *  @author svbro-iscteiul
-	 * @return
+	 * @author svbro-iscteiul
+	 * @return List of mesages
 	 * @throws IOException
 	 * This method reads /files/Twitter.txt and returns a list with the messages
 	 */

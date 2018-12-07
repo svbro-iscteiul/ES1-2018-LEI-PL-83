@@ -32,6 +32,7 @@ import java.awt.event.ActionEvent;
 /**
  * Window UI for Account Management
  *
+ *  @author Elsa Teixeira
  */
 public class AccountManageWindow extends JFrame {
 
@@ -60,6 +61,7 @@ public class AccountManageWindow extends JFrame {
 
 	/**
 	 * Class constructor.
+	 * @param mainWindow MainWindow
 	 */
 	public AccountManageWindow(MainWindow mainWindow) {
 		this.mainWindow = mainWindow;
@@ -359,6 +361,10 @@ public class AccountManageWindow extends JFrame {
 
 	}
 
+	/**
+	 * Main
+	 * @param args Inputs
+	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {

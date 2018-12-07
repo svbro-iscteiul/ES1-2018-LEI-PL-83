@@ -24,6 +24,7 @@ import java.awt.Color;
 /**
  * DBAWindow Editor
  *
+ *  @author José F Santos
  */
 public class DBAWindow {
 

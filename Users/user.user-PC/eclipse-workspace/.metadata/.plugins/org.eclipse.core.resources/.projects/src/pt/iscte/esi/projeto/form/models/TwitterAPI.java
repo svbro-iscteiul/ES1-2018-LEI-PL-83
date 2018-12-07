@@ -15,6 +15,7 @@ import twitter4j.conf.ConfigurationBuilder;
 /**
  * Twitter API class
  *
+ * @author Sérgio Vaz
  */
 public class TwitterAPI {
 
@@ -37,25 +38,14 @@ public class TwitterAPI {
 		ConsumerSecret = emailcredetials[1];
 		AccessToken = emailcredetials[2];
 		AccessTokenSecret = emailcredetials[3];
-		
-		
-		/*String tmp=editor.getTwitterTokens();
-		if(!tmp.equals(null)){
-			String[] tmp1=tmp.split("BREAKHERE");
-			ConsumerKey=tmp1[0];
-			ConsumerSecret=tmp1[1];
-			AccessToken=tmp1[2];
-			AccessTokenSecret=tmp1[3];
-		}*/
-		
 	}
 
 	/**
 	 * This class uses the API twitter4j to get the tweets of the user 
 	 * and creates a object message with the text, time of the tweet 
 	 * 
-	 * @return message as ArrayList<Message>
-	 * @throws TwitterException 
+	 * @return message as ArrayList
+	 * @throws TwitterException for errors in Twitter
 	 */
 	public ArrayList<Message> getTweets() throws TwitterException {
 		
@@ -131,8 +121,12 @@ public class TwitterAPI {
 
 	
 	/**
-	 *  
-	 * */
+	 * Reply to Tweet
+	 * 
+	 * @param text to reply
+	 * @param Reply to a person
+	 * @throws TwitterException for erros in twitter
+	 */
 	public void ReplyToTweet(String text,String Reply) throws TwitterException{
 		List<Status> tweets= new ArrayList<Status>();
 		ConfigurationBuilder cb = new ConfigurationBuilder();

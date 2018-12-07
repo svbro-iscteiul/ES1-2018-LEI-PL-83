@@ -6,9 +6,9 @@ import java.util.List;
 
 import DBA.APIDataBase;
 /**
- * 
  * Facebook API class, used only for testing
- *
+ * 
+ * @author Sérgio Vaz
  */
 public class FacebookAPITest {
 	public static void main(String[] args)  {

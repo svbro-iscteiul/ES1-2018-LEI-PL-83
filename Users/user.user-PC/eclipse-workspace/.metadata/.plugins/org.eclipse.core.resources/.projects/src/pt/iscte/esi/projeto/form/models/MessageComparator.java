@@ -2,8 +2,17 @@ package pt.iscte.esi.projeto.form.models;
 
 import java.util.Comparator;
 
+/**
+ * Compare messages
+ * 
+ * @author Sérgio Vaz
+ *
+ */
 public class MessageComparator implements Comparator<Message>{
 
+	/**
+	 * Method to compare messages
+	 */
 	@Override
 	public int compare(Message o1, Message o2) {
 		String temp1=o1.getTime();
