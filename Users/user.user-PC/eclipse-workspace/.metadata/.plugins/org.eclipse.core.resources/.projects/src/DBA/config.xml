@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<Config>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><Config>
 	<Login>
 		<User_Login>
 			<Username>username</Username>
@@ -36,32 +35,15 @@
 			<Password>123</Password>
 			<Email>user</Email>
 		</User_Login>
-		<User_Login>
-			<Username>Elsa</Username>
-			<Password>elsa</Password>
-			<Email>eptaa@iscte-iul.pt</Email>
-		</User_Login>
-		<User_Login>
-			<Username>elsa</Username>
-			<Password>elsa</Password>
-			<Email>elsa@gmail.com</Email>
-		</User_Login>
-	<User_Login>
-      <Username>NewTest</Username>
-      <Password>NewTest</Password>
-      <Email>NewTest@ms.com</Email>
-    </User_Login>
-  </Login>
-	<Facebook>
-		<User_Facebook>
+	<User_Login><Username>NewTest</Username><Password>NewTest</Password><Email>NewTest@ms.com</Email></User_Login></Login>
+	<Facebook><User_Facebook>
 			<Token>EAAD0JjeESBwBAET05tGhHzL7O7VqXAFfjw0NF7LsP4R68GbSydJ8Ro6xkNM9Qq9bx9XqIYHKNkVFrgBDErEgLU0EO6euuz4SlZAXJZAIkCCyEfmv1YbvcpPS4DoYFTpF95aZCBZCZCkYSDtSYmNeLGWCq1dIqLkhQo4efZAx1Rvk1Yh3SGYYydyrG5uc3OiulRXbDO3Ya54QZDZD
 			</Token>
 			<AppId>268444977350684</AppId>
 			<AppSecret>75a7638dfa1a64929a408b3955681d0a</AppSecret>
 		</User_Facebook>
-	</Facebook>
-	<Twitter>
-    <User_Twitter>
+	<User_Facebook><Token>NewTest</Token><AppId>NewTest</AppId><AppSecret>NewTest</AppSecret></User_Facebook></Facebook>
+	<Twitter><User_Twitter>
 			<ConsumerKey>lssQlInMSR48WEhVnhhEpLKlU</ConsumerKey>
 			<ConsumerSecret>HJoUp0olU7wGYFFSbB6gEMRtfxJBUunM2ZirdOznPRoGpcBBy9
 			</ConsumerSecret>
@@ -70,27 +52,10 @@
 			<AccessTokenSecret>Ikwu8aWLHnm7GduV5SCX1rwfOck5FlEyItvEIzYpRkhsd
 			</AccessTokenSecret>
 		</User_Twitter>
-	<User_Twitter_Token>
-      <AuthConsumerSecret>NewTest</AuthConsumerSecret>
-      <AuthConsumerKey>NewTest</AuthConsumerKey>
-      <AuthAccessToken>NewTest</AuthAccessToken>
-      <AuthAccesTokenSecret>NewTest</AuthAccesTokenSecret>
-    </User_Twitter_Token>
-    <User_Twitter>
-      <ConsumerKey>NewTest</ConsumerKey>
-      <ConsumerSecret>NewTest</ConsumerSecret>
-      <AccessToken>NewTest</AccessToken>
-      <AccessTokenSecret>NewTest</AccessTokenSecret>
-    </User_Twitter>
-  </Twitter>
-	<Gmail>
-    <User_Email>
+	<User_Twitter_Token><AuthConsumerSecret>NewTest</AuthConsumerSecret><AuthConsumerKey>NewTest</AuthConsumerKey><AuthAccessToken>NewTest</AuthAccessToken><AuthAccesTokenSecret>NewTest</AuthAccesTokenSecret></User_Twitter_Token><User_Twitter><ConsumerKey>NewTest</ConsumerKey><ConsumerSecret>NewTest</ConsumerSecret><AccessToken>NewTest</AccessToken><AccessTokenSecret>NewTest</AccessTokenSecret></User_Twitter></Twitter>
+	<Gmail><User_Email>
 			<Mail>happyc0d3rtwo@gmail.com</Mail>
 			<Password>happy.two</Password>
 		</User_Email>
-	<User_Email>
-      <Mail>NewTest</Mail>
-      <Password>NewTest</Password>
-    </User_Email>
-  </Gmail>
+	<User_Email><Mail>NewTest</Mail><Password>NewTest</Password></User_Email></Gmail>
 </Config>

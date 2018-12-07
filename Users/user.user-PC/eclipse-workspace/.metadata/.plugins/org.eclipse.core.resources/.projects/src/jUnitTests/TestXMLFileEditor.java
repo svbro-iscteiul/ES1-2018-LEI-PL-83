@@ -68,7 +68,22 @@ public class TestXMLFileEditor {
 		
 		xmlFileEditor.AddAcountsForTwitter("NewTest", "NewTest", "NewTest", "NewTest");
 		xmlFileEditor.AddAcountsForEmail("NewTest", "NewTest");
+		xmlFileEditor.AddAcountsForFacebook("NewTest", "NewTest", "NewTest");
 
+		String temp = new String();
+		String expected = new String();
+		
+		
+		temp = xmlFileEditor.getTwitterTokens();
+		
+		
+		assertNotEquals("", temp);
+		temp = xmlFileEditor.getEmailTokens();
+		assertNotEquals("", temp);
+		temp = xmlFileEditor.getFacebookTokens();
+		assertNotEquals("", temp);
+		
+		
 	}
 
 }

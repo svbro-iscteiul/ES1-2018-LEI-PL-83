@@ -267,9 +267,10 @@ public class MainWindow {
 
 		getMatrixElements(); 
 
-		Collections.sort(AllMessages, new MessageComparator());
+		//Collections.sort(AllMessages, new MessageComparator());
 
 		ShownMessages = new ArrayList<Message>(AllMessages);
+		
 		showMessages();
 
 

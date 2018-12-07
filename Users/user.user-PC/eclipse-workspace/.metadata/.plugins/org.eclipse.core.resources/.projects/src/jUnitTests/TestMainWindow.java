@@ -1,5 +1,9 @@
 package jUnitTests;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -32,7 +36,19 @@ public class TestMainWindow {
 
 	@Test
 	public void test() {
-		new MainWindow().main(null);	
+		MainWindow main = new MainWindow();
+		
+		main.setEmailOff(true);
+		main.setFacebookOff(true);
+		main.setTwitterOff(true);
+		boolean temp = main.isTwitterOff();
+		assertTrue(temp);
+		temp = main.isFacebookOff();
+		assertTrue(temp);
+		temp = main.isEmailOff();
+		assertTrue(temp);
+		
+		main.refreshAllTable();
 	}
 
 }
