@@ -26,16 +26,27 @@ public class TwitterAPI {
 	private String AccessToken="1056204591581290497-qChkQRfvnqCsNq5fTlJ6kFiaDdOfos";
 	private String AccessTokenSecret="Ikwu8aWLHnm7GduV5SCX1rwfOck5FlEyItvEIzYpRkhsd";
 	
-	
+	/**
+	 * Get all Tokens from XML
+	 */
 	private void getTokenFromXML() {
-		String tmp=editor.getTwitterTokens();
+		editor = new XMLFileEditor();
+		String[] emailcredetials = editor.getTwitter();
+		
+		ConsumerKey = emailcredetials[0];
+		ConsumerSecret = emailcredetials[1];
+		AccessToken = emailcredetials[2];
+		AccessTokenSecret = emailcredetials[3];
+		
+		
+		/*String tmp=editor.getTwitterTokens();
 		if(!tmp.equals(null)){
 			String[] tmp1=tmp.split("BREAKHERE");
 			ConsumerKey=tmp1[0];
 			ConsumerSecret=tmp1[1];
 			AccessToken=tmp1[2];
 			AccessTokenSecret=tmp1[3];
-		}
+		}*/
 		
 	}
 

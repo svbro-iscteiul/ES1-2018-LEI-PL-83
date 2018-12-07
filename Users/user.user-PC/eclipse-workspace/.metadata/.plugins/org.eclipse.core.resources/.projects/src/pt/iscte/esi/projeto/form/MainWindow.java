@@ -718,9 +718,7 @@ public class MainWindow {
 			if(emails.size()==0) {
 				this.getEmail=false;
 				emails=ApiDB.ReadEmail();
-				for (Message m : emails) {
-				
-					
+				for (Message m : emails) {	
 					EmailSenders.add(m.getSender());
 				}
 			}
@@ -743,14 +741,11 @@ public class MainWindow {
 				this.getTwitter=false;
 				tweets=ApiDB.ReadTwitter();
 				for (Message m : tweets) {
-					
-
 					TwitterSenders.add(m.getSender());
 				}
 			}
 			else {
 				for (Message m : tweets) {
-			
 					TwitterSenders.add(m.getSender());
 				}
 				ApiDB.WriteTwitter(tweets);
@@ -766,8 +761,6 @@ public class MainWindow {
 				this.getFacebook=false;
 				posts=ApiDB.ReadFacebook();
 				for (Message m : posts) {
-				
-
 					FacebookSenders.add(m.getSender());
 				}
 			}

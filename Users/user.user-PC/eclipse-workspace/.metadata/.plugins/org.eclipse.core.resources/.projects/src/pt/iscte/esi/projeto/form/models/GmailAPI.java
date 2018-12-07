@@ -37,15 +37,15 @@ public class GmailAPI {
 	private String email="happyc0d3rtwo@gmail.com";
 	private String password="happy.two";
 	
+	/**
+	 * Get all Tokens from XML
+	 */
 	private void getTokenFromXML() {
-		String tmp=editor.getEmailTokens();
-		if(!tmp.equals(null)){
-			String[] tmp1=tmp.split("BREAKHERE");
-			email=tmp1[0];
-			password=tmp1[1];
-			
-		}
+		editor = new XMLFileEditor();
+		String[] emailcredetials = editor.getEmail();
 		
+		email = emailcredetials[0];
+		password = emailcredetials[1];		
 	}
 	
 	

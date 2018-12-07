@@ -30,16 +30,16 @@ public class FacebookAPI {
 	private String AppSecret="75a7638dfa1a64929a408b3955681d0a";
 	private XMLFileEditor editor = new XMLFileEditor();
 	
-	
+	/**
+	 * Get all Tokens from XML
+	 */
 	private void getTokenFromXML() {
-		String tmp=editor.getFacebookTokens();
-		if(!tmp.equals(null)){
-			String[] tmp1=tmp.split("BREAKHERE");
-			Token=tmp1[0];
-			AppId=tmp1[1];
-			AppSecret=tmp1[2];
-			
-		}
+		editor = new XMLFileEditor();
+		String[] emailcredetials = editor.getFacebook();
+		
+		Token = emailcredetials[0];
+		AppId = emailcredetials[1];
+		AppSecret = emailcredetials[1];	
 		
 	}
 	

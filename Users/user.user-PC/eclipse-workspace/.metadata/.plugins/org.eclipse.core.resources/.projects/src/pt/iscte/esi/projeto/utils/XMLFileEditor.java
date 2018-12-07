@@ -528,4 +528,124 @@ public class XMLFileEditor {
 		}
 		return "Error";
 	}
+
+
+	/**
+	 * Used to return email and password from xml
+	 * 
+	 * @return String[] with email and password
+	 */
+	public String[] getEmail() {
+		String[] mailcredentials = new String[2];
+		try {
+			File fXmlFile = new File(
+					"Users/user.user-PC/eclipse-workspace/.metadata/.plugins/org.eclipse.core.resources/.projects/src/DBA/config.xml");
+			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+			Document doc = dBuilder.parse(fXmlFile);
+
+			doc.getDocumentElement().normalize();
+
+			NodeList nList = doc.getElementsByTagName("User_Email");
+
+			for (int temp = 0; temp < nList.getLength(); temp++) {
+
+				Node nNode = nList.item(temp);
+
+				if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+
+					Element eElement = (Element) nNode;
+					if (eElement.getElementsByTagName("Mail").item(0).getTextContent() != null)
+						mailcredentials[0] = eElement.getElementsByTagName("Mail").item(0).getTextContent();
+					if (eElement.getElementsByTagName("Password").item(0).getTextContent() != null)
+						mailcredentials[1] = eElement.getElementsByTagName("Password").item(0).getTextContent();
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return mailcredentials;
+	}
+	
+	
+	/**
+	 * Used to return twitter tokens from xml
+	 * 
+	 * @return String[] with tokens
+	 */
+	public String[] getTwitter() {
+		String[] mailcredentials = new String[4];
+		try {
+			File fXmlFile = new File(
+					"Users/user.user-PC/eclipse-workspace/.metadata/.plugins/org.eclipse.core.resources/.projects/src/DBA/config.xml");
+			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+			Document doc = dBuilder.parse(fXmlFile);
+
+			doc.getDocumentElement().normalize();
+
+			NodeList nList = doc.getElementsByTagName("User_Twitter");
+
+			for (int temp = 0; temp < nList.getLength(); temp++) {
+
+				Node nNode = nList.item(temp);
+
+				if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+
+					Element eElement = (Element) nNode;
+					if (eElement.getElementsByTagName("ConsumerKey").item(0).getTextContent() != null)
+						mailcredentials[0] = eElement.getElementsByTagName("ConsumerKey").item(0).getTextContent();
+					if (eElement.getElementsByTagName("ConsumerSecret").item(0).getTextContent() != null)
+						mailcredentials[1] = eElement.getElementsByTagName("ConsumerSecret").item(0).getTextContent();
+					if (eElement.getElementsByTagName("AccessToken").item(0).getTextContent() != null)
+						mailcredentials[2] = eElement.getElementsByTagName("AccessToken").item(0).getTextContent();
+					if (eElement.getElementsByTagName("AccessTokenSecret").item(0).getTextContent() != null)
+						mailcredentials[3] = eElement.getElementsByTagName("AccessTokenSecret").item(0).getTextContent();
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return mailcredentials;
+	}
+	
+	
+	/**
+	 * Used to return twitter tokens from xml
+	 * 
+	 * @return String[] with tokens
+	 */
+	public String[] getFacebook() {
+		String[] mailcredentials = new String[3];
+		try {
+			File fXmlFile = new File(
+					"Users/user.user-PC/eclipse-workspace/.metadata/.plugins/org.eclipse.core.resources/.projects/src/DBA/config.xml");
+			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+			Document doc = dBuilder.parse(fXmlFile);
+
+			doc.getDocumentElement().normalize();
+
+			NodeList nList = doc.getElementsByTagName("User_Facebook");
+
+			for (int temp = 0; temp < nList.getLength(); temp++) {
+
+				Node nNode = nList.item(temp);
+
+				if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+
+					Element eElement = (Element) nNode;
+					if (eElement.getElementsByTagName("Token").item(0).getTextContent() != null)
+						mailcredentials[0] = eElement.getElementsByTagName("Token").item(0).getTextContent();
+					if (eElement.getElementsByTagName("AppId").item(0).getTextContent() != null)
+						mailcredentials[1] = eElement.getElementsByTagName("AppId").item(0).getTextContent();
+					if (eElement.getElementsByTagName("AppSecret").item(0).getTextContent() != null)
+						mailcredentials[2] = eElement.getElementsByTagName("AppSecret").item(0).getTextContent();
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return mailcredentials;
+	}
 }

@@ -59,10 +59,10 @@ public class TestXMLFileEditor {
 		
 		assertEquals("New Twitter Tokens Added", xmlFileEditor.addTwittwerTokens("NewTest" , "NewTest", "NewTest", "NewTest"));
 		
-		assertEquals("AuthConsumerSecret Taken", xmlFileEditor.readFileTokTwiter("ConsumerT" , "test2testnew", "test2testnew", "test2testnew"));
-		assertEquals("AuthConsumerKey Taken", xmlFileEditor.readFileTokTwiter("test2testnew" , "ConsumerT", "test2testnew", "test2testnew"));
-		assertEquals("AuthAccessToken Taken", xmlFileEditor.readFileTokTwiter("test2testnew" , "test2testnew", "ConsumerT", "test2testnew"));
-		assertEquals("AuthAccesTokenSecret Taken", xmlFileEditor.readFileTokTwiter("test2testnew" , "test2testnew", "test2testnew", "ConsumerT"));
+		assertEquals("AuthConsumerSecret Taken", xmlFileEditor.readFileTokTwiter("NewTest" , "test2testnew", "test2testnew", "test2testnew"));
+		assertEquals("AuthConsumerKey Taken", xmlFileEditor.readFileTokTwiter("test2testnew" , "NewTest", "test2testnew", "test2testnew"));
+		assertEquals("AuthAccessToken Taken", xmlFileEditor.readFileTokTwiter("test2testnew" , "test2testnew", "NewTest", "test2testnew"));
+		assertEquals("AuthAccesTokenSecret Taken", xmlFileEditor.readFileTokTwiter("test2testnew" , "test2testnew", "test2testnew", "NewTest"));
 		assertEquals("Tokens not yet inserted", xmlFileEditor.readFileTokTwiter("test2testnew" , "test2testnew", "test2testnew", "test2testnew"));
 
 		
