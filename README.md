@@ -8,7 +8,7 @@ alunos:
   78549, José Santos,
   77773, Sérgio Ribeiro
   
- Video: 
+ Video: https://youtu.be/x00j2euRJCs
  
  
 Funcionalidades em erro:
